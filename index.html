@@ -623,12 +623,12 @@
       <!-- How long does capital last -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
         <div style="background:white;border-radius:10px;padding:12px;text-align:center;">
-          <div style="font-size:11px;color:#888;margin-bottom:4px;">👩 Mihretas Kapital reicht</div>
+          <div style="font-size:11px;color:#888;margin-bottom:4px;">👩 Mihretas<br>Kapital reicht</div>
           <div id="optB-mama-dur" style="font-size:20px;font-weight:900;color:#e91e63;">—</div>
           <div id="optB-mama-sub" style="font-size:11px;color:#888;margin-top:2px;">—</div>
         </div>
         <div style="background:white;border-radius:10px;padding:12px;text-align:center;">
-          <div style="font-size:11px;color:#888;margin-bottom:4px;">👨 Kapital Zikret reicht</div>
+          <div style="font-size:11px;color:#888;margin-bottom:4px;">👨 Zikrets<br>Kapital reicht</div>
           <div id="optB-papa-dur" style="font-size:20px;font-weight:900;color:#1565c0;">—</div>
           <div id="optB-papa-sub" style="font-size:11px;color:#888;margin-top:2px;">—</div>
         </div>
@@ -978,9 +978,11 @@
 
   <!-- ===== PHASEN ===== -->
   <div style="background:white;border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,0.08);">
-    <div style="background:linear-gradient(135deg,#1a3a5c,#2d6a9f);color:white;padding:12px 18px;font-size:13px;font-weight:800;">
-      📅 Einkommen nach Phase — was kommt wann?
+    <div onclick="togglePhasen()" style="cursor:pointer;background:linear-gradient(135deg,#1a3a5c,#2d6a9f);color:white;padding:12px 18px;font-size:13px;font-weight:800;display:flex;justify-content:space-between;align-items:center;user-select:none;">
+      <span>📅 Einkommen nach Phase — was kommt wann?</span>
+      <span id="phasen-arrow" style="font-size:16px;">▲</span>
     </div>
+    <div id="phasen-body">
 
     <!-- ===== PHASE 1 ===== -->
     <div onclick="togglePhase(1)" style="cursor:pointer;background:#fce4ec;padding:10px 16px;border-bottom:1px solid #f48fb1;display:flex;justify-content:space-between;align-items:center;user-select:none;">
@@ -1155,7 +1157,10 @@
     </div>
   </div>
 
-  <!-- MIT / OHNE KAPITALBEZUG -->
+    </div><!-- phasen-body -->
+  </div>
+
+    <!-- MIT / OHNE KAPITALBEZUG -->
   <div style="background:white;border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,0.08);">
 
     <!-- Collapsible header -->
@@ -1175,10 +1180,14 @@
     </div>
 
     <!-- ===== OHNE BEZUG ===== -->
-    <div style="background:#e8f5e9;padding:8px 14px;border-bottom:1px solid #a5d6a7;">
-      <div style="font-size:12px;font-weight:800;color:#1b5e20;">✅ Ohne Kapitalbezug — PK als Rente</div>
-      <div style="font-size:10px;color:#388e3c;">lebenslang garantiert — empfohlene Option</div>
+    <div onclick="toggleSub('sub-ohne')" style="cursor:pointer;background:#e8f5e9;padding:8px 14px;border-bottom:1px solid #a5d6a7;display:flex;justify-content:space-between;align-items:center;user-select:none;">
+      <div>
+        <div style="font-size:12px;font-weight:800;color:#1b5e20;">✅ Ohne Kapitalbezug — PK als Rente</div>
+        <div style="font-size:10px;color:#388e3c;">lebenslang garantiert — empfohlene Option</div>
+      </div>
+      <span id="sub-ohne-arrow" style="font-size:14px;color:#1b5e20;">▲</span>
     </div>
+    <div id="sub-ohne-body">
     <!-- AHV row -->
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:9px 14px;border-bottom:1px solid #f0f0f0;align-items:center;">
       <div style="font-size:11px;color:#555;">🏛 AHV<small style="display:block;color:#888;font-size:10px;">/ Monat</small></div>
@@ -1222,11 +1231,17 @@
       </div>
     </div>
 
+    </div><!-- sub-ohne-body -->
+
     <!-- ===== MIHRETA KAPITAL ===== -->
-    <div style="background:#fff3e0;padding:8px 14px;border-bottom:1px solid #ffcc80;">
-      <div style="font-size:12px;font-weight:800;color:#e65100;">💼 Szenario 2 — Mihreta bezieht PK als Kapital</div>
-      <div class="ub-note" data-ch="Einmalig CHF 147'500 auf Konto — CHF 699/Mt. fällt weg" data-ba="Einmalig 315'650 BAM auf Konto — 1'494 BAM/Mt. fällt weg" style="font-size:10px;color:#bf360c;">Einmalig CHF 147'500 auf Konto — CHF 699/Mt. fällt weg</div>
+    <div onclick="toggleSub('sub-s2')" style="cursor:pointer;background:#fff3e0;padding:8px 14px;border-bottom:1px solid #ffcc80;display:flex;justify-content:space-between;align-items:center;user-select:none;">
+      <div>
+        <div style="font-size:12px;font-weight:800;color:#e65100;">💼 Szenario 2 — Mihreta bezieht PK als Kapital</div>
+        <div class="ub-note" data-ch="Einmalig CHF 147'500 auf Konto — CHF 699/Mt. fällt weg" data-ba="Einmalig 315'650 BAM auf Konto — 1'494 BAM/Mt. fällt weg" style="font-size:10px;color:#bf360c;">Einmalig CHF 147'500 auf Konto — CHF 699/Mt. fällt weg</div>
+      </div>
+      <span id="sub-s2-arrow" style="font-size:14px;color:#e65100;">▼</span>
     </div>
+    <div id="sub-s2-body" style="display:none;">
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:9px 14px;border-bottom:1px solid #f0f0f0;align-items:center;">
       <div style="font-size:11px;color:#555;">🏛 AHV<small style="display:block;color:#888;font-size:10px;">/ Monat</small></div>
       <div style="text-align:center;">
@@ -1276,11 +1291,17 @@
       </div>
     </div>
 
+    </div><!-- sub-s2-body -->
+
     <!-- ===== ZIKRET KAPITAL ===== -->
-    <div style="background:#e8eaf6;padding:8px 14px;border-bottom:1px solid #9fa8da;">
-      <div style="font-size:12px;font-weight:800;color:#283593;">💼 Szenario 3 — Zikret bezieht PK als Kapital</div>
-      <div class="ub-note" data-ch="Einmalig CHF 280'000 auf Konto — CHF 1'601/Mt. fällt weg" data-ba="Einmalig 599'200 BAM auf Konto — 3'426 BAM/Mt. fällt weg" style="font-size:10px;color:#3949ab;">Einmalig CHF 280'000 auf Konto — CHF 1'601/Mt. fällt weg</div>
+    <div onclick="toggleSub('sub-s3')" style="cursor:pointer;background:#e8eaf6;padding:8px 14px;border-bottom:1px solid #9fa8da;display:flex;justify-content:space-between;align-items:center;user-select:none;">
+      <div>
+        <div style="font-size:12px;font-weight:800;color:#283593;">💼 Szenario 3 — Zikret bezieht PK als Kapital</div>
+        <div class="ub-note" data-ch="Einmalig CHF 280'000 auf Konto — CHF 1'601/Mt. fällt weg" data-ba="Einmalig 599'200 BAM auf Konto — 3'426 BAM/Mt. fällt weg" style="font-size:10px;color:#3949ab;">Einmalig CHF 280'000 auf Konto — CHF 1'601/Mt. fällt weg</div>
+      </div>
+      <span id="sub-s3-arrow" style="font-size:14px;color:#283593;">▼</span>
     </div>
+    <div id="sub-s3-body" style="display:none;">
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:9px 14px;border-bottom:1px solid #f0f0f0;align-items:center;">
       <div style="font-size:11px;color:#555;">🏛 AHV<small style="display:block;color:#888;font-size:10px;">/ Monat</small></div>
       <div style="text-align:center;">
@@ -1330,11 +1351,17 @@
       </div>
     </div>
 
+    </div><!-- sub-s3-body -->
+
     <!-- ===== BEIDE KAPITAL ===== -->
-    <div style="background:#ffebee;padding:8px 14px;border-bottom:1px solid #ef9a9a;">
-      <div style="font-size:12px;font-weight:800;color:#b71c1c;">💰 Szenario 4 — Beide beziehen PK als Kapital</div>
-      <div class="ub-note" data-ch="Einmalig CHF 427'500 auf Konto — keine PK-Rente mehr" data-ba="Einmalig 914'850 BAM auf Konto — keine PK-Rente mehr" style="font-size:10px;color:#c62828;">Einmalig CHF 427'500 auf Konto — keine PK-Rente mehr</div>
+    <div onclick="toggleSub('sub-s4')" style="cursor:pointer;background:#ffebee;padding:8px 14px;border-bottom:1px solid #ef9a9a;display:flex;justify-content:space-between;align-items:center;user-select:none;">
+      <div>
+        <div style="font-size:12px;font-weight:800;color:#b71c1c;">💰 Szenario 4 — Beide beziehen PK als Kapital</div>
+        <div class="ub-note" data-ch="Einmalig CHF 427'500 auf Konto — keine PK-Rente mehr" data-ba="Einmalig 914'850 BAM auf Konto — keine PK-Rente mehr" style="font-size:10px;color:#c62828;">Einmalig CHF 427'500 auf Konto — keine PK-Rente mehr</div>
+      </div>
+      <span id="sub-s4-arrow" style="font-size:14px;color:#b71c1c;">▼</span>
     </div>
+    <div id="sub-s4-body" style="display:none;">
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:9px 14px;border-bottom:1px solid #f0f0f0;align-items:center;">
       <div style="font-size:11px;color:#555;">🏛 AHV<small style="display:block;color:#888;font-size:10px;">/ Monat</small></div>
       <div style="text-align:center;">
@@ -1375,6 +1402,8 @@
         <div class="ub-val" data-ch="CHF 427'500" data-ba="914'850 BAM" style="font-size:11px;font-weight:800;color:white;">CHF 427'500</div>
       </div>
     </div>
+
+    </div><!-- sub-s4-body -->
 
     </div><!-- vgl-body -->
   </div>
@@ -1417,8 +1446,12 @@
   </div>
 
   <!-- 13. AHV -->
-  <div style="background:#f3e5f5;border-radius:14px;padding:16px 18px;margin-bottom:16px;border-left:4px solid #8e24aa;">
-    <div style="font-size:14px;font-weight:800;color:#6a1b9a;margin-bottom:6px;">🎄 13. AHV-Rente — jedes Jahr im Dezember</div>
+  <div style="background:white;border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 6px rgba(0,0,0,0.07);">
+    <div onclick="toggle13()" style="cursor:pointer;background:#f3e5f5;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;user-select:none;border-left:4px solid #8e24aa;">
+      <div style="font-size:13px;font-weight:800;color:#6a1b9a;">🎄 13. AHV-Rente — jedes Jahr im Dezember</div>
+      <span id="ahv13-arrow" style="font-size:16px;color:#6a1b9a;">▼</span>
+    </div>
+    <div id="ahv13-body" style="display:none;padding:14px 18px;background:#fdf6ff;">
     <div style="font-size:13px;color:#555;line-height:1.5;margin-bottom:10px;">Seit 2026 erhalten alle AHV-Bezüger eine 13. Rente im Dezember — entspricht einem vollen Monatsbetrag.</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
       <div style="background:white;border-radius:10px;padding:10px;text-align:center;">
@@ -1435,6 +1468,7 @@
     <div style="text-align:center;margin-top:10px;font-size:13px;font-weight:800;color:#6a1b9a;">
       Zusammen: + <span class="ub-val" data-ch="CHF 3'680" data-ba="7'875 BAM">CHF 3'680</span> / Jahr extra 🎁
     </div>
+    </div><!-- ahv13-body -->
   </div>
 
   <button class="back-btn" onclick="goHome()">🏠 Zurück zur Übersicht</button>
@@ -1805,6 +1839,28 @@ function setUbLoc(loc){
   });
 }
 
+function togglePhasen(){
+  var body = document.getElementById('phasen-body');
+  var arrow = document.getElementById('phasen-arrow');
+  var isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  arrow.textContent = isOpen ? '▼' : '▲';
+}
+function toggleSub(id){
+  var body = document.getElementById(id+'-body');
+  var arrow = document.getElementById(id+'-arrow');
+  if(!body) return;
+  var isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  arrow.textContent = isOpen ? '▼' : '▲';
+}
+function toggle13(){
+  var body = document.getElementById('ahv13-body');
+  var arrow = document.getElementById('ahv13-arrow');
+  var isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  arrow.textContent = isOpen ? '▼' : '▲';
+}
 function toggleVgl(){
   var body = document.getElementById('vgl-body');
   var arrow = document.getElementById('vgl-arrow');

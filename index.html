@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Penzija">
+<meta name="theme-color" content="#1a3a5c">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Pension — Mihreta &amp; Zikret</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; background: #f0f4f8; color: #1a1a1a; font-size: 15px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
+  button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+  input[type="range"] { touch-action: manipulation; }
+  .page { max-width: 720px; margin: 0 auto; padding: 20px 14px 60px; }
+
+  /* ===== LANDING ===== */
+  #landing { }
+  .hero {
+    background: linear-gradient(160deg, #1a3a5c 0%, #2d6a9f 100%);
+    border-radius: 20px; padding: 30px 22px 26px; color: white; text-align: center; margin-bottom: 18px;
+  }
+  .hero .flag-row { font-size: 28px; margin-bottom: 10px; letter-spacing: 4px; }
+  .hero h1 { font-size: 24px; font-weight: 900; margin-bottom: 4px; }
+  .hero .subtitle { font-size: 13px; opacity: 0.8; margin-bottom: 20px; }
+  .hero .address { background: rgba(255,255,255,0.12); border-radius: 10px; padding: 8px 14px; font-size: 13px; display: inline-block; }
+
+  /* Countdown cards */
+  .cd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .cd-card { background: white; border-radius: 16px; padding: 18px 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  .cd-card.mama { border-top: 4px solid #e91e63; }
+  .cd-card.papa { border-top: 4px solid #1565c0; }
+  .cd-person { font-size: 13px; font-weight: 800; margin-bottom: 2px; }
+  .cd-person.mama { color: #e91e63; }
+  .cd-person.papa { color: #1565c0; }
+  .cd-target { font-size: 11px; color: #888; margin-bottom: 10px; }
+  .cd-num { font-size: 30px; font-weight: 900; line-height: 1; }
+  .cd-num.mama { color: #e91e63; }
+  .cd-num.papa { color: #1565c0; }
+  .cd-label { font-size: 11px; color: #888; margin-bottom: 10px; }
+  .cd-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+  .cd-mini { background: #f8f9fc; border-radius: 8px; padding: 6px 8px; text-align: center; }
+  .cd-mini .mn { font-size: 15px; font-weight: 800; }
+  .cd-mini .mn.mama { color: #e91e63; }
+  .cd-mini .mn.papa { color: #1565c0; }
+  .cd-mini .ml { font-size: 10px; color: #999; }
+
+  /* Work duration */
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .work-card { background: white; border-radius: 14px; padding: 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+  .work-card h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #888; margin-bottom: 8px; }
+  .work-since { font-size: 13px; color: #555; margin-bottom: 8px; }
+  .work-ticker { font-size: 11px; color: #333; line-height: 2; }
+  .work-ticker .wn { font-weight: 800; font-size: 13px; }
+  .work-ticker .wn.mama { color: #e91e63; }
+  .work-ticker .wn.papa { color: #1565c0; }
+
+  /* PK card */
+  .pk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .pk-card { background: white; border-radius: 14px; padding: 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+  .pk-card h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #888; margin-bottom: 8px; }
+  .pk-amount { font-size: 26px; font-weight: 900; line-height: 1; margin-bottom: 3px; }
+  .pk-amount.mama { color: #e91e63; }
+  .pk-amount.papa { color: #1565c0; }
+  .pk-sub { font-size: 11px; color: #999; }
+  .pk-detail { margin-top: 10px; font-size: 12px; color: #555; line-height: 1.8; }
+  .pk-detail span { font-weight: 700; color: #333; }
+
+  /* CTA buttons */
+  .cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .cta-btn {
+    padding: 16px 12px; border-radius: 14px; border: none;
+    font-size: 15px; font-weight: 800; cursor: pointer;
+    text-align: center; transition: all 0.15s; line-height: 1.3;
+  }
+  .cta-btn.questions { background: #1a3a5c; color: white; }
+  .cta-btn.questions:hover { background: #2d5a8a; }
+  .cta-btn.scenarios { background: white; color: #1a3a5c; border: 2px solid #1a3a5c; }
+  .cta-btn.scenarios:hover { background: #e8edf5; }
+  .cta-btn .cta-icon { font-size: 24px; display: block; margin-bottom: 4px; }
+
+  /* Language switcher */
+  .lang-bar {
+    display: flex; justify-content: flex-end; align-items: center; gap: 6px;
+    padding: 8px 4px 12px;
+  }
+  .lang-btn {
+    padding: 5px 12px; border-radius: 20px; border: 2px solid #c5d0e0;
+    font-size: 12px; font-weight: 800; cursor: pointer; background: white; color: #666;
+    transition: all 0.15s;
+  }
+  .lang-btn.active { background: #1a3a5c; color: white; border-color: #1a3a5c; }
+
+  /* Range slider cross-browser */
+  input[type="range"] { -webkit-appearance: none; width: 100%; height: 6px; border-radius: 3px; background: #dde3ec; outline: none; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: #1a3a5c; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+  input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: #1a3a5c; cursor: pointer; border: none; box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+
+  /* Top nav bar */
+  .top-nav {
+    display: flex; gap: 8px; margin-bottom: 16px; align-items: stretch;
+  }
+  .top-nav .cta-btn { flex: 1; padding: 12px 8px; font-size: 13px; }
+  .top-nav .cta-btn .cta-icon { font-size: 18px; margin-bottom: 2px; }
+
+  #quiz-section { display: none; }
+  .quiz-card { background: white; border-radius: 16px; padding: 24px 22px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .quiz-card h2 { font-size: 17px; font-weight: 800; color: #1a3a5c; margin-bottom: 6px; }
+  .quiz-card p { font-size: 13px; color: #666; margin-bottom: 20px; }
+  .question { margin-bottom: 22px; }
+  .question-label { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; }
+  .question-label .qnum { background: #1a3a5c; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+  .yn-btns { display: flex; gap: 10px; }
+  .yn-btn { flex: 1; padding: 12px; border-radius: 10px; border: 2px solid #ddd; font-size: 14px; font-weight: 700; cursor: pointer; background: white; color: #555; transition: all 0.15s; }
+  .yn-btn:hover { border-color: #1a3a5c; color: #1a3a5c; }
+  .yn-btn.sel-ja { background: #1b5e20; color: white; border-color: #1b5e20; }
+  .yn-btn.sel-nein { background: #546e7a; color: white; border-color: #546e7a; }
+  .budget-opts { display: flex; flex-direction: column; gap: 8px; }
+  .budget-btn { padding: 12px 16px; border-radius: 10px; border: 2px solid #ddd; font-size: 14px; font-weight: 600; cursor: pointer; background: white; color: #555; transition: all 0.15s; text-align: left; }
+  .budget-btn:hover { border-color: #1a3a5c; color: #1a3a5c; }
+  .budget-btn.sel { background: #1a3a5c; color: white; border-color: #1a3a5c; }
+  .quiz-submit { width: 100%; padding: 16px; background: #1a3a5c; color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; margin-top: 8px; }
+  .quiz-submit:disabled { background: #ccc; cursor: not-allowed; }
+  .quiz-reset { width: 100%; padding: 12px; background: white; color: #b71c1c; border: 2px solid #ef9a9a; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 8px; }
+  .back-sm { background: none; border: none; color: #888; font-size: 13px; cursor: pointer; margin-bottom: 12px; }
+
+  /* ===== RESULT ===== */
+  #result-section { display: none; }
+  .result-header { border-radius: 14px; padding: 20px 22px; color: white; margin-bottom: 16px; text-align: center; }
+  .result-header h2 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+  .result-header p { font-size: 13px; opacity: 0.88; }
+  .result-header.s1 { background: linear-gradient(135deg,#1b5e20,#388e3c); }
+  .result-header.s2 { background: linear-gradient(135deg,#880e4f,#d81b60); }
+  .result-header.s3 { background: linear-gradient(135deg,#0d47a1,#1976d2); }
+  .result-header.s4 { background: linear-gradient(135deg,#bf360c,#e64a19); }
+  .result-why { background: white; border-radius: 12px; padding: 16px 18px; margin-bottom: 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+  .result-why h3 { font-size: 14px; font-weight: 800; color: #1a3a5c; margin-bottom: 10px; }
+  .why-item { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid #f2f2f2; font-size: 13.5px; align-items: flex-start; }
+  .why-item:last-child { border-bottom: none; }
+  .why-item .icon { flex-shrink: 0; font-size: 16px; }
+  .show-all-btn { width: 100%; padding: 14px; background: #1a3a5c; color: white; border: none; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; margin-bottom: 10px; }
+  .back-btn { width: 100%; padding: 12px; background: white; color: #1a3a5c; border: 2px solid #1a3a5c; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; }
+
+  /* ===== SCENARIOS ===== */
+  #scenarios-section { display: none; }
+  .scenario-nav { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+  .snav-btn { padding: 10px 6px; border-radius: 10px; border: 2px solid transparent; font-size: 12px; font-weight: 700; cursor: pointer; text-align: center; line-height: 1.3; }
+  .snav-btn.s1 { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+  .snav-btn.s2 { background: #fce4ec; color: #880e4f; border-color: #f48fb1; }
+  .snav-btn.s3 { background: #e3f2fd; color: #0d47a1; border-color: #90caf9; }
+  .snav-btn.s4 { background: #fff3e0; color: #bf360c; border-color: #ffcc80; }
+  .snav-btn.s1.active { background: #2e7d32; color: white; border-color: #2e7d32; }
+  .snav-btn.s2.active { background: #e91e63; color: white; border-color: #e91e63; }
+  .snav-btn.s3.active { background: #1565c0; color: white; border-color: #1565c0; }
+  .snav-btn.s4.active { background: #e65100; color: white; border-color: #e65100; }
+  .snav-btn.recommended { box-shadow: 0 0 0 3px #ffd600; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .sc-header { border-radius: 12px; padding: 16px 20px; margin-bottom: 14px; color: white; }
+  .sc-header h2 { font-size: 17px; font-weight: 800; margin-bottom: 3px; }
+  .sc-header p { font-size: 13px; opacity: 0.88; }
+  .sc-header.s1 { background: linear-gradient(135deg,#1b5e20,#388e3c); }
+  .sc-header.s2 { background: linear-gradient(135deg,#880e4f,#d81b60); }
+  .sc-header.s3 { background: linear-gradient(135deg,#0d47a1,#1976d2); }
+  .sc-header.s4 { background: linear-gradient(135deg,#bf360c,#e64a19); }
+  .rec-badge { background: #ffd600; color: #1a1a1a; border-radius: 20px; padding: 3px 12px; font-size: 12px; font-weight: 800; display: inline-block; margin-bottom: 10px; }
+  .pills { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .pill { border-radius: 20px; padding: 5px 14px; font-size: 13px; font-weight: 700; }
+  .pill.mr { background: #fce4ec; color: #880e4f; }
+  .pill.mk { background: #ffebee; color: #b71c1c; border: 2px solid #ef9a9a; }
+  .pill.pr { background: #e3f2fd; color: #0d47a1; }
+  .pill.pk { background: #fff3e0; color: #bf360c; border: 2px solid #ffcc80; }
+  .loc-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .loc-btn { padding: 10px; border-radius: 10px; border: 2px solid #ddd; font-size: 13px; font-weight: 700; cursor: pointer; text-align: center; background: white; color: #555; }
+  .loc-btn.ach { background: #1a3a5c; color: white; border-color: #1a3a5c; }
+  .loc-btn.aba { background: #c62828; color: white; border-color: #c62828; }
+  .loc-panel { display: none; }
+  .loc-panel.active { display: block; }
+  .mb { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+  .mbt { padding: 9px 16px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: white; }
+  .mbt.green { background: #388e3c; }
+  .mbt.orange { background: #e65100; }
+  .mbt.grey { background: #546e7a; }
+  .mbt.purple { background: #6a1b9a; }
+  .mrow { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; border-bottom: 1px solid #f2f2f2; gap: 10px; }
+  .mrow:last-child { border-bottom: none; }
+  .mrow .lbl { font-size: 13.5px; color: #444; flex: 1; }
+  .mrow .lbl small { display: block; font-size: 11.5px; color: #888; margin-top: 1px; }
+  .mrow .val { font-size: 16px; font-weight: 800; white-space: nowrap; }
+  .mrow .val.green { color: #2e7d32; }
+  .mrow .val.orange { color: #e65100; }
+  .mrow .val.red { color: #c62828; }
+  .mrow .val.purple { color: #6a1b9a; }
+  .mrow.sub { background: #fafafa; }
+  .mrow.sub .lbl { font-weight: 700; color: #333; }
+  .mrow.tot { background: #e8f5e9; }
+  .mrow.tot .lbl { font-weight: 800; color: #1b5e20; font-size: 14px; }
+  .mrow.tot .val { font-size: 20px; color: #1b5e20; }
+  .mrow.totba { background: #f3e5f5; }
+  .mrow.totba .lbl { font-weight: 800; color: #6a1b9a; font-size: 14px; }
+  .mrow.totba .val { font-size: 18px; color: #6a1b9a; }
+  .mrow.neg .lbl { color: #b71c1c; }
+  .mrow.neg .val { color: #b71c1c; }
+  .mrow.kap { background: #fff8e1; }
+  .bignb { border-radius: 12px; padding: 18px 20px; text-align: center; margin-bottom: 12px; }
+  .bignb .bl { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; opacity: 0.8; }
+  .bignb .bv { font-size: 40px; font-weight: 900; letter-spacing: -1px; line-height: 1; }
+  .bignb .bb { font-size: 20px; font-weight: 700; margin-top: 6px; opacity: 0.9; }
+  .bignb .bs { font-size: 13px; margin-top: 4px; opacity: 0.85; }
+  .bignb.green { background: linear-gradient(135deg,#1b5e20,#2e7d32); color: white; }
+  .bignb.orange { background: linear-gradient(135deg,#bf360c,#e64a19); color: white; }
+  .bignb.blue { background: linear-gradient(135deg,#0d47a1,#1565c0); color: white; }
+  .bignb.red { background: linear-gradient(135deg,#880e4f,#c2185b); color: white; }
+  .bignb.purple { background: linear-gradient(135deg,#4a148c,#7b1fa2); color: white; }
+  .ib { border-radius: 10px; padding: 12px 14px; font-size: 13px; line-height: 1.6; margin-bottom: 10px; }
+  .ib strong { display: block; margin-bottom: 3px; font-size: 13.5px; }
+  .ib.green { background: #e8f5e9; border-left: 4px solid #43a047; }
+  .ib.orange { background: #fff3e0; border-left: 4px solid #fb8c00; }
+  .ib.red { background: #ffebee; border-left: 4px solid #e53935; }
+  .ib.yellow { background: #fffde7; border-left: 4px solid #f9a825; }
+  .ib.purple { background: #f3e5f5; border-left: 4px solid #8e24aa; }
+  .verd { border-radius: 10px; padding: 12px 16px; font-size: 14px; font-weight: 700; margin-top: 4px; margin-bottom: 12px; }
+  .verd.best { background: #e8f5e9; color: #1b5e20; border: 2px solid #66bb6a; }
+  .verd.ok { background: #fff3e0; color: #bf360c; border: 2px solid #ffcc02; }
+  .verd.risky { background: #ffebee; color: #b71c1c; border: 2px solid #ef9a9a; }
+  .sdiv { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.8px; margin: 14px 0 8px; padding-left: 4px; }
+  .kursnote { background: #e8eaf6; border-radius: 8px; padding: 8px 12px; font-size: 12px; color: #3949ab; margin-bottom: 12px; font-weight: 600; }
+
+  /* LEGEND */
+  .legend { background: white; border-radius: 14px; padding: 20px 22px; margin-top: 24px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+  .legend h3 { font-size: 14px; font-weight: 800; color: #1a3a5c; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #e0e7f0; }
+  .legend-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f2f2f2; align-items: flex-start; }
+  .legend-item:last-child { border-bottom: none; }
+  .legend-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .legend-content { flex: 1; }
+  .legend-title { font-size: 14px; font-weight: 800; color: #1a1a1a; margin-bottom: 3px; }
+  .legend-text { font-size: 13px; color: #555; line-height: 1.6; }
+  .legend-source { margin-top: 6px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .legend-source a { font-size: 12px; color: #1565c0; text-decoration: none; background: #e3f2fd; padding: 2px 8px; border-radius: 4px; }
+  .footnote { background: #f5f5f5; border-radius: 10px; padding: 12px 14px; font-size: 11.5px; color: #777; margin-top: 16px; line-height: 1.6; }
+
+  /* ===== MOBILE OPTIMIERUNG ===== */
+  @media (max-width: 600px) {
+    /* Grundlayout */
+    body { font-size: 14px; }
+    .page { padding: 12px 10px 60px; }
+
+    /* Hero */
+    .hero { padding: 22px 16px 20px; border-radius: 16px; }
+    .hero h1 { font-size: 20px; }
+    .hero .flag-row { font-size: 24px; }
+    .hero .address { font-size: 12px; padding: 6px 12px; }
+
+    /* Navigation oben */
+    .top-nav { flex-direction: column; gap: 8px; }
+    .top-nav .cta-btn { padding: 14px 12px; font-size: 14px; }
+    .lang-bar { padding: 6px 2px 10px; }
+    .lang-btn { padding: 6px 14px; font-size: 13px; }
+
+    /* Grids: 2-spaltig → 1-spaltig */
+    .cd-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .work-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .pk-grid { grid-template-columns: 1fr; }
+    .cta-grid { grid-template-columns: 1fr; }
+    .scenario-nav { grid-template-columns: 1fr 1fr; gap: 6px; }
+
+    /* Countdown Karten */
+    .cd-card { padding: 14px 12px; border-radius: 12px; }
+    .cd-num { font-size: 38px; }
+    .cd-person { font-size: 12px; }
+    .cd-target { font-size: 10px; }
+
+    /* PK Karten */
+    .pk-card { padding: 14px; }
+    .pk-amount { font-size: 22px; }
+    .pk-detail { font-size: 11.5px; }
+
+    /* Arbeitsdauer */
+    .work-card { padding: 12px; }
+    .work-since { font-size: 12px; }
+    .work-ticker { font-size: 10.5px; line-height: 1.9; }
+    .work-ticker .wn { font-size: 12px; }
+
+    /* Rechner */
+    #calc-box { padding: 16px 14px 20px; }
+    #calc-box > div[style*="grid-template-columns:1fr 1fr"] { 
+      grid-template-columns: 1fr 1fr !important; 
+    }
+    #calc-val { font-size: 18px; min-width: 70px; }
+
+    /* Szenario-Panels */
+    .loc-tabs { gap: 6px; }
+    .loc-btn { padding: 9px 6px; font-size: 12px; }
+    .mrow { padding: 8px 12px; gap: 8px; }
+    .mrow .lbl { font-size: 12.5px; }
+    .mrow .lbl small { font-size: 11px; }
+    .mrow .val { font-size: 14px; }
+    .mrow.tot .val { font-size: 18px; }
+    .bignb .bv { font-size: 34px; }
+    .bignb .bb { font-size: 17px; }
+    .bignb { padding: 16px; }
+
+    /* Schnellvergleich Labels */
+    .mrow.totba .val { font-size: 15px; }
+
+    /* Pills */
+    .pills { gap: 6px; }
+    .pill { font-size: 12px; padding: 4px 10px; }
+
+    /* Quiz */
+    .quiz-card { padding: 18px 16px; }
+    .yn-btn { padding: 10px 8px; font-size: 13px; }
+    .budget-btn { font-size: 13px; padding: 10px 12px; }
+    .quiz-submit { padding: 14px; font-size: 15px; }
+
+    /* Result */
+    .result-header { padding: 16px 18px; }
+    .result-header h2 { font-size: 17px; }
+
+    /* Back buttons */
+    .back-sm { padding: 8px 0; font-size: 13px; }
+
+    /* Legende */
+    .legend { padding: 16px; }
+    .legend-icon { font-size: 18px; }
+  }
+
+  /* Sehr kleine Handys (iPhone SE etc.) */
+  @media (max-width: 380px) {
+    .cd-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+    .work-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+    .cd-num { font-size: 32px; }
+    .pk-amount { font-size: 20px; }
+    .scenario-nav { grid-template-columns: 1fr 1fr; }
+    .snav-btn { font-size: 11px; padding: 8px 4px; }
+    .bignb .bv { font-size: 28px; }
+    .hero h1 { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ===== LANDING ===== -->
+<div id="landing">
+
+  <!-- Language switcher -->
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('de')" id="btn-lang-de">🇩🇪 DE</button>
+    <button class="lang-btn" onclick="setLang('bs')" id="btn-lang-bs">🇧🇦 BIH</button>
+  </div>
+
+  <!-- Top nav -->
+  <div class="top-nav">
+    <button class="cta-btn questions" onclick="gotoQuiz()">
+      <span class="cta-icon">🤔</span>
+      <span data-i18n="nav_quiz">Welches Szenario passt zu uns?</span>
+    </button>
+    <button class="cta-btn scenarios" onclick="gotoScenarios()">
+      <span class="cta-icon">📊</span>
+      <span data-i18n="nav_all">Alle Szenarien anzeigen</span>
+    </button>
+  </div>
+
+  <div class="hero">
+    <div class="flag-row">🇧🇦 🇨🇭</div>
+    <h1>Mihreta &amp; Zikret</h1>
+    <div class="subtitle" data-i18n="hero_subtitle" data-i18n="hero_subtitle">Pensionierungsplanung 2026 / 2027</div>
+    <div class="address">🏠 Rüeggisingerstrasse 18, 6020 Emmenbrücke (Emmen, LU)</div>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;padding-left:4px;" data-i18n="sec_countdown">⏳ Countdown bis zur Frühpension</div>
+  <div class="cd-grid">
+    <div class="cd-card mama">
+      <div class="cd-person mama">👩 Mihreta</div>
+      <div class="cd-target" data-i18n="cd_mama_target">Frühpension: 31. Dezember 2026</div>
+      <div class="cd-num mama" id="cd-mama-days">—</div>
+      <div class="cd-label" data-i18n="cd_days">Tage</div>
+    </div>
+    <div class="cd-card papa">
+      <div class="cd-person papa">👨 Zikret</div>
+      <div class="cd-target" data-i18n="cd_papa_target">Frühpension: 31. Dezember 2027</div>
+      <div class="cd-num papa" id="cd-papa-days">—</div>
+      <div class="cd-label" data-i18n="cd_days">Tage</div>
+    </div>
+  </div>
+
+  <!-- PK GUTHABEN -->
+  <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;padding-left:4px;" data-i18n="sec_pk">💼 PK-Guthaben (Stand 01.01.2026)</div>
+  <div class="pk-grid">
+    <div class="pk-card">
+      <h4 data-i18n="pk_mama_title">👩 Mihreta — FUTURA Vorsorge</h4>
+      <div class="pk-amount mama">CHF 144'122</div>
+      <div class="pk-sub" data-i18n="pk_per" id="pk-m-per" id="pk-p-per">per 01.01.2026</div>
+      <div class="pk-detail" id="pk-detail-mama">
+        Bei Frühpension (Alter 63): <span>CHF 150'011</span><br>
+        Bei Referenzalter (Alter 64+9M): <span>CHF 162'571</span><br>
+        Jahresrente bei Ref.alter: <span>CHF 699/Mt.</span><br>
+        Umwandlungssatz: <span>5.1625%</span>
+      </div>
+    </div>
+    <div class="pk-card">
+      <h4 data-i18n="pk_papa_title">👨 Zikret — AXA / Kammermann</h4>
+      <div class="pk-amount papa">CHF 252'249</div>
+      <div class="pk-sub">per 01.01.2026</div>
+      <div class="pk-detail" id="pk-detail-papa">
+        Bei ord. Pensionierung (Alter 65): <span>CHF 306'023</span><br>
+        Jahresrente bei Alter 65: <span>CHF 1'601/Mt.</span><br>
+        Obligat. / Überobligat.: <span>CHF 221'423 / CHF 30'826</span><br>
+        Umwandlungssatz: <span>5.2%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARBEITSDAUER -->
+  <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;padding-left:4px;" data-i18n="sec_work">🏗️ Wie lange arbeitet ihr schon?</div>
+  <div class="work-grid">
+    <div class="work-card">
+      <h4>👩 Mihreta</h4>
+      <div class="work-since" data-i18n-prefix="work_mama_since" data-i18n-work="mama_ahv" id="work-since-mama">Beitragsbeginn AHV: <strong>1992</strong><br data-i18n-since="mama">Erwerbstätig seit: <strong>01.01.1998</strong></div>
+      <div class="work-ticker">
+        <div>Jahre: <span class="wn mama" id="wk-mama-y">—</span></div>
+        <div>Monate: <span class="wn mama" id="wk-mama-mo">—</span></div>
+        <div>Wochen: <span class="wn mama" id="wk-mama-w">—</span></div>
+        <div>Tage: <span class="wn mama" id="wk-mama-d">—</span></div>
+        <div>Stunden: <span class="wn mama" id="wk-mama-h">—</span></div>
+        <div>Minuten: <span class="wn mama" id="wk-mama-m">—</span></div>
+        <div>Sekunden: <span class="wn mama" id="wk-mama-s">—</span></div>
+      </div>
+    </div>
+    <div class="work-card">
+      <h4>👨 Zikret</h4>
+      <div class="work-since" data-i18n-work="papa_ahv" id="work-since-papa">Beitragsbeginn AHV: <strong>1985</strong><br data-i18n-since="papa">Erwerbstätig seit: <strong>01.01.1985</strong></div>
+      <div class="work-ticker">
+        <div>Jahre: <span class="wn papa" id="wk-papa-y">—</span></div>
+        <div>Monate: <span class="wn papa" id="wk-papa-mo">—</span></div>
+        <div>Wochen: <span class="wn papa" id="wk-papa-w">—</span></div>
+        <div>Tage: <span class="wn papa" id="wk-papa-d">—</span></div>
+        <div>Stunden: <span class="wn papa" id="wk-papa-h">—</span></div>
+        <div>Minuten: <span class="wn papa" id="wk-papa-m">—</span></div>
+        <div>Sekunden: <span class="wn papa" id="wk-papa-s">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AHV ÜBERSICHT -->
+  <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;padding-left:4px;" data-i18n="sec_ahv">🏛 AHV-Rente (1. Säule)</div>
+  <div class="pk-grid">
+    <div class="pk-card">
+      <h4>👩 Mihreta</h4>
+      <div class="pk-amount mama">CHF 1'779/Mt.</div>
+      <div class="pk-sub" data-i18n="ahv_mama_sub" id="ahv-m-sub">ab 01.08.2028 (Referenzalter)</div>
+      <div class="pk-detail" id="ahv-detail-mama">
+        Davon Sonder-Zuschlag (Jg. 1963): <span>CHF 101/Mt.</span><br>
+        Nach Plafonierung (ab Okt. 2029): <span>CHF 1'926/Mt.</span><br>
+        13. AHV-Rente (Dez. ab 2028): <span>~CHF 1'779 einmalig</span><br>
+        Frühestmögl. Vorbezug: <span>ab 01.06.2026</span>
+      </div>
+    </div>
+    <div class="pk-card">
+      <h4>👨 Zikret</h4>
+      <div class="pk-amount papa">CHF 1'754/Mt.</div>
+      <div class="pk-sub" data-i18n="ahv_papa_sub" id="ahv-p-sub">ab 01.10.2029 (Referenzalter 65)</div>
+      <div class="pk-detail" id="ahv-detail-papa">
+        Nach Plafonierung (ab Okt. 2029): <span>CHF 1'754/Mt.</span><br>
+        13. AHV-Rente (Dez. ab 2029): <span>~CHF 1'754 einmalig</span><br>
+        Vorbezug 1 Jahr: <span>CHF 1'512 (−6.8%)</span><br>
+        Vorbezug 2 Jahre: <span>CHF 1'392 (−13.6%)</span>
+      </div>
+    </div>
+  </div>
+  <div style="background:white;border-radius:12px;padding:14px 18px;margin-bottom:20px;box-shadow:0 1px 6px rgba(0,0,0,0.07);">
+    <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;" data-i18n="ahv_couple">👫 Mihreta &amp; Zikret zusammen (ab Okt. 2029)</div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f2f2f2;">
+      <span style="font-size:13.5px;color:#444" data-i18n="ahv_total_lbl" id="ahv-couple-total">🏛 AHV total (plafoniert, max. CHF 3'780)</span>
+      <span style="font-size:16px;font-weight:800;color:#2e7d32">CHF 3'680/Mt.</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f2f2f2;">
+      <span style="font-size:13px;color:#888" data-i18n="ahv_mama_lbl" id="ahv-couple-mama">davon Mihreta (Plafonierung + Zuschlag CHF 101)</span>
+      <span style="font-size:14px;font-weight:700;color:#e91e63">CHF 1'926</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f2f2f2;">
+      <span style="font-size:13px;color:#888" data-i18n="ahv_papa_lbl" id="ahv-couple-papa">davon Zikret (nach Plafonierung)</span>
+      <span style="font-size:14px;font-weight:700;color:#1565c0">CHF 1'754</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;">
+      <span style="font-size:13px;color:#888" data-i18n="ahv_13_lbl" id="ahv-couple-13">🎄 13. AHV-Rente im Dezember (beide)</span>
+      <span style="font-size:14px;font-weight:700;color:#6a1b9a">+ CHF 3'680/Jahr</span>
+    </div>
+  </div>
+
+  <!-- RECHNER -->
+  <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;padding-left:4px;" data-i18n="sec_calc">🧮 Rechner — Wie lange reicht das Geld?</div>
+  <div id="calc-box" style="background:white;border-radius:16px;padding:20px 20px 24px;margin-bottom:20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+
+    <!-- Location toggle -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px;">
+      <button id="calc-ch" onclick="setCalcLoc('ch')" style="padding:10px;border-radius:10px;border:2px solid #1a3a5c;background:#1a3a5c;color:white;font-size:13px;font-weight:700;cursor:pointer;">🇨🇭 Schweiz</button>
+      <button id="calc-ba" onclick="setCalcLoc('ba')" style="padding:10px;border-radius:10px;border:2px solid #ddd;background:white;color:#555;font-size:13px;font-weight:700;cursor:pointer;">🇧🇦 Bosnien</button>
+    </div>
+
+    <!-- Slider -->
+    <div style="margin-bottom:20px;">
+      <label style="font-size:14px;font-weight:700;color:#1a1a1a;display:block;margin-bottom:8px;" data-i18n="calc_slider_lbl">💶 Fixkosten pro Monat — wie viel braucht ihr zum Leben?</label>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:15px;font-weight:800;color:#1a3a5c;white-space:nowrap;" id="calc-currency">CHF</span>
+        <input type="range" id="calc-slider" min="500" max="8000" step="100" value="3000"
+          oninput="updateCalc()"
+          style="flex:1;accent-color:#1a3a5c;height:6px;cursor:pointer;">
+        <span id="calc-val" style="font-size:22px;font-weight:900;color:#1a3a5c;min-width:90px;text-align:right;">3'000</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:#aaa;margin-top:4px;">
+        <span id="calc-min-label">CHF 500</span>
+        <span id="calc-max-label">CHF 8'000</span>
+      </div>
+    </div>
+
+    <!-- OPTION A: Monatliche Rente -->
+    <div style="background:#e8f5e9;border-radius:12px;padding:16px;margin-bottom:12px;border:2px solid #66bb6a;">
+      <div style="font-size:13px;font-weight:800;color:#1b5e20;margin-bottom:10px;" data-i18n="optA_title">✅ Option A — PK als Rente + AHV monatlich</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="background:white;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;" data-i18n="optA_mama_lbl" id="optA-mama-lbl">👩 Mihreta bekommt</div>
+          <div id="optA-mama-main" style="font-size:20px;font-weight:900;color:#e91e63;">CHF 2'625</div>
+          <div id="optA-mama-bam" style="font-size:12px;color:#e91e63;margin-top:1px;display:none;">= 5'618 BAM</div>
+          <div id="optA-mama-detail" style="font-size:11px;color:#888;margin-top:2px;">PK 699 + AHV 1'926</div>
+          <div style="font-size:11px;font-weight:700;color:#2e7d32;margin-top:4px;">∞ lebenslang</div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;" data-i18n="optA_papa_lbl" id="optA-papa-lbl">👨 Zikret bekommt</div>
+          <div id="optA-papa-main" style="font-size:20px;font-weight:900;color:#1565c0;">CHF 3'355</div>
+          <div id="optA-papa-bam" style="font-size:12px;color:#1565c0;margin-top:1px;display:none;">= 7'180 BAM</div>
+          <div id="optA-papa-detail" style="font-size:11px;color:#888;margin-top:2px;">PK 1'601 + AHV 1'754</div>
+          <div style="font-size:11px;font-weight:700;color:#2e7d32;margin-top:4px;">∞ lebenslang</div>
+        </div>
+      </div>
+      <div id="optA-result" style="margin-top:12px;background:white;border-radius:8px;padding:10px 12px;font-size:13px;font-weight:700;color:#1b5e20;text-align:center;">—</div>
+    </div>
+
+    <!-- OPTION B: Kapital + AHV -->
+    <div style="background:#fff8e1;border-radius:12px;padding:16px;margin-bottom:12px;border:2px solid #ffd54f;">
+      <div style="font-size:13px;font-weight:800;color:#e65100;margin-bottom:10px;" data-i18n="optB_title">💰 Option B — PK als Kapital einmalig + AHV monatlich</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+        <div style="background:white;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;" data-i18n="optB_mama_lbl" id="optB-mama-lbl">👩 Mihreta — einmalig</div>
+          <div style="font-size:18px;font-weight:900;color:#e91e63;">CHF 147'500</div>
+          <div id="optB-mama-bam-k" style="font-size:12px;color:#e91e63;margin-top:1px;display:none;">= 315'650 BAM</div>
+          <div style="font-size:11px;color:#888;margin-top:2px;" data-i18n="optB_konto" id="optB-mama-konto" id="optB-papa-konto">auf gem. Konto</div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;" data-i18n="optB_papa_lbl" id="optB-papa-lbl">👨 Zikret — einmalig</div>
+          <div style="font-size:18px;font-weight:900;color:#1565c0;">CHF 280'000</div>
+          <div id="optB-papa-bam-k" style="font-size:12px;color:#1565c0;margin-top:1px;display:none;">= 599'200 BAM</div>
+          <div style="font-size:11px;color:#888;margin-top:2px;">auf gem. Konto</div>
+        </div>
+      </div>
+
+      <!-- AHV monatlich bei Option B -->
+      <div style="background:white;border-radius:10px;padding:10px 12px;margin-bottom:10px;text-align:center;">
+        <div style="font-size:11px;color:#888;margin-bottom:2px;" data-i18n="optB_ahv_lbl">🏛 AHV weiterhin monatlich (zusammen)</div>
+        <div id="optB-ahv-main" style="font-size:18px;font-weight:900;color:#2e7d32;">CHF 3'680/Mt. ∞</div>
+        <div id="optB-ahv-bam" style="font-size:13px;color:#2e7d32;font-weight:700;display:none;">= 7'875 BAM/Mt. ∞</div>
+        <div style="font-size:11px;color:#888;" data-i18n="optB_ahv_sub">lebenslang — hört nie auf</div>
+      </div>
+
+      <!-- How long does capital last -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="background:white;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;" data-i18n="optB_mama_dur_lbl">👩 Mihretas Kapital reicht</div>
+          <div id="optB-mama-dur" style="font-size:20px;font-weight:900;color:#e91e63;">—</div>
+          <div id="optB-mama-sub" style="font-size:11px;color:#888;margin-top:2px;">—</div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;" data-i18n="optB_papa_dur_lbl">👨 Kapital Zikret reicht</div>
+          <div id="optB-papa-dur" style="font-size:20px;font-weight:900;color:#1565c0;">—</div>
+          <div id="optB-papa-sub" style="font-size:11px;color:#888;margin-top:2px;">—</div>
+        </div>
+      </div>
+      <div id="optB-result" style="margin-top:12px;background:white;border-radius:8px;padding:10px 12px;font-size:13px;font-weight:700;color:#e65100;text-align:center;">—</div>
+    </div>
+
+    <!-- Overall -->
+    <div id="calc-overall" style="border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.7;font-weight:600;background:#e8edf5;color:#1a3a5c;">
+      <span data-i18n="calc_hint">👆 Schieber bewegen um Ergebnis zu sehen</span>
+    </div>
+
+  </div>
+
+  <!-- end landing -->
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div id="quiz-section" style="display:none">
+  <button class="back-sm" onclick="goHome()" data-i18n="back_sm">← Zurück zur Übersicht</button>
+  <div class="quiz-card">
+    <h2 data-i18n="quiz_title">🤔 Was ist euch wichtig?</h2>
+    <p data-i18n="quiz_sub">5 kurze Fragen — dann seht ihr welches Szenario am besten zu euch passt.</p>
+    <div class="question">
+      <div class="question-label"><span class="qnum">1</span data-i18n="q1">Wollt ihr in Bosnien leben?</div>
+      <div class="yn-btns">
+        <button class="yn-btn" id="f1ja" onclick="setYN(1,'ja')">✅ Ja</button>
+        <button class="yn-btn" id="f1nein" onclick="setYN(1,'nein')">❌ Nein, wir bleiben in der Schweiz</button>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-label"><span class="qnum">2</span data-i18n="q2">Ist euch wichtig, dass jeden Monat sicher Geld kommt — egal wie alt ihr werdet?</div>
+      <div class="yn-btns">
+        <button class="yn-btn" id="f2ja" onclick="setYN(2,'ja')">✅ Ja</button>
+        <button class="yn-btn" id="f2nein" onclick="setYN(2,'nein')">❌ Nein</button>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-label"><span class="qnum">3</span data-i18n="q3">Macht es euch Sorgen, dass das Geld eines Tages ausgehen könnte?</div>
+      <div class="yn-btns">
+        <button class="yn-btn" id="f3ja" onclick="setYN(3,'ja')">✅ Ja, das macht uns Sorgen</button>
+        <button class="yn-btn" id="f3nein" onclick="setYN(3,'nein')">❌ Nein, wir verwalten das selbst</button>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-label"><span class="qnum">4</span data-i18n="q4">Wollt ihr einmalig viel Geld auf dem Konto haben?</div>
+      <div class="yn-btns">
+        <button class="yn-btn" id="f4ja" onclick="setYN(4,'ja')">✅ Ja, das wäre schön</button>
+        <button class="yn-btn" id="f4nein" onclick="setYN(4,'nein')">❌ Nein, lieber monatlich</button>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-label"><span class="qnum">5</span data-i18n="q5">Wie viel braucht ihr pro Monat zum Leben?</div>
+      <div class="budget-opts">
+        <button class="budget-btn" id="f5a" onclick="setBudget('a')">💶 Weniger als CHF 2'500 / 5'350 BAM reicht uns</button>
+        <button class="budget-btn" id="f5b" onclick="setBudget('b')">💶 CHF 2'500 – 4'000 / 5'350 – 8'560 BAM</button>
+        <button class="budget-btn" id="f5c" onclick="setBudget('c')">💶 Mehr als CHF 4'000 / 8'560 BAM</button>
+      </div>
+    </div>
+    <button class="quiz-submit" id="quiz-submit-btn" onclick="calcResult()" disabled data-i18n="quiz_submit">Mein Szenario anzeigen →</button>
+    <button class="quiz-reset" onclick="resetQuiz()" id="quiz-reset-btn">🔄 Eingaben löschen</button>
+  </div>
+</div>
+
+<!-- ===== RESULT ===== -->
+<div id="result-section" style="display:none">
+  <button class="back-sm" onclick="gotoQuiz()" data-i18n="back_quiz">← Fragen nochmals beantworten</button>
+  <div id="result-header" class="result-header s1">
+    <div style="font-size:30px;margin-bottom:6px" id="result-emoji">✅</div>
+    <h2 id="result-title">Szenario 1</h2>
+    <p id="result-subtitle">Beide PK als Rente</p>
+  </div>
+  <div class="result-why">
+    <h3 data-i18n="result_why">Warum passt das zu euch?</h3>
+    <div id="result-reasons"></div>
+  </div>
+  <button class="show-all-btn" onclick="showAllScenarios()" data-i18n="show_all">📊 Alle 4 Szenarien vergleichen</button>
+  <button class="back-btn" onclick="goHome()" data-i18n="back_home">🏠 Zurück zur Übersicht</button>
+</div>
+
+<!-- ===== SCENARIOS ===== -->
+<div id="scenarios-section" style="display:none">
+  <button class="back-sm" onclick="goHome()" data-i18n="back_sm">← Zurück zur Übersicht</button>
+  <div style="margin-bottom:10px;font-size:13px;color:#666" id="rec-hint"></div>
+  <div class="scenario-nav">
+    <button class="snav-btn s1 active" id="snavbtn1" onclick="showSc(1)">✅ Szenario 1<br>Beide Rente</button>
+    <button class="snav-btn s2" id="snavbtn2" onclick="showSc(2)">💼 Szenario 2<br>Mihreta Kapital</button>
+    <button class="snav-btn s3" id="snavbtn3" onclick="showSc(3)">💼 Szenario 3<br>Zikret Kapital</button>
+    <button class="snav-btn s4" id="snavbtn4" onclick="showSc(4)">💰 Szenario 4<br>Beide Kapital</button>
+  </div>
+
+  <!-- S1 -->
+  <div id="sc1" class="panel active">
+    <div id="rec1"></div>
+    <div class="sc-header s1"><h2 data-i18n="sc1_title">✅ Szenario 1 — Beide PK als Rente</h2><p data-i18n="sc1_sub">Mihreta und Zikret lassen ihre PK stehen — jeden Monat lebenslang.</p></div>
+    <div class="pills"><span class="pill mr">👩 Mihreta → Monatsrente</span><span class="pill pr">👨 Zikret → Monatsrente</span></div>
+    <div class="loc-tabs">
+      <button class="loc-btn ach" id="s1ch" onclick="showLoc(1,'ch')">🇨🇭 Schweiz (Emmenbrücke)</button>
+      <button class="loc-btn" id="s1ba" onclick="showLoc(1,'ba')">🇧🇦 Bosnien</button>
+    </div>
+    <div id="lp1ch" class="loc-panel active">
+      <div class="bignb green"><div class="bl">Jeden Monat — für immer (ab Okt. 2029)</div><div class="bv">CHF 5'980.–</div><div class="bs">AHV + PK beide zusammen</div></div>
+      <div class="mb"><div class="mbt green">Monatliches Einkommen</div>
+        <div class="mrow"><div class="lbl">🏛 AHV Mihreta (inkl. Zuschlag CHF 101) ②<small>nach Plafonierung</small></div><div class="val green">CHF 1'926</div></div>
+        <div class="mrow"><div class="lbl">🏛 AHV Zikret ②<small>nach Plafonierung</small></div><div class="val green">CHF 1'754</div></div>
+        <div class="mrow"><div class="lbl">💼 PK-Rente Mihreta (FUTURA) ①<small>lebenslang garantiert</small></div><div class="val green">CHF 699</div></div>
+        <div class="mrow"><div class="lbl">💼 PK-Rente Zikret (AXA) ①<small>lebenslang garantiert</small></div><div class="val green">CHF 1'601</div></div>
+        <div class="mrow sub"><div class="lbl">Brutto total / Monat</div><div class="val green">CHF 5'980</div></div>
+      </div>
+      <div class="mb"><div class="mbt grey">Abzüge Schweiz</div>
+        <div class="mrow neg"><div class="lbl">📋 Einkommenssteuer Emmen (ca.)<small>Steuerfuss 215%</small></div><div class="val red">− CHF 417</div></div>
+        <div class="mrow neg"><div class="lbl">🏥 Krankenkasse 2 Personen (ca.)</div><div class="val red">− CHF 900</div></div>
+        <div class="mrow"><div class="lbl">🏠 Wohnkosten<small>Rüeggisingerstrasse 18, Emmenbrücke — gratis</small></div><div class="val green">CHF 0</div></div>
+        <div class="mrow tot"><div class="lbl">✅ Netto verfügbar / Monat</div><div class="val">CHF 4'663</div></div>
+      </div>
+      <div class="ib yellow"><strong>🎄 13. AHV-Rente im Dezember</strong>Jedes Jahr extra: <strong>CHF 3'680</strong> aufs gemeinsame Konto.</div>
+      <div class="ib green"><strong>✅ Alle Zahlungen laufen auf gemeinsames Konto</strong>AHV ② lebenslang + PK-Rente ① lebenslang — kein Risiko dass Geld ausgeht.</div>
+      <div class="verd best">✅ Beste Option für die Schweiz — maximales Einkommen, kein Risiko</div>
+    </div>
+    <div id="lp1ba" class="loc-panel">
+      <div class="kursnote">💱 Aktueller Kurs Juni 2026: 1 CHF = 2.14 BAM</div>
+      <div class="bignb purple"><div class="bl">Jeden Monat nach Bosnien — für immer</div><div class="bv">CHF 5'980.–</div><div class="bb">= ca. 12'797 BAM / Monat</div><div class="bs">AHV ② wird ungekürzt ins Ausland überwiesen ✓</div></div>
+      <div class="mb"><div class="mbt purple">Monatliches Einkommen in Bosnien</div>
+        <div class="mrow"><div class="lbl">🏛 AHV gesamt ②</div><div class="val purple">CHF 3'680 = 7'875 BAM</div></div>
+        <div class="mrow"><div class="lbl">💼 PK-Renten gesamt ①</div><div class="val purple">CHF 2'300 = 4'922 BAM</div></div>
+        <div class="mrow sub"><div class="lbl">Total Brutto</div><div class="val purple">CHF 5'980 = 12'797 BAM</div></div>
+      </div>
+      <div class="mb"><div class="mbt grey">Abzüge Bosnien</div>
+        <div class="mrow neg"><div class="lbl">📋 Einkommensteuer Bosnien (~10–13%)</div><div class="val red">− CHF ~600–780</div></div>
+        <div class="mrow neg"><div class="lbl">🏥 Krankenversicherung</div><div class="val red">− CHF ~60–100</div></div>
+        <div class="mrow"><div class="lbl">🏠 Eigenes Haus in Bosnien</div><div class="val green">CHF 0</div></div>
+        <div class="mrow totba"><div class="lbl">✅ Netto / Monat</div><div class="val">~ CHF 5'100–5'320<br>= ca. 10'914–11'385 BAM</div></div>
+      </div>
+      <div class="ib purple"><strong>💡 Was das in Bosnien bedeutet</strong>Ø-Lohn Bosnien: ~1'300 BAM. Ihr habt <strong>~8× den Durchschnittslohn</strong> — eigenes Haus, keine Miete.</div>
+      <div class="ib yellow"><strong>🎄 13. AHV-Rente im Dezember</strong>Jedes Jahr extra: <strong>CHF 3'680 = ca. 7'875 BAM</strong>.</div>
+      <div class="verd best">✅ Beste Option auch für Bosnien</div>
+    </div>
+  </div>
+
+  <!-- S2 -->
+  <div id="sc2" class="panel">
+    <div id="rec2"></div>
+    <div class="sc-header s2"><h2 data-i18n="sc2_title">💼 Szenario 2 — Mihreta Kapital, Zikret Rente</h2><p data-i18n="sc2_sub">Mihreta bezieht ihre PK einmalig. Zikret lässt seine PK stehen.</p></div>
+    <div class="pills"><span class="pill mk">👩 Mihreta → Einmalzahlung ~CHF 148'000</span><span class="pill pr">👨 Zikret → Monatsrente CHF 1'601</span></div>
+    <div class="loc-tabs">
+      <button class="loc-btn ach" id="s2ch" onclick="showLoc(2,'ch')">🇨🇭 Schweiz (Emmenbrücke)</button>
+      <button class="loc-btn" id="s2ba" onclick="showLoc(2,'ba')">🇧🇦 Bosnien</button>
+    </div>
+    <div id="lp2ch" class="loc-panel active">
+      <div class="sdiv">Einmalig 2026 — Kapital Mihreta</div>
+      <div class="mb"><div class="mbt orange">Einmalige Auszahlung auf gemeinsames Konto</div>
+        <div class="mrow kap"><div class="lbl">💰 PK-Kapital Mihreta brutto</div><div class="val orange">CHF 157'000</div></div>
+        <div class="mrow neg"><div class="lbl">📋 Kapitalauszahlungssteuer Emmen 2026</div><div class="val red">− CHF ~9'500</div></div>
+        <div class="mrow sub"><div class="lbl">Netto auf gemeinsames Konto</div><div class="val orange">~ CHF 147'500</div></div>
+      </div>
+      <div class="sdiv">Monatlich laufend ab Okt. 2029</div>
+      <div class="bignb red"><div class="bl">Jeden Monat — für immer</div><div class="bv">CHF 5'281.–</div><div class="bs">AHV ② + Zikrets PK-Rente ① (Mihretas CHF 699 ist weg)</div></div>
+      <div class="mb"><div class="mbt grey">Abzüge Schweiz</div>
+        <div class="mrow neg"><div class="lbl">📋 Einkommenssteuer</div><div class="val red">− CHF ~360</div></div>
+        <div class="mrow neg"><div class="lbl">🏥 Krankenkasse</div><div class="val red">− CHF 900</div></div>
+        <div class="mrow neg"><div class="lbl">📋 Vermögenssteuer ~CHF 147'500</div><div class="val red">− CHF ~40</div></div>
+        <div class="mrow"><div class="lbl">🏠 Rüeggisingerstrasse 18, Emmenbrücke</div><div class="val green">CHF 0</div></div>
+        <div class="mrow tot"><div class="lbl">✅ Netto / Monat</div><div class="val">CHF 3'981</div></div>
+      </div>
+      <div class="ib orange"><strong>⚠️ CHF 699/Mt. fehlt lebenslang</strong>Über 20 Jahre: <strong>CHF 167'760 weniger</strong> als Szenario 1.</div>
+      <div class="verd ok">⚖️ Akzeptabel — CHF 682/Mt. weniger als S1</div>
+    </div>
+    <div id="lp2ba" class="loc-panel">
+      <div class="kursnote">💱 Aktueller Kurs Juni 2026: 1 CHF = 2.14 BAM</div>
+      <div class="mb"><div class="mbt orange">Kapital auf gemeinsames Konto</div>
+        <div class="mrow kap"><div class="lbl">💰 Netto nach Steuer</div><div class="val orange">~ CHF 147'500 = 315'650 BAM</div></div>
+      </div>
+      <div class="bignb red"><div class="bl">Jeden Monat nach Bosnien</div><div class="bv">CHF 5'281.–</div><div class="bb">= ca. 11'301 BAM / Monat</div></div>
+      <div class="mb"><div class="mbt grey">Abzüge Bosnien</div>
+        <div class="mrow neg"><div class="lbl">📋 Steuer Bosnien (~10–13%)</div><div class="val red">− CHF ~530–690</div></div>
+        <div class="mrow neg"><div class="lbl">🏥 Krankenversicherung</div><div class="val red">− CHF ~60–100</div></div>
+        <div class="mrow"><div class="lbl">🏠 Eigenes Haus</div><div class="val green">CHF 0</div></div>
+        <div class="mrow totba"><div class="lbl">✅ Netto / Monat</div><div class="val">~ CHF 4'491–4'691<br>= ca. 9'611–10'039 BAM</div></div>
+      </div>
+      <div class="ib purple"><strong>💡 Kapital CHF 147'500 als Reserve</strong>315'650 BAM auf gemeinsamem Konto.</div>
+      <div class="verd ok">⚖️ Gut für Bosnien</div>
+    </div>
+  </div>
+
+  <!-- S3 -->
+  <div id="sc3" class="panel">
+    <div id="rec3"></div>
+    <div class="sc-header s3"><h2 data-i18n="sc3_title">💼 Szenario 3 — Mihreta Rente, Zikret Kapital</h2><p data-i18n="sc3_sub">Mihreta lässt ihre PK stehen. Zikret bezieht seine PK einmalig.</p></div>
+    <div class="pills"><span class="pill mr">👩 Mihreta → Monatsrente CHF 699</span><span class="pill pk">👨 Zikret → Einmalzahlung ~CHF 280'000</span></div>
+    <div class="loc-tabs">
+      <button class="loc-btn ach" id="s3ch" onclick="showLoc(3,'ch')">🇨🇭 Schweiz (Emmenbrücke)</button>
+      <button class="loc-btn" id="s3ba" onclick="showLoc(3,'ba')">🇧🇦 Bosnien</button>
+    </div>
+    <div id="lp3ch" class="loc-panel active">
+      <div class="sdiv">Einmalig 2027 — Kapital Zikret</div>
+      <div class="mb"><div class="mbt orange">Einmalige Auszahlung auf gemeinsames Konto</div>
+        <div class="mrow kap"><div class="lbl">💰 PK-Kapital Zikret brutto (ord. Alter 65)</div><div class="val orange">CHF 306'000</div></div>
+        <div class="mrow neg"><div class="lbl">📋 Kapitalauszahlungssteuer Emmen 2027</div><div class="val red">− CHF ~26'000</div></div>
+        <div class="mrow sub"><div class="lbl">Netto auf gemeinsames Konto</div><div class="val orange">~ CHF 280'000</div></div>
+      </div>
+      <div class="sdiv">Monatlich laufend ab Okt. 2029</div>
+      <div class="bignb blue"><div class="bl">Jeden Monat — für immer</div><div class="bv">CHF 4'379.–</div><div class="bs">AHV ② + Mihretas PK-Rente ① (Zikrets CHF 1'601 ist weg)</div></div>
+      <div class="mb"><div class="mbt grey">Abzüge Schweiz</div>
+        <div class="mrow neg"><div class="lbl">📋 Einkommenssteuer</div><div class="val red">− CHF ~250</div></div>
+        <div class="mrow neg"><div class="lbl">🏥 Krankenkasse</div><div class="val red">− CHF 900</div></div>
+        <div class="mrow neg"><div class="lbl">📋 Vermögenssteuer ~CHF 280'000</div><div class="val red">− CHF ~80</div></div>
+        <div class="mrow"><div class="lbl">🏠 Rüeggisingerstrasse 18, Emmenbrücke</div><div class="val green">CHF 0</div></div>
+        <div class="mrow tot"><div class="lbl">✅ Netto / Monat</div><div class="val">CHF 3'149</div></div>
+      </div>
+      <div class="ib red"><strong>🚨 CHF 1'601/Mt. fehlt lebenslang</strong>Über 20 Jahre: <strong>CHF 384'240 weniger</strong>.</div>
+      <div class="verd risky">🚨 Riskant für die Schweiz</div>
+    </div>
+    <div id="lp3ba" class="loc-panel">
+      <div class="kursnote">💱 Aktueller Kurs Juni 2026: 1 CHF = 2.14 BAM</div>
+      <div class="mb"><div class="mbt orange">Kapital auf gemeinsames Konto</div>
+        <div class="mrow kap"><div class="lbl">💰 Netto nach Steuer</div><div class="val orange">~ CHF 280'000 = 599'200 BAM</div></div>
+      </div>
+      <div class="bignb blue"><div class="bl">Jeden Monat nach Bosnien</div><div class="bv">CHF 4'379.–</div><div class="bb">= ca. 9'371 BAM / Monat</div></div>
+      <div class="mb"><div class="mbt grey">Abzüge Bosnien</div>
+        <div class="mrow neg"><div class="lbl">📋 Steuer Bosnien (~10–13%)</div><div class="val red">− CHF ~440–570</div></div>
+        <div class="mrow neg"><div class="lbl">🏥 Krankenversicherung</div><div class="val red">− CHF ~60–100</div></div>
+        <div class="mrow"><div class="lbl">🏠 Eigenes Haus</div><div class="val green">CHF 0</div></div>
+        <div class="mrow totba"><div class="lbl">✅ Netto / Monat</div><div class="val">~ CHF 3'809–3'939<br>= ca. 8'151–8'429 BAM</div></div>
+      </div>
+      <div class="ib purple"><strong>💡 Kapital CHF 280'000</strong>599'200 BAM auf gemeinsamem Konto.</div>
+      <div class="verd ok">⚖️ Vertretbar für Bosnien</div>
+    </div>
+  </div>
+
+  <!-- S4 -->
+  <div id="sc4" class="panel">
+    <div id="rec4"></div>
+    <div class="sc-header s4"><h2 data-i18n="sc4_title">💰 Szenario 4 — Beide PK als Kapital</h2><p data-i18n="sc4_sub">Beide beziehen ihre PK einmalig. Danach nur noch AHV ②.</p></div>
+    <div class="pills"><span class="pill mk">👩 Mihreta → Einmalzahlung ~CHF 148'000</span><span class="pill pk">👨 Zikret → Einmalzahlung ~CHF 280'000</span></div>
+    <div class="loc-tabs">
+      <button class="loc-btn ach" id="s4ch" onclick="showLoc(4,'ch')">🇨🇭 Schweiz (Emmenbrücke)</button>
+      <button class="loc-btn" id="s4ba" onclick="showLoc(4,'ba')">🇧🇦 Bosnien</button>
+    </div>
+    <div id="lp4ch" class="loc-panel active">
+      <div class="sdiv">Einmalig — Mihreta 2026, Zikret 2027</div>
+      <div class="mb"><div class="mbt orange">Total Kapital auf gemeinsames Konto</div>
+        <div class="mrow kap"><div class="lbl">💰 Mihreta netto (nach Steuer ~9'500)</div><div class="val orange">~ CHF 147'500</div></div>
+        <div class="mrow kap"><div class="lbl">💰 Zikret netto (nach Steuer ~26'000)</div><div class="val orange">~ CHF 280'000</div></div>
+        <div class="mrow sub"><div class="lbl">Total gemeinsames Konto</div><div class="val orange">~ CHF 427'500</div></div>
+      </div>
+      <div class="sdiv">Monatlich — nur noch AHV ②!</div>
+      <div class="bignb orange"><div class="bl">Jeden Monat — für immer</div><div class="bv">CHF 3'680.–</div><div class="bs">Nur AHV ② — beide PK-Renten sind weg</div></div>
+      <div class="mb"><div class="mbt grey">Abzüge Schweiz</div>
+        <div class="mrow neg"><div class="lbl">📋 Einkommenssteuer</div><div class="val red">− CHF ~150</div></div>
+        <div class="mrow neg"><div class="lbl">🏥 Krankenkasse</div><div class="val red">− CHF 900</div></div>
+        <div class="mrow neg"><div class="lbl">📋 Vermögenssteuer ~CHF 427'500</div><div class="val red">− CHF ~150</div></div>
+        <div class="mrow"><div class="lbl">🏠 Rüeggisingerstrasse 18, Emmenbrücke</div><div class="val green">CHF 0</div></div>
+        <div class="mrow tot"><div class="lbl">✅ Netto / Monat</div><div class="val">CHF 2'480</div></div>
+      </div>
+      <div class="ib red"><strong>🚨 Verlust über 20 Jahre vs. S1: CHF 552'000</strong>Mihreta PK weg: CHF 167'760 — Zikret PK weg: CHF 384'240</div>
+      <div class="verd risky">🚨 Nicht empfohlen für die Schweiz</div>
+    </div>
+    <div id="lp4ba" class="loc-panel">
+      <div class="kursnote">💱 Aktueller Kurs Juni 2026: 1 CHF = 2.14 BAM</div>
+      <div class="mb"><div class="mbt orange">Total Kapital auf gemeinsames Konto</div>
+        <div class="mrow kap"><div class="lbl">💰 Mihreta + Zikret netto total</div><div class="val orange">~ CHF 427'500</div></div>
+        <div class="mrow kap"><div class="lbl">In BAM</div><div class="val orange">~ 914'850 BAM</div></div>
+      </div>
+      <div class="bignb orange"><div class="bl">Jeden Monat nach Bosnien (nur AHV ②)</div><div class="bv">CHF 3'680.–</div><div class="bb">= ca. 7'875 BAM / Monat</div></div>
+      <div class="mb"><div class="mbt grey">Abzüge Bosnien</div>
+        <div class="mrow neg"><div class="lbl">📋 Steuer Bosnien (~10–13%)</div><div class="val red">− CHF ~370–480</div></div>
+        <div class="mrow neg"><div class="lbl">🏥 Krankenversicherung</div><div class="val red">− CHF ~60–100</div></div>
+        <div class="mrow"><div class="lbl">🏠 Eigenes Haus</div><div class="val green">CHF 0</div></div>
+        <div class="mrow totba"><div class="lbl">✅ Netto AHV / Monat</div><div class="val">~ CHF 3'100–3'250<br>= ca. 6'634–6'955 BAM</div></div>
+      </div>
+      <div class="ib purple"><strong>🏠 Fast eine Million BAM auf gemeinsamem Konto</strong>914'850 BAM. AHV reicht in Bosnien ohne Hauskosten gut zum Leben.</div>
+      <div class="verd ok">⚖️ Vertretbar für Bosnien — riesiges Startkapital</div>
+    </div>
+  </div>
+
+  <!-- SCHNELLVERGLEICH -->
+  <div style="margin-top:20px">
+    <div class="mb">
+      <div class="mbt grey" data-i18n="schnell">📊 Schnellvergleich — Netto/Monat ab Okt. 2029</div>
+      <div class="mrow"><div class="lbl">✅ S1 Beide Rente — Schweiz (Emmenbrücke)</div><div class="val green">CHF 4'663 / Mt.</div></div>
+      <div class="mrow"><div class="lbl">✅ S1 Beide Rente — Bosnien</div><div class="val purple">~ CHF 5'210 = 11'149 BAM</div></div>
+      <div class="mrow"><div class="lbl">⚖️ S2 Mihreta Kapital, Zikret Rente — Schweiz</div><div class="val orange">CHF 3'981 / Mt.</div></div>
+      <div class="mrow"><div class="lbl">⚖️ S2 Mihreta Kapital, Zikret Rente — Bosnien</div><div class="val purple">~ CHF 4'591 + 315'650 BAM</div></div>
+      <div class="mrow"><div class="lbl">⚠️ S3 Mihreta Rente, Zikret Kapital — Schweiz</div><div class="val orange">CHF 3'149 / Mt.</div></div>
+      <div class="mrow"><div class="lbl">⚠️ S3 Mihreta Rente, Zikret Kapital — Bosnien</div><div class="val purple">~ CHF 3'869 + 599'200 BAM</div></div>
+      <div class="mrow"><div class="lbl">🚨 S4 Beide Kapital — Schweiz</div><div class="val red">CHF 2'480 / Mt.</div></div>
+      <div class="mrow"><div class="lbl">🚨 S4 Beide Kapital — Bosnien</div><div class="val purple">~ CHF 3'175 + 914'850 BAM</div></div>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <h3 data-i18n="legend_title">📖 Legende</h3>
+    <div class="legend-item">
+      <div class="legend-icon">①</div>
+      <div class="legend-content">
+        <div class="legend-title" data-i18n="leg1_title">PK-Rente — lebenslang garantiert</div>
+        <div class="legend-text">Die Pensionskasse zahlt die monatliche Rente bis zum Tod — egal ob man 80 oder 100 Jahre alt wird. Das ist gesetzlich festgelegt im Schweizer BVG, Art. 37 Abs. 1. Das Langlebigkeitsrisiko trägt die PK, nicht ihr.</div>
+        <div class="legend-source"><a href="https://www.fedlex.admin.ch/eli/cc/1983/797_797_797/de" target="_blank">📄 BVG Art. 37 (fedlex.admin.ch)</a></div>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-icon">②</div>
+      <div class="legend-content">
+        <div class="legend-title" data-i18n="leg2_title">AHV-Rente — lebenslang, auch in Bosnien</div>
+        <div class="legend-text">Die AHV zahlt lebenslang — auch nach Bosnien, ungekürzt. Die Schweiz hat ein Sozialversicherungsabkommen mit Bosnien-Herzegowina. Ab 2026 gibt es zusätzlich eine 13. AHV-Rente im Dezember.</div>
+        <div class="legend-source">
+          <a href="https://www.ahv-iv.ch/de/Merkblätter-Formulare/Merkblätter/Altersrenten-und-Hilflosenentschädigungen-der-AHV" target="_blank">📄 AHV Merkblatt 3.01</a>
+          <a href="https://www.bsv.admin.ch/bsv/de/home/sozialversicherungen/ahv/grundlagen-gesetze/abkommen.html" target="_blank">🌍 Abkommen CH–Bosnien</a>
+        </div>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-icon">✂️</div>
+      <div class="legend-content">
+        <div class="legend-title" data-i18n="leg3_title">AHV-Plafonierung Ehepaar — max. CHF 3'780/Mt.</div>
+        <div class="legend-text">Ehepaare bekommen von der AHV zusammen maximal CHF 3'780/Mt. (150% der Maximalrente). Der Sonder-Zuschlag Mihreta CHF 101 (Jahrgang 1963, Übergangsgeneration) ist ausgenommen.</div>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-icon">💱</div>
+      <div class="legend-content">
+        <div class="legend-title" data-i18n="leg4_title">Wechselkurs CHF → BAM</div>
+        <div class="legend-text">Aktueller Kurs Juni 2026: <strong>1 CHF = 2.14 BAM</strong>. BAM ist fest an den Euro gekoppelt (1 EUR = 1.9558 BAM).</div>
+        <div class="legend-source"><a href="https://www.exchange-rates.org/converter/chf-bam" target="_blank">💹 Aktueller Kurs</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footnote" data-i18n="footnote">Alle Beträge sind Richtwerte (Stand: 2026). Steuern Emmen: Steuerfuss 215%. Bosnien-Steuer: ~10–13% geschätzt. Für verbindliche Zahlen: WAS Ausgleichskasse Luzern, FUTURA Vorsorge, AXA Stiftung, Dienststelle Steuern Kt. LU.</div>
+  <button class="back-btn" style="margin-top:16px" onclick="goHome()" data-i18n="back_home">🏠 Zurück zur Übersicht</button>
+</div>
+
+</div><!-- page -->
+<script>
+// ==========================================
+// TIMERS
+// ==========================================
+
+function fmt(n){
+  try { return n.toLocaleString('de-CH'); }
+  catch(e) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,"'"); }
+}
+function pad(n){ return n < 10 ? '0'+n : n; }
+
+function fmt(n){
+  return Math.floor(n).toLocaleString('de-CH');
+}
+
+function updateTimers(){
+  // COUNTDOWN — fix (Stand 10.06.2026 12:00)
+  document.getElementById('cd-mama-days').textContent = '204';
+  document.getElementById('cd-papa-days').textContent = '569';
+
+  // ARBEITSDAUER — live
+  var now = new Date();
+
+  // Mihreta seit 01.01.1998
+  var wm = now - new Date('1998-01-01T00:00:00');
+  var wm_s = Math.floor(wm/1000);
+  var wm_m = Math.floor(wm_s/60);
+  var wm_h = Math.floor(wm_m/60);
+  var wm_d = Math.floor(wm_h/24);
+  document.getElementById('wk-mama-y').textContent  = fmt(Math.floor(wm_d/365.25));
+  document.getElementById('wk-mama-mo').textContent = fmt(Math.floor(wm_d/30.44));
+  document.getElementById('wk-mama-w').textContent  = fmt(Math.floor(wm_d/7));
+  document.getElementById('wk-mama-d').textContent  = fmt(wm_d);
+  document.getElementById('wk-mama-h').textContent  = fmt(wm_h);
+  document.getElementById('wk-mama-m').textContent  = fmt(wm_m);
+  document.getElementById('wk-mama-s').textContent  = fmt(wm_s);
+
+  // Zikret seit 01.01.1985
+  var wp = now - new Date('1985-01-01T00:00:00');
+  var wp_s = Math.floor(wp/1000);
+  var wp_m = Math.floor(wp_s/60);
+  var wp_h = Math.floor(wp_m/60);
+  var wp_d = Math.floor(wp_h/24);
+  document.getElementById('wk-papa-y').textContent  = fmt(Math.floor(wp_d/365.25));
+  document.getElementById('wk-papa-mo').textContent = fmt(Math.floor(wp_d/30.44));
+  document.getElementById('wk-papa-w').textContent  = fmt(Math.floor(wp_d/7));
+  document.getElementById('wk-papa-d').textContent  = fmt(wp_d);
+  document.getElementById('wk-papa-h').textContent  = fmt(wp_h);
+  document.getElementById('wk-papa-m').textContent  = fmt(wp_m);
+  document.getElementById('wk-papa-s').textContent  = fmt(wp_s);
+}
+
+// ==========================================
+// NAVIGATION
+// ==========================================
+function goHome(){
+  document.getElementById('landing').style.display='block';
+  document.getElementById('quiz-section').style.display='none';
+  document.getElementById('result-section').style.display='none';
+  document.getElementById('scenarios-section').style.display='none';
+}
+function gotoQuiz(){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('quiz-section').style.display='block';
+  document.getElementById('result-section').style.display='none';
+  document.getElementById('scenarios-section').style.display='none';
+}
+function gotoScenarios(){
+  window._recSc=null;
+  goHome();
+  showAllScenarios();
+}
+
+// ==========================================
+// QUIZ
+// ==========================================
+var answers={f1:null,f2:null,f3:null,f4:null,f5:null};
+function setYN(q,val){
+  answers['f'+q]=val;
+  document.getElementById('f'+q+'ja').className='yn-btn'+(val==='ja'?' sel-ja':'');
+  document.getElementById('f'+q+'nein').className='yn-btn'+(val==='nein'?' sel-nein':'');
+  checkReady();
+}
+function setBudget(val){
+  answers.f5=val;
+  ['a','b','c'].forEach(function(v){ document.getElementById('f5'+v).className='budget-btn'+(v===val?' sel':''); });
+  checkReady();
+}
+function checkReady(){
+  var ok=answers.f1&&answers.f2&&answers.f3&&answers.f4&&answers.f5;
+  document.getElementById('quiz-submit-btn').disabled=!ok;
+}
+function resetQuiz(){
+  answers={f1:null,f2:null,f3:null,f4:null,f5:null};
+  [1,2,3,4].forEach(function(q){
+    document.getElementById('f'+q+'ja').className='yn-btn';
+    document.getElementById('f'+q+'nein').className='yn-btn';
+  });
+  ['a','b','c'].forEach(function(v){ document.getElementById('f5'+v).className='budget-btn'; });
+  document.getElementById('quiz-submit-btn').disabled=true;
+}
+function calcResult(){
+  var bosnien=answers.f1==='ja';
+  var sicherheit=answers.f2==='ja';
+  var angst=answers.f3==='ja';
+  var kapital=answers.f4==='ja';
+  var budget=answers.f5;
+  var sc=1;
+  if(sicherheit&&angst){ sc=1; }
+  else if(kapital&&!angst){ sc=bosnien?4:(budget==='c'?2:4); }
+  else if(kapital&&angst){ sc=2; }
+  else { sc=1; }
+  if(budget==='c'&&sc===4&&!bosnien) sc=1;
+  if(budget==='a'&&bosnien) sc=4;
+  var reasons=[];
+  if(bosnien) reasons.push({icon:'🇧🇦',text:t('reason_ba')});
+  else reasons.push({icon:'🇨🇭',text:t('reason_ch')});
+  if(sicherheit) reasons.push({icon:'✅',text:t('reason_sicherheit')});
+  if(angst) reasons.push({icon:'🛡️',text:t('reason_angst')});
+  if(kapital) reasons.push({icon:'💰',text:t('reason_kapital')});
+  var nets={ch:[4663,3981,3149,2480],ba:[5210,4591,3869,3175]};
+  var net=bosnien?nets.ba[sc-1]:nets.ch[sc-1];
+  reasons.push({icon:'💶',text:t('budget_prefix')+' <strong>'+t('q5'+budget)+'</strong>. '+t('budget_suffix')+' '+net+'/Mt.'});
+  showResult(sc,reasons,bosnien);
+}
+var scTitles=['sc1_title','sc2_title','sc3_title','sc4_title'];
+var scEmojis=['✅','💼','💼','💰'];
+var scColors=['s1','s2','s3','s4'];
+function showResult(sc,reasons,bosnien){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('quiz-section').style.display='none';
+  document.getElementById('result-section').style.display='block';
+  document.getElementById('scenarios-section').style.display='none';
+  document.getElementById('result-header').className='result-header '+scColors[sc-1];
+  document.getElementById('result-emoji').textContent=scEmojis[sc-1];
+  document.getElementById('result-title').textContent=t('sc_fits').replace('{n}',sc);
+  var loc=bosnien?(lang==='bs'?' — u Bosni':' — in Bosnien'):(lang==='bs'?' — u Švicarskoj':' — in der Schweiz');
+  document.getElementById('result-subtitle').textContent=t(scTitles[sc-1])+loc;
+  var html='';
+  reasons.forEach(function(r){ html+='<div class="why-item"><div class="icon">'+r.icon+'</div><div>'+r.text+'</div></div>'; });
+  document.getElementById('result-reasons').innerHTML=html;
+  window._recSc=sc;
+  window._recBosnien=bosnien;
+}
+function showAllScenarios(){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('quiz-section').style.display='none';
+  document.getElementById('result-section').style.display='none';
+  document.getElementById('scenarios-section').style.display='block';
+  for(var i=1;i<=4;i++){
+    document.getElementById('snavbtn'+i).classList.remove('recommended');
+    document.getElementById('rec'+i).innerHTML='';
+  }
+  if(window._recSc){
+    document.getElementById('rec-hint').textContent='⭐ '+t('rec_badge');
+    document.getElementById('snavbtn'+window._recSc).classList.add('recommended');
+    document.getElementById('rec'+window._recSc).innerHTML='<div class="rec-badge">⭐ '+t('rec_badge')+'</div>';
+    showSc(window._recSc);
+    if(window._recBosnien) showLoc(window._recSc,'ba');
+  } else {
+    document.getElementById('rec-hint').textContent='';
+    showSc(1);
+  }
+}
+function showSc(n){
+  for(var i=1;i<=4;i++) document.getElementById('sc'+i).classList.remove('active');
+  document.getElementById('sc'+n).classList.add('active');
+  document.querySelectorAll('.snav-btn').forEach(function(b,i){ b.classList.remove('active'); });
+  document.querySelectorAll('.snav-btn')[n-1].classList.add('active');
+}
+function showLoc(sc,loc){
+  ['ch','ba'].forEach(function(l){
+    document.getElementById('lp'+sc+l).classList.remove('active');
+    document.getElementById('s'+sc+l).classList.remove('ach','aba');
+  });
+  document.getElementById('lp'+sc+loc).classList.add('active');
+  document.getElementById('s'+sc+loc).classList.add(loc==='ch'?'ach':'aba');
+}
+
+// ==========================================
+// CALCULATOR
+// ==========================================
+var calcLoc='ch';
+var MAMA_PK=147500, PAPA_PK=280000;
+var MAMA_RENTE=699, PAPA_RENTE=1601;
+var AHV_MAMA=1926, AHV_PAPA=1754, AHV_TOT=3680;
+
+function setCalcLoc(loc){
+  calcLoc=loc;
+  var cb=document.getElementById('calc-ch'), bb=document.getElementById('calc-ba');
+  if(loc==='ch'){
+    cb.style.cssText='padding:10px;border-radius:10px;border:2px solid #1a3a5c;background:#1a3a5c;color:white;font-size:13px;font-weight:700;cursor:pointer;width:100%';
+    bb.style.cssText='padding:10px;border-radius:10px;border:2px solid #ddd;background:white;color:#555;font-size:13px;font-weight:700;cursor:pointer;width:100%';
+    document.getElementById('calc-slider').setAttribute('max','8000');
+    document.getElementById('calc-slider').setAttribute('min','500');
+    document.getElementById('calc-min-label').textContent='CHF 500';
+    document.getElementById('calc-max-label').textContent="CHF 8'000";
+    document.getElementById('calc-currency').textContent='CHF';
+  } else {
+    bb.style.cssText='padding:10px;border-radius:10px;border:2px solid #c62828;background:#c62828;color:white;font-size:13px;font-weight:700;cursor:pointer;width:100%';
+    cb.style.cssText='padding:10px;border-radius:10px;border:2px solid #ddd;background:white;color:#555;font-size:13px;font-weight:700;cursor:pointer;width:100%';
+    document.getElementById('calc-slider').setAttribute('max','17000');
+    document.getElementById('calc-slider').setAttribute('min','500');
+    document.getElementById('calc-min-label').textContent='BAM 500';
+    document.getElementById('calc-max-label').textContent="BAM 17'000";
+    document.getElementById('calc-currency').textContent='BAM';
+  }
+  updateCalc();
+}
+function fmtN(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,"'"); }
+function durText(months){
+  if(months>=9999) return {val:'\u221e', sub:t('dur_never')};
+  var y=Math.floor(months/12), m=Math.round(months%12);
+  var sub=t('dur_consumed');
+  if(y<=0) return {val:m+' '+t('wk_months'), sub:sub};
+  if(m===0) return {val:y+' '+t('wk_years'), sub:sub};
+  return {val:y+' '+t('wk_years')+' '+m+' '+t('wk_months'), sub:sub};
+}
+function updateCalc(){
+  var raw=parseInt(document.getElementById('calc-slider').value)||3000;
+  var isBa=calcLoc==='ba';
+  var cur=isBa?'BAM':'CHF';
+  var rate=2.14;
+  var chf=isBa?raw/rate:raw;
+  document.getElementById('calc-val').textContent=fmtN(raw);
+
+  // Show/hide BAM lines
+  ['optA-mama-bam','optA-papa-bam','optB-mama-bam-k','optB-papa-bam-k','optB-ahv-bam'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.style.display=isBa?'block':'none';
+  });
+
+  var mamaTot=MAMA_RENTE+AHV_MAMA;
+  var papaTot=PAPA_RENTE+AHV_PAPA;
+  var totalMonthly=mamaTot+papaTot;
+  var el;
+  el=document.getElementById('optA-mama-main'); if(el) el.textContent='CHF '+fmtN(mamaTot);
+  el=document.getElementById('optA-papa-main'); if(el) el.textContent='CHF '+fmtN(papaTot);
+  if(isBa){
+    el=document.getElementById('optA-mama-bam'); if(el) el.textContent='= '+fmtN(mamaTot*rate)+' BAM';
+    el=document.getElementById('optA-papa-bam'); if(el) el.textContent='= '+fmtN(papaTot*rate)+' BAM';
+    el=document.getElementById('optA-mama-detail'); if(el) el.textContent="PK 699 CHF + AHV 1'926 CHF";
+    el=document.getElementById('optA-papa-detail'); if(el) el.textContent="PK 1'601 CHF + AHV 1'754 CHF";
+    el=document.getElementById('optB-ahv-bam'); if(el) el.textContent='= '+fmtN(AHV_TOT*rate)+' BAM/Mt. \u221e';
+  } else {
+    el=document.getElementById('optA-mama-detail'); if(el) el.textContent="PK 699 + AHV 1'926";
+    el=document.getElementById('optA-papa-detail'); if(el) el.textContent="PK 1'601 + AHV 1'754";
+  }
+
+  var ahvCH=AHV_TOT;
+  var surplusA=totalMonthly-chf;
+  var needAfterAHV=Math.max(0,chf-ahvCH);
+  var mamaDurMo=needAfterAHV<=0?99999:MAMA_PK/needAfterAHV;
+  var papaDurMo=needAfterAHV<=0?99999:PAPA_PK/needAfterAHV;
+  var md=durText(mamaDurMo), pd=durText(papaDurMo);
+
+  var aRes=document.getElementById('optA-result');
+  if(surplusA>=0){
+    aRes.style.background='#e8f5e9'; aRes.style.color='#1b5e20';
+    var sv='CHF '+fmtN(surplusA)+(isBa?' (= '+fmtN(surplusA*rate)+' BAM)':'');
+    aRes.textContent=(lang==='bs'?'✅ Svaki mjesec '+sv+' ostaje — novac nikad ne prestaje.':'✅ Jeden Monat '+sv+' übrig — das Geld hört nie auf.');
+  } else {
+    aRes.style.background='#ffebee'; aRes.style.color='#b71c1c';
+    var dv='CHF '+fmtN(Math.abs(surplusA))+(isBa?' (= '+fmtN(Math.abs(surplusA)*rate)+' BAM)':'');
+    aRes.textContent=(lang==='bs'?'⚠️ '+dv+'/mj. nedostaje — potrebni drugi prihodi.':'⚠️ '+dv+'/Mt. fehlen — andere Einnahmen nötig.');
+  }
+
+  el=document.getElementById('optB-mama-dur'); if(el) el.textContent=md.val;
+  el=document.getElementById('optB-mama-sub'); if(el) el.textContent=md.sub;
+  el=document.getElementById('optB-papa-dur'); if(el) el.textContent=pd.val;
+  el=document.getElementById('optB-papa-sub'); if(el) el.textContent=pd.sub;
+
+  var totalPK=MAMA_PK+PAPA_PK;
+  var totalPKstr='CHF '+fmtN(totalPK)+(isBa?' (= '+fmtN(totalPK*rate)+' BAM)':'');
+  var ahvStr='CHF '+fmtN(ahvCH)+(isBa?' = '+fmtN(ahvCH*rate)+' BAM':'');
+  var bRes=document.getElementById('optB-result');
+  if(needAfterAHV<=0){
+    bRes.style.color='#1b5e20'; bRes.style.background='#e8f5e9';
+    bRes.textContent=(lang==='bs'?'✅ AHV sam dovoljan — kapital '+totalPKstr+' slobodan!':'✅ AHV allein reicht — Kapital '+totalPKstr+' komplett frei!');
+  } else {
+    bRes.style.color='#e65100'; bRes.style.background='#fff8e1';
+    bRes.textContent=(lang==='bs'?'Nakon kapitala: samo AHV '+ahvStr+'/mj.':'Nach dem Kapital: nur noch AHV '+ahvStr+'/Mt.');
+  }
+
+  var ov=document.getElementById('calc-overall');
+  var ms=fmtN(raw)+' '+cur;
+  var totStr='CHF '+fmtN(totalMonthly)+(isBa?' = '+fmtN(totalMonthly*rate)+' BAM':'');
+  var surpStr='CHF '+fmtN(Math.abs(surplusA))+(isBa?' = '+fmtN(Math.abs(surplusA)*rate)+' BAM':'');
+  var isBs=lang==='bs';
+
+  if(needAfterAHV<=0){
+    ov.style.background='#e8f5e9'; ov.style.color='#1b5e20';
+    ov.innerHTML='🎉 <strong>'+(isBs?'Pri '+ms+'/mj. AHV sam dovoljan!':'Bei '+ms+'/Mt. reicht die AHV allein!')+'</strong><br>'
+      +(isBs?'Opcija A: '+surpStr+'/mj. ostaje — doživotno.<br>Opcija B: Kapital '+totalPKstr+' slobodan za porodicu!<br><strong>→ Jednokratno povlačenje može biti dobra opcija.</strong>':'Option A: '+surpStr+'/Mt. übrig — lebenslang.<br>Option B: Kapital '+totalPKstr+' komplett frei!<br><strong>→ Kapitalbezug könnte hier sinnvoll sein.</strong>');
+  } else if(mamaDurMo>=9999||papaDurMo>=9999){
+    ov.style.background='#e8f5e9'; ov.style.color='#1b5e20';
+    ov.innerHTML='✅ <strong>'+(isBs?'Pri '+ms+'/mj. kapital traje jako dugo.':'Bei '+ms+'/Mt. reicht das Kapital sehr lange.')+'</strong><br>'
+      +(isBs?'Opcija A: '+totStr+'/mj. — '+(surplusA>=0?surpStr+' ostaje ✅':surpStr+' nedostaje ⚠️')+' — doživotno.<br>Opcija B: Mihreta '+md.val+' / Zikret '+pd.val+'.':'Option A: '+totStr+'/Mt. — '+(surplusA>=0?surpStr+' übrig ✅':surpStr+' fehlen ⚠️')+' — lebenslang.<br>Option B: Mihreta '+md.val+' / Zikret '+pd.val+'.');
+  } else {
+    var sy=Math.round(Math.min(mamaDurMo,papaDurMo)/12);
+    ov.style.background='#e3f2fd'; ov.style.color='#0d47a1';
+    ov.innerHTML='📊 <strong>'+(isBs?'Pri '+ms+'/mj.:':'Bei '+ms+'/Mt.:')+'</strong><br>'
+      +(isBs?'Opcija A: '+totStr+'/mj. — '+(surplusA>=0?surpStr+' ostaje ✅':surpStr+' nedostaje ⚠️')+' — <strong>doživotno</strong>.<br>Opcija B: kapital traje <strong>ca. '+sy+(sy===1?' godinu':sy<5?' godine':' godina')+'</strong> — zatim samo AHV '+ahvStr+'/mj.<br><strong>→ Opcija A sigurnija.</strong>':'Option A: '+totStr+'/Mt. — '+(surplusA>=0?surpStr+' übrig ✅':surpStr+' fehlen ⚠️')+' — <strong>lebenslang</strong>.<br>Option B: Kapital reicht <strong>ca. '+sy+' Jahre</strong> — danach nur noch AHV '+ahvStr+'/Mt.<br><strong>→ Option A sicherer.</strong>');
+  }
+}
+
+// ==========================================
+// TRANSLATIONS
+// ==========================================
+var lang='de';
+var T={
+  de:{
+    nav_quiz:"Welches Szenario passt zu uns?",
+    nav_all:"Alle Szenarien anzeigen",
+    hero_subtitle:"Pensionierungsplanung 2026 / 2027",
+    sec_countdown:"⏳ Countdown bis zur Frühpension",
+    cd_mama_target:"Frühpension: 31. Dezember 2026",
+    cd_papa_target:"Frühpension: 31. Dezember 2027",
+    cd_days:"Tage",cd_hours:"Stunden",cd_mins:"Minuten",cd_secs:"Sekunden",cd_weeks:"Wochen",
+    sec_pk:"💼 PK-Guthaben (Stand 01.01.2026)",
+    pk_per:"per 01.01.2026",
+    pk_mama_title:"👩 Mihreta — FUTURA Vorsorge",
+    pk_papa_title:"👨 Zikret — AXA / Kammermann",
+    pk_mama_d1:"Bei Frühpension (Alter 63):",
+    pk_mama_d2:"Bei Referenzalter (Alter 64+9M):",
+    pk_mama_d3:"Jahresrente bei Ref.alter:",
+    pk_mama_d4:"Umwandlungssatz:",
+    pk_papa_d1:"Bei ord. Pensionierung (Alter 65):",
+    pk_papa_d2:"Jahresrente bei Alter 65:",
+    pk_papa_d3:"Obligat. / Überobligat.:",
+    pk_papa_d4:"Umwandlungssatz:",
+    sec_work:"🏗️ Wie lange arbeitet ihr schon?",
+    work_mama_since:"Beitragsbeginn AHV:",
+    work_papa_since:"Beitragsbeginn AHV:",
+    work_since2:"Erwerbstätig seit:",
+    wk_years:"Jahre",wk_months:"Monate",wk_weeks:"Wochen",
+    wk_days:"Tage",wk_hours:"Stunden",wk_mins:"Minuten",wk_secs:"Sekunden",
+    sec_ahv:"🏛 AHV-Rente (1. Säule)",
+    ahv_mama_sub:"ab 01.08.2028 (Referenzalter)",
+    ahv_papa_sub:"ab 01.10.2029 (Referenzalter 65)",
+    ahv_mama_d1:"Davon Sonder-Zuschlag (Jg. 1963):",
+    ahv_mama_d2:"Nach Plafonierung (ab Okt. 2029):",
+    ahv_mama_d3:"13. AHV-Rente (Dez. ab 2028):",
+    ahv_mama_d4:"Frühestmögl. Vorbezug:",
+    ahv_papa_d1:"Nach Plafonierung (ab Okt. 2029):",
+    ahv_papa_d2:"13. AHV-Rente (Dez. ab 2029):",
+    ahv_papa_d3:"Vorbezug 1 Jahr:",
+    ahv_papa_d4:"Vorbezug 2 Jahre:",
+    ahv_couple:"👫 Mihreta &amp; Zikret zusammen (ab Okt. 2029)",
+    ahv_total_lbl:"🏛 AHV total (plafoniert, max. CHF 3'780)",
+    ahv_mama_lbl:"davon Mihreta (Plafonierung + Zuschlag CHF 101)",
+    ahv_papa_lbl:"davon Zikret (nach Plafonierung)",
+    ahv_13_lbl:"🎄 13. AHV-Rente im Dezember (beide)",
+    sec_calc:"🧮 Rechner — Wie lange reicht das Geld?",
+    calc_ch:"🇨🇭 Schweiz",calc_ba:"🇧🇦 Bosnien",
+    calc_slider_lbl:"💶 Fixkosten pro Monat — wie viel braucht ihr zum Leben?",
+    optA_title:"✅ Option A — PK als Rente + AHV monatlich",
+    optA_mama_lbl:"👩 Mihreta bekommt",optA_papa_lbl:"👨 Zikret bekommt",
+    optA_lifetime:"∞ lebenslang",
+    optB_title:"💰 Option B — PK als Kapital einmalig + AHV monatlich",
+    optB_mama_lbl:"👩 Mihreta — einmalig",optB_papa_lbl:"👨 Zikret — einmalig",
+    optB_konto:"auf gem. Konto",
+    optB_ahv_lbl:"🏛 AHV weiterhin monatlich (zusammen)",
+    optB_ahv_sub:"lebenslang — hört nie auf",
+    optB_mama_dur_lbl:"👩 Mihretas Kapital reicht",
+    optB_papa_dur_lbl:"👨 Zikrets Kapital reicht",
+    calc_hint:"👆 Schieber bewegen um Ergebnis zu sehen",
+    quiz_title:"🤔 Was ist euch wichtig?",
+    quiz_sub:"5 kurze Fragen — dann seht ihr welches Szenario am besten zu euch passt.",
+    q1:"Wollt ihr in Bosnien leben?",
+    q1_ja:"✅ Ja",q1_nein:"❌ Nein, wir bleiben in der Schweiz",
+    q2:"Ist euch wichtig, dass jeden Monat sicher Geld kommt — egal wie alt ihr werdet?",
+    q2_ja:"✅ Ja",q2_nein:"❌ Nein",
+    q3:"Macht es euch Sorgen, dass das Geld eines Tages ausgehen könnte?",
+    q3_ja:"✅ Ja, das macht uns Sorgen",q3_nein:"❌ Nein, wir verwalten das selbst",
+    q4:"Wollt ihr einmalig viel Geld auf dem Konto haben?",
+    q4_ja:"✅ Ja, das wäre schön",q4_nein:"❌ Nein, lieber monatlich",
+    q5:"Wie viel braucht ihr pro Monat zum Leben?",
+    q5a:"💶 Weniger als CHF 2'500 / 5'350 BAM",
+    q5b:"💶 CHF 2'500 – 4'000 / 5'350 – 8'560 BAM",
+    q5c:"💶 Mehr als CHF 4'000 / 8'560 BAM",
+    quiz_submit:"Mein Szenario anzeigen →",
+    quiz_reset:"🔄 Eingaben löschen",
+    back_home:"🏠 Zurück zur Übersicht",
+    back_quiz:"← Fragen nochmals beantworten",
+    back_sm:"← Zurück zur Übersicht",
+    show_all:"📊 Alle 4 Szenarien vergleichen",
+    result_why:"Warum passt das zu euch?",
+    rec_badge:"Euer empfohlenes Szenario",
+    schnell:"📊 Schnellvergleich — Netto/Monat ab Okt. 2029",
+    dur_consumed:"dann aufgebraucht",
+    dur_never:"hört nie auf",
+    sc1_title:"✅ Szenario 1 — Beide PK als Rente",
+    sc2_title:"💼 Szenario 2 — Mihreta Kapital, Zikret Rente",
+    sc3_title:"💼 Szenario 3 — Mihreta Rente, Zikret Kapital",
+    sc4_title:"💰 Szenario 4 — Beide PK als Kapital",
+    sc1_sub:"Mihreta und Zikret lassen ihre PK stehen — jeden Monat lebenslang.",
+    sc2_sub:"Mihreta bezieht ihre PK einmalig. Zikret lässt seine PK stehen.",
+    sc3_sub:"Mihreta lässt ihre PK stehen. Zikret bezieht seine PK einmalig.",
+    sc4_sub:"Beide beziehen ihre PK einmalig. Danach nur noch AHV.",
+    sc_fits:"Szenario {n} passt zu euch",
+    reason_ba:"Ihr lebt in Bosnien — eigenes Haus, keine Wohnkosten.",
+    reason_ch:"Ihr bleibt in der Schweiz — Rüeggisingerstrasse 18, 6020 Emmenbrücke. Ab 2027 zahlt Sohn Armin die Miete.",
+    reason_sicherheit:"Euch ist wichtig, dass jeden Monat sicher Geld kommt — die Rente ist lebenslang garantiert.",
+    reason_angst:"Ihr möchtet nicht, dass das Geld ausgeht — mit der Rente ist das unmöglich.",
+    reason_kapital:"Ihr wollt einmalig Geld auf dem Konto — alles geht aufs gemeinsame Konto.",
+    budget_prefix:"Budget:",
+    budget_suffix:"Dieses Szenario gibt euch netto ca. CHF",
+    legend_title:"📖 Legende",
+    leg1_title:"PK-Rente — lebenslang garantiert",
+    leg1_text:"Die Pensionskasse zahlt die monatliche Rente bis zum Tod — egal ob man 80 oder 100 Jahre alt wird. Gesetzlich verankert im BVG, Art. 37 Abs. 1.",
+    leg2_title:"AHV-Rente — lebenslang, auch in Bosnien",
+    leg2_text:"Die AHV zahlt lebenslang — auch nach Bosnien, ungekürzt. Die Schweiz hat ein Sozialversicherungsabkommen mit Bosnien-Herzegowina. Ab 2026 gibt es zusätzlich eine 13. AHV-Rente im Dezember.",
+    leg3_title:"AHV-Plafonierung Ehepaar — max. CHF 3'780/Mt.",
+    leg3_text:"Ehepaare bekommen von der AHV zusammen maximal CHF 3'780/Mt. (150% der Maximalrente). Sonder-Zuschlag Mihreta CHF 101 (Jg. 1963) ist ausgenommen.",
+    leg4_title:"Wechselkurs CHF → BAM",
+    leg4_text:"Aktueller Kurs Juni 2026: 1 CHF = 2.14 BAM. BAM ist fest an den Euro gekoppelt (1 EUR = 1.9558 BAM).",
+    footnote:"Alle Beträge sind Richtwerte (Stand: 2026). Steuern Emmen: Steuerfuss 215%. Bosnien-Steuer: ~10-13% geschätzt."
+  },
+  bs:{
+    nav_quiz:"Koji scenarij nam odgovara?",
+    nav_all:"Prikaži sve scenarije",
+    hero_subtitle:"Planiranje penzije 2026 / 2027",
+    sec_countdown:"⏳ Odbrojavanje do prijevremene penzije",
+    cd_mama_target:"Prijevremena penzija: 31. decembra 2026.",
+    cd_papa_target:"Prijevremena penzija: 31. decembra 2027.",
+    cd_days:"Dana",cd_hours:"Sati",cd_mins:"Minuta",cd_secs:"Sekundi",cd_weeks:"Sedmica",
+    sec_pk:"💼 Penzioni fond — stanje 01.01.2026.",
+    pk_per:"na dan 01.01.2026.",
+    pk_mama_title:"👩 Mihreta — FUTURA Vorsorge",
+    pk_papa_title:"👨 Zikret — AXA / Kammermann",
+    pk_mama_d1:"Pri prijevrem. penziji (63 god.):",
+    pk_mama_d2:"Pri referentnoj dobi (64+9M):",
+    pk_mama_d3:"Godišnja penzija pri ref. dobi:",
+    pk_mama_d4:"Stopa konverzije:",
+    pk_papa_d1:"Pri redovnoj penziji (65 god.):",
+    pk_papa_d2:"Godišnja penzija pri 65 god.:",
+    pk_papa_d3:"Obvezni / Nadobl. dio:",
+    pk_papa_d4:"Stopa konverzije:",
+    sec_work:"🏗️ Koliko dugo radite?",
+    work_mama_since:"Početak uplate AHV:",
+    work_papa_since:"Početak uplate AHV:",
+    work_since2:"Zaposleni od:",
+    wk_years:"Godina",wk_months:"Mjeseci",wk_weeks:"Sedmica",
+    wk_days:"Dana",wk_hours:"Sati",wk_mins:"Minuta",wk_secs:"Sekundi",
+    sec_ahv:"🏛 AHV penzija (1. stup)",
+    ahv_mama_sub:"od 01.08.2028. (referentna dob)",
+    ahv_papa_sub:"od 01.10.2029. (referentna dob 65)",
+    ahv_mama_d1:"Posebni dodatak (god. 1963):",
+    ahv_mama_d2:"Nakon plafoniranja (od okt. 2029.):",
+    ahv_mama_d3:"13. AHV penzija (dec. od 2028.):",
+    ahv_mama_d4:"Najraniji prijevremeni povlačenje:",
+    ahv_papa_d1:"Nakon plafoniranja (od okt. 2029.):",
+    ahv_papa_d2:"13. AHV penzija (dec. od 2029.):",
+    ahv_papa_d3:"Prijevremeno 1 god.:",
+    ahv_papa_d4:"Prijevremeno 2 god.:",
+    ahv_couple:"👫 Mihreta &amp; Zikret zajedno (od okt. 2029.)",
+    ahv_total_lbl:"🏛 AHV ukupno (plafoniranje, max. CHF 3'780)",
+    ahv_mama_lbl:"od toga Mihreta (plafoniranje + dodatak CHF 101)",
+    ahv_papa_lbl:"od toga Zikret (nakon plafoniranja)",
+    ahv_13_lbl:"🎄 13. AHV penzija u decembru (oboje)",
+    sec_calc:"🧮 Kalkulator — Koliko dugo traje novac?",
+    calc_ch:"🇨🇭 Švicarska",calc_ba:"🇧🇦 Bosna",
+    calc_slider_lbl:"💶 Fiksni troškovi po mjesecu — koliko vam treba za život?",
+    optA_title:"✅ Opcija A — Penzioni fond kao penzija + AHV",
+    optA_mama_lbl:"👩 Mihreta dobiva",optA_papa_lbl:"👨 Zikret dobiva",
+    optA_lifetime:"∞ doživotno",
+    optB_title:"💰 Opcija B — Penzioni fond jednokratno + AHV",
+    optB_mama_lbl:"👩 Mihreta — jednokratno",optB_papa_lbl:"👨 Zikret — jednokratno",
+    optB_konto:"na zajednički račun",
+    optB_ahv_lbl:"🏛 AHV i dalje mjesečno (zajedno)",
+    optB_ahv_sub:"doživotno — nikad ne prestaje",
+    optB_mama_dur_lbl:"👩 Mihretin kapital traje",
+    optB_papa_dur_lbl:"👨 Zikretov kapital traje",
+    calc_hint:"👆 Pomjerite klizač da vidite rezultat",
+    quiz_title:"🤔 Šta vam je važno?",
+    quiz_sub:"5 kratkih pitanja — vidjet ćete koji scenarij vam najviše odgovara.",
+    q1:"Želite li živjeti u Bosni?",
+    q1_ja:"✅ Da",q1_nein:"❌ Ne, ostajemo u Švicarskoj",
+    q2:"Je li vam važno da svaki mjesec sigurno dolazi novac?",
+    q2_ja:"✅ Da",q2_nein:"❌ Ne",
+    q3:"Brinete li se da bi vam novac jednog dana mogao ponestati?",
+    q3_ja:"✅ Da, to nas brine",q3_nein:"❌ Ne, sami upravljamo novcem",
+    q4:"Želite li jednokratno imati puno novca na računu?",
+    q4_ja:"✅ Da, to bi bilo lijepo",q4_nein:"❌ Ne, radije mjesečno",
+    q5:"Koliko vam treba po mjesecu za život?",
+    q5a:"💶 Manje od CHF 2'500 / 5'350 BAM",
+    q5b:"💶 CHF 2'500 – 4'000 / 5'350 – 8'560 BAM",
+    q5c:"💶 Više od CHF 4'000 / 8'560 BAM",
+    quiz_submit:"Prikaži moj scenarij →",
+    quiz_reset:"🔄 Obriši odgovore",
+    back_home:"🏠 Nazad na pregled",
+    back_quiz:"← Ponovo odgovoriti na pitanja",
+    back_sm:"← Nazad na pregled",
+    show_all:"📊 Usporedi sva 4 scenarija",
+    result_why:"Zašto vam ovo odgovara?",
+    rec_badge:"Vaš preporučeni scenarij",
+    schnell:"📊 Brza usporedba — Neto/mj. od okt. 2029.",
+    dur_consumed:"tada potrošeno",
+    dur_never:"nikad ne prestaje",
+    sc1_title:"✅ Scenarij 1 — Oboje penzija iz fonda",
+    sc2_title:"💼 Scenarij 2 — Mihreta kapital, Zikret penzija",
+    sc3_title:"💼 Scenarij 3 — Mihreta penzija, Zikret kapital",
+    sc4_title:"💰 Scenarij 4 — Mihreta i Zikret podižu penzioni fond",
+    sc1_sub:"Mihreta i Zikret ostavljaju penzioni fond — svaki mjesec doživotno.",
+    sc2_sub:"Mihreta podiže penzioni fond jednokratno. Zikret ostavlja fond.",
+    sc3_sub:"Mihreta ostavlja penzioni fond. Zikret podiže fond jednokratno.",
+    sc4_sub:"Mihreta i Zikret podižu penzioni fond jednokratno. Zatim samo AHV.",
+    sc_fits:"Scenarij {n} vam odgovara",
+    reason_ba:"Živite u Bosni — vlastita kuća, nema troškova stanovanja.",
+    reason_ch:"Ostajete u Švicarskoj — Rüeggisingerstrasse 18, 6020 Emmenbrücke. Od 2027. sin Armin plaća stanarinu.",
+    reason_sicherheit:"Važno vam je da svaki mjesec sigurno dolazi novac — penzija je doživotno garantirana.",
+    reason_angst:"Ne želite da vam novac jednog dana ponestane — s penzijom to nije moguće.",
+    reason_kapital:"Želite jednokratno velik iznos na računu — sve ide na zajednički račun.",
+    budget_prefix:"Budžet:",
+    budget_suffix:"Ovaj scenarij vam daje neto ca. CHF",
+    legend_title:"📖 Pojmovnik",
+    leg1_title:"Penzija iz fonda — doživotno garantovana",
+    leg1_text:"Penzioni fond isplaćuje mjesečnu penziju do smrti — bez obzira imate li 80 ili 100 godina. Zakonski propisano u švicarskom BVG zakonu, čl. 37.",
+    leg2_title:"AHV penzija — doživotno, i u Bosni",
+    leg2_text:"AHV isplaćuje doživotno — i u Bosnu, u punom iznosu. Švicarska ima sporazum o socijalnom osiguranju s Bosnom. Od 2026. postoji i 13. AHV penzija u decembru.",
+    leg3_title:"AHV plafoniranje za bračne parove — max. CHF 3'780/mj.",
+    leg3_text:"Bračni parovi zajedno dobivaju max. CHF 3'780/mj. od AHV. Posebni dodatak Mame CHF 101 (god. 1963) je izuzet.",
+    leg4_title:"Tečaj CHF → BAM",
+    leg4_text:"Aktualni tečaj juni 2026.: 1 CHF = 2,14 BAM. BAM je vezan za euro (1 EUR = 1,9558 BAM).",
+    footnote:"Svi iznosi su orijentacione vrijednosti (stanje: 2026.). Za obvezujuće iznose: WAS Ausgleichskasse Luzern, FUTURA Vorsorge, AXA Stiftung."
+  }
+};
+
+function t(key){ return (T[lang]&&T[lang][key])||T.de[key]||key; }
+
+function setLang(l){
+  lang=l;
+  document.getElementById('btn-lang-de').className='lang-btn'+(l==='de'?' active':'');
+  document.getElementById('btn-lang-bs').className='lang-btn'+(l==='bs'?' active':'');
+  applyAll();
+}
+
+function applyAll(){
+  // All elements with data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    el.textContent=t(el.getAttribute('data-i18n'));
+  });
+
+  // Countdown label
+  document.querySelectorAll('.cd-label').forEach(function(el){ el.textContent=t('cd_days'); });
+
+  // Work ticker labels
+  var wkKeys=['wk_years','wk_months','wk_weeks','wk_days','wk_hours','wk_mins','wk_secs'];
+  document.querySelectorAll('.work-ticker div').forEach(function(div,i){
+    var span=div.querySelector('span');
+    if(span) div.childNodes[0].textContent=t(wkKeys[i%7])+': ';
+  });
+
+  // Work since
+  var wsm=document.getElementById('work-since-mama');
+  if(wsm) wsm.innerHTML=t('work_mama_since')+' <strong>1992</strong><br>'+t('work_since2')+' <strong>01.01.1998</strong>';
+  var wsp=document.getElementById('work-since-papa');
+  if(wsp) wsp.innerHTML=t('work_papa_since')+' <strong>1985</strong><br>'+t('work_since2')+' <strong>01.01.1985</strong>';
+
+  // PK per dates
+  var pkmp=document.getElementById('pk-m-per'); if(pkmp) pkmp.textContent=t('pk_per');
+  var pkpp=document.getElementById('pk-p-per'); if(pkpp) pkpp.textContent=t('pk_per');
+
+  // PK details
+  var pkm=document.getElementById('pk-detail-mama');
+  if(pkm) pkm.innerHTML=t('pk_mama_d1')+" <span>CHF 150'011</span><br>"+t('pk_mama_d2')+" <span>CHF 162'571</span><br>"+t('pk_mama_d3')+" <span>CHF 699/Mt.</span><br>"+t('pk_mama_d4')+" <span>5.1625%</span>";
+  var pkp=document.getElementById('pk-detail-papa');
+  if(pkp) pkp.innerHTML=t('pk_papa_d1')+" <span>CHF 306'023</span><br>"+t('pk_papa_d2')+" <span>CHF 1'601/Mt.</span><br>"+t('pk_papa_d3')+" <span>CHF 221'423 / CHF 30'826</span><br>"+t('pk_papa_d4')+" <span>5.2%</span>";
+
+  // AHV sub dates
+  var ahvms=document.getElementById('ahv-m-sub'); if(ahvms) ahvms.textContent=t('ahv_mama_sub');
+  var ahvps=document.getElementById('ahv-p-sub'); if(ahvps) ahvps.textContent=t('ahv_papa_sub');
+
+  // AHV details
+  var ahvm=document.getElementById('ahv-detail-mama');
+  if(ahvm) ahvm.innerHTML=t('ahv_mama_d1')+" <span>CHF 101/Mt.</span><br>"+t('ahv_mama_d2')+" <span>CHF 1'926/Mt.</span><br>"+t('ahv_mama_d3')+" <span>~CHF 1'779 einmalig</span><br>"+t('ahv_mama_d4')+" <span>ab 01.06.2026</span>";
+  var ahvp=document.getElementById('ahv-detail-papa');
+  if(ahvp) ahvp.innerHTML=t('ahv_papa_d1')+" <span>CHF 1'754/Mt.</span><br>"+t('ahv_papa_d2')+" <span>~CHF 1'754 einmalig</span><br>"+t('ahv_papa_d3')+" <span>CHF 1'512 (-6.8%)</span><br>"+t('ahv_papa_d4')+" <span>CHF 1'392 (-13.6%)</span>";
+
+  // AHV couple
+  var act=document.getElementById('ahv-couple-total'); if(act) act.textContent=t('ahv_total_lbl');
+  var acm=document.getElementById('ahv-couple-mama'); if(acm) acm.textContent=t('ahv_mama_lbl');
+  var acp=document.getElementById('ahv-couple-papa'); if(acp) acp.textContent=t('ahv_papa_lbl');
+  var ac13=document.getElementById('ahv-couple-13'); if(ac13) ac13.textContent=t('ahv_13_lbl');
+
+  // Calc option labels
+  var ids=[
+    ['optA-mama-lbl','optA_mama_lbl'],['optA-papa-lbl','optA_papa_lbl'],
+    ['optA-mama-life','optA_lifetime'],['optA-papa-life','optA_lifetime'],
+    ['optB-mama-lbl','optB_mama_lbl'],['optB-papa-lbl','optB_papa_lbl'],
+    ['optB-mama-konto','optB_konto'],['optB-papa-konto','optB_konto'],
+    ['optB-ahv-calc-lbl','optB_ahv_lbl'],['optB-ahv-calc-sub','optB_ahv_sub'],
+    ['optB-mama-dur-lbl','optB_mama_dur_lbl'],['optB-papa-dur-lbl','optB_papa_dur_lbl'],
+    ['calc-ch','calc_ch'],['calc-ba','calc_ba']
+  ];
+  ids.forEach(function(p){ var el=document.getElementById(p[0]); if(el) el.textContent=t(p[1]); });
+
+  // Quiz buttons
+  var qids=[
+    ['f1ja','q1_ja'],['f1nein','q1_nein'],['f2ja','q2_ja'],['f2nein','q2_nein'],
+    ['f3ja','q3_ja'],['f3nein','q3_nein'],['f4ja','q4_ja'],['f4nein','q4_nein'],
+    ['f5a','q5a'],['f5b','q5b'],['f5c','q5c'],
+    ['quiz-submit-btn','quiz_submit'],['quiz-reset-btn','quiz_reset']
+  ];
+  qids.forEach(function(p){ var el=document.getElementById(p[0]); if(el) el.textContent=t(p[1]); });
+
+  // Legend texts
+  var lids=[
+    ['leg1-title','leg1_title'],['leg1-text','leg1_text'],
+    ['leg2-title','leg2_title'],['leg2-text','leg2_text'],
+    ['leg3-title','leg3_title'],['leg3-text','leg3_text'],
+    ['leg4-title','leg4_title'],['leg4-text','leg4_text'],
+    ['footnote-text','footnote']
+  ];
+  lids.forEach(function(p){ var el=document.getElementById(p[0]); if(el) el.textContent=t(p[1]); });
+
+  // Refresh calculator
+  updateCalc();
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  updateTimers();
+  setInterval(updateTimers, 1000);
+  updateCalc();
+  applyAll();
+});
+</script>
+</body>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('./sw.js').then(function(reg){
+      console.log('SW registered:', reg.scope);
+    }).catch(function(err){
+      console.log('SW failed:', err);
+    });
+  });
+}
+</script>
+</html>

@@ -1382,21 +1382,25 @@ function updateCalc(){
   var ms=fmtN(raw)+' '+cur;
   var totStr='CHF '+fmtN(totalMonthly)+(isBa?' = '+fmtN(totalMonthly*rate)+' BAM':'');
   var surpStr='CHF '+fmtN(Math.abs(surplusA))+(isBa?' = '+fmtN(Math.abs(surplusA)*rate)+' BAM':'');
-  
 
   if(needAfterAHV<=0){
     ov.style.background='#e8f5e9'; ov.style.color='#1b5e20';
-    ov.innerHTML='🎉 <strong>'+(isBs?'Pri '+ms+'/mj. AHV sam dovoljan!':'Bei '+ms+'/Mt. reicht die AHV allein!')+'</strong><br>'
-      +(isBs?'Opcija A: '+surpStr+'/mj. ostaje — doživotno.<br>Opcija B: Kapital '+totalPKstr+' slobodan za porodicu!<br><strong>→ Jednokratno povlačenje može biti dobra opcija.</strong>':'Option A: '+surpStr+'/Mt. übrig — lebenslang.<br>Option B: Kapital '+totalPKstr+' komplett frei!<br><strong>→ Kapitalbezug könnte hier sinnvoll sein.</strong>');
+    ov.innerHTML='🎉 <strong>Bei '+ms+'/Mt. reicht die AHV allein!</strong><br>'
+      +'Option A: '+surpStr+'/Mt. übrig — lebenslang.<br>'
+      +'Option B: Kapital komplett frei!<br>'
+      +'<strong>→ Kapitalbezug könnte hier sinnvoll sein.</strong>';
   } else if(mamaDurMo>=9999||papaDurMo>=9999){
     ov.style.background='#e8f5e9'; ov.style.color='#1b5e20';
-    ov.innerHTML='✅ <strong>'+(isBs?'Pri '+ms+'/mj. kapital traje jako dugo.':'Bei '+ms+'/Mt. reicht das Kapital sehr lange.')+'</strong><br>'
-      +(isBs?'Opcija A: '+totStr+'/mj. — '+(surplusA>=0?surpStr+' ostaje ✅':surpStr+' nedostaje ⚠️')+' — doživotno.<br>Opcija B: Mihreta '+md.val+' / Zikret '+pd.val+'.':'Option A: '+totStr+'/Mt. — '+(surplusA>=0?surpStr+' übrig ✅':surpStr+' fehlen ⚠️')+' — lebenslang.<br>Option B: Mihreta '+md.val+' / Zikret '+pd.val+'.');
+    ov.innerHTML='✅ <strong>Bei '+ms+'/Mt. reicht das Kapital sehr lange.</strong><br>'
+      +'Option A: '+totStr+'/Mt. — '+(surplusA>=0?surpStr+' übrig ✅':surpStr+' fehlen ⚠️')+' — lebenslang.<br>'
+      +'Option B: Mihreta '+md.val+' / Zikret '+pd.val+'.';
   } else {
     var sy=Math.round(Math.min(mamaDurMo,papaDurMo)/12);
     ov.style.background='#e3f2fd'; ov.style.color='#0d47a1';
-    ov.innerHTML='📊 <strong>'+(isBs?'Pri '+ms+'/mj.:':'Bei '+ms+'/Mt.:')+'</strong><br>'
-      +(isBs?'Opcija A: '+totStr+'/mj. — '+(surplusA>=0?surpStr+' ostaje ✅':surpStr+' nedostaje ⚠️')+' — <strong>doživotno</strong>.<br>Opcija B: kapital traje <strong>ca. '+sy+(sy===1?' godinu':sy<5?' godine':' godina')+'</strong> — zatim samo AHV '+ahvStr+'/mj.<br><strong>→ Opcija A sigurnija.</strong>':'Option A: '+totStr+'/Mt. — '+(surplusA>=0?surpStr+' übrig ✅':surpStr+' fehlen ⚠️')+' — <strong>lebenslang</strong>.<br>Option B: Kapital reicht <strong>ca. '+sy+' Jahre</strong> — danach nur noch AHV '+ahvStr+'/Mt.<br><strong>→ Option A sicherer.</strong>');
+    ov.innerHTML='📊 <strong>Bei '+ms+'/Mt.:</strong><br>'
+      +'Option A: '+totStr+'/Mt. — '+(surplusA>=0?surpStr+' übrig ✅':surpStr+' fehlen ⚠️')+' — <strong>lebenslang</strong>.<br>'
+      +'Option B: Kapital reicht <strong>ca. '+sy+' Jahre</strong> — danach nur noch AHV.<br>'
+      +'<strong>→ Option A sicherer.</strong>';
   }
 }
 document.addEventListener('DOMContentLoaded',function(){

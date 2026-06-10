@@ -189,8 +189,8 @@
   .mrow { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; border-bottom: 1px solid #f2f2f2; gap: 10px; }
   .mrow:last-child { border-bottom: none; }
   .mrow .lbl { font-size: 13.5px; color: #444; flex: 1; }
-  .mrow .lbl small { display: block; font-size: 11.5px; color: #888; margin-top: 1px; }
-  .mrow .val { font-size: 16px; font-weight: 800; white-space: nowrap; }
+  .mrow .lbl small { display: block; font-size: 11.5px; color: #888; margin-top: 3px; line-height: 1.4; }
+  .mrow .val { font-size: 16px; font-weight: 800; white-space: nowrap; text-align: right; min-width: 80px; }
   .mrow .val.green { color: #2e7d32; }
   .mrow .val.orange { color: #e65100; }
   .mrow .val.red { color: #c62828; }
@@ -596,19 +596,19 @@
   <div style="background:white;border-radius:12px;padding:14px 18px;margin-bottom:20px;box-shadow:0 1px 6px rgba(0,0,0,0.07);">
     <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0;font-size:13px;margin-bottom:0;background:linear-gradient(135deg,#1a3a5c,#2d6a9f);color:white;padding:10px 18px;border-radius:10px 10px 0 0;margin:-14px -18px 12px;" data-i18n="ahv_couple">👫 Mihreta & Zikret (ab Okt. 2029)</div>
     <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f2f2f2;">
-      <span style="font-size:13.5px;color:#444" data-i18n="ahv_total_lbl" id="ahv-couple-total">🏛 AHV total (plafoniert, max. CHF 3'780)</span>
+      <span style="font-size:13.5px;color:#444" data-i18n="ahv_total_lbl" id="ahv-couple-total" id="ahv-couple-total">🏛 AHV total</span>
       <span style="font-size:16px;font-weight:800;color:#2e7d32">CHF 3'680/Mt.</span>
     </div>
     <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f2f2f2;">
-      <span style="font-size:13px;color:#888" data-i18n="ahv_mama_lbl" id="ahv-couple-mama">davon Mihreta (Plafonierung + Zuschlag CHF 101)</span>
+      <span style="font-size:13px;color:#888" data-i18n="ahv_mama_lbl" id="ahv-couple-mama">davon Mihreta<small>Plafonierung + Zuschlag CHF 101</small></span>
       <span style="font-size:14px;font-weight:700;color:#e91e63">CHF 1'926</span>
     </div>
     <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f2f2f2;">
-      <span style="font-size:13px;color:#888" data-i18n="ahv_papa_lbl" id="ahv-couple-papa">davon Zikret (nach Plafonierung)</span>
+      <span style="font-size:13px;color:#888" data-i18n="ahv_papa_lbl" id="ahv-couple-papa">davon Zikret<small>nach Plafonierung</small></span>
       <span style="font-size:14px;font-weight:700;color:#1565c0">CHF 1'754</span>
     </div>
     <div style="display:flex;justify-content:space-between;padding:8px 0;">
-      <span style="font-size:13px;color:#888" data-i18n="ahv_13_lbl" id="ahv-couple-13">🎄 13. AHV-Rente im Dezember (beide)</span>
+      <span style="font-size:13px;color:#888" data-i18n="ahv_13_lbl" id="ahv-couple-13">🎄 13. AHV-Rente im Dezember<small>beide, jedes Jahr extra</small></span>
       <span style="font-size:14px;font-weight:700;color:#6a1b9a">+ CHF 3'680/Jahr</span>
     </div>
   </div>
@@ -1358,12 +1358,12 @@ var T={
     pk_mama_title:"👩 Mihreta — FUTURA Vorsorge",
     pk_papa_title:"👨 Zikret — AXA / Kammermann",
     pk_mama_d1:"Bei Frühpension (Alter 63):",
-    pk_mama_d2:"Bei Referenzalter (Alter 64+9M):",
-    pk_mama_d3:"Jahresrente bei Ref.alter:",
+    pk_mama_d2:"Bei Referenzalter (64 + 9 Monate):",
+    pk_mama_d3:"Jahresrente bei Referenzalter:",
     pk_mama_d4:"Umwandlungssatz:",
     pk_papa_d1:"Bei ord. Pensionierung (Alter 65):",
     pk_papa_d2:"Jahresrente bei Alter 65:",
-    pk_papa_d3:"Obligat. / Überobligat.:",
+    pk_papa_d3:"Obligatorisch / Überobligatorisch:",
     pk_papa_d4:"Umwandlungssatz:",
     sec_work:"🏗️ Wie lange arbeitet ihr schon?",
     work_mama_since:"Beitragsbeginn AHV:",
@@ -1374,19 +1374,23 @@ var T={
     sec_ahv:"🏛 AHV-Rente (1. Säule)",
     ahv_mama_sub:"ab 01.08.2028 (Referenzalter)",
     ahv_papa_sub:"ab 01.10.2029 (Referenzalter 65)",
-    ahv_mama_d1:"Davon Sonder-Zuschlag (Jg. 1963):",
+    ahv_mama_d1:"Sonder-Zuschlag (Jg. 1963):",
     ahv_mama_d2:"Nach Plafonierung (ab Okt. 2029):",
     ahv_mama_d3:"13. AHV-Rente (Dez. ab 2028):",
-    ahv_mama_d4:"Frühestmögl. Vorbezug:",
+    ahv_mama_d4:"Frühestmöglicher Vorbezug:",
     ahv_papa_d1:"Nach Plafonierung (ab Okt. 2029):",
     ahv_papa_d2:"13. AHV-Rente (Dez. ab 2029):",
     ahv_papa_d3:"Vorbezug 1 Jahr:",
     ahv_papa_d4:"Vorbezug 2 Jahre:",
-    ahv_couple:"👫 Mihreta &amp; Zikret zusammen (ab Okt. 2029)",
-    ahv_total_lbl:"🏛 AHV total (plafoniert, max. CHF 3'780)",
-    ahv_mama_lbl:"davon Mihreta (Plafonierung + Zuschlag CHF 101)",
-    ahv_papa_lbl:"davon Zikret (nach Plafonierung)",
-    ahv_13_lbl:"🎄 13. AHV-Rente im Dezember (beide)",
+    ahv_couple:"👫 Mihreta & Zikret (ab Okt. 2029)",
+    ahv_total_lbl:"🏛 AHV total",
+    ahv_total_sub:"plafoniert, max. CHF 3'780",
+    ahv_mama_lbl:"davon Mihreta",
+    ahv_mama_sub_lbl:"Plafonierung + Zuschlag CHF 101",
+    ahv_papa_lbl:"davon Zikret",
+    ahv_papa_sub_lbl:"nach Plafonierung",
+    ahv_13_lbl:"🎄 13. AHV-Rente im Dezember",
+    ahv_13_sub_lbl:"beide — jedes Jahr extra",
     sec_calc:"🧮 Rechner — Wie lange reicht das Geld?",
     calc_ch:"🇨🇭 Schweiz",calc_ba:"🇧🇦 Bosnien",
     calc_slider_lbl:"💶 Fixkosten pro Monat — wie viel braucht ihr zum Leben?",
@@ -1402,10 +1406,10 @@ var T={
     optB_papa_dur_lbl:"👨 Zikrets Kapital reicht",
     calc_hint:"👆 Schieber bewegen um Ergebnis zu sehen",
     quiz_title:"🤔 Was ist euch wichtig?",
-    quiz_sub:"5 kurze Fragen — dann seht ihr welches Szenario am besten zu euch passt.",
+    quiz_sub:"5 kurze Fragen — dann seht ihr welches Szenario am besten passt.",
     q1:"Wollt ihr in Bosnien leben?",
     q1_ja:"✅ Ja",q1_nein:"❌ Nein, wir bleiben in der Schweiz",
-    q2:"Ist euch wichtig, dass jeden Monat sicher Geld kommt — egal wie alt ihr werdet?",
+    q2:"Ist euch wichtig, dass jeden Monat sicher Geld kommt?",
     q2_ja:"✅ Ja",q2_nein:"❌ Nein",
     q3:"Macht es euch Sorgen, dass das Geld eines Tages ausgehen könnte?",
     q3_ja:"✅ Ja, das macht uns Sorgen",q3_nein:"❌ Nein, wir verwalten das selbst",
@@ -1436,7 +1440,7 @@ var T={
     sc4_sub:"Beide beziehen ihre PK einmalig. Danach nur noch AHV.",
     sc_fits:"Szenario {n} passt zu euch",
     reason_ba:"Ihr lebt in Bosnien — eigenes Haus, keine Wohnkosten.",
-    reason_ch:"Ihr bleibt in der Schweiz — Rüeggisingerstrasse 18, 6020 Emmenbrücke. Ab 2027 zahlt Sohn Armin die Miete.",
+    reason_ch:"Ihr bleibt in der Schweiz — Rüeggisingerstrasse 18, 6020 Emmenbrücke.",
     reason_sicherheit:"Euch ist wichtig, dass jeden Monat sicher Geld kommt — die Rente ist lebenslang garantiert.",
     reason_angst:"Ihr möchtet nicht, dass das Geld ausgeht — mit der Rente ist das unmöglich.",
     reason_kapital:"Ihr wollt einmalig Geld auf dem Konto — alles geht aufs gemeinsame Konto.",
@@ -1451,7 +1455,7 @@ var T={
     leg3_text:"Ehepaare bekommen von der AHV zusammen maximal CHF 3'780/Mt. (150% der Maximalrente). Sonder-Zuschlag Mihreta CHF 101 (Jg. 1963) ist ausgenommen.",
     leg4_title:"Wechselkurs CHF → BAM",
     leg4_text:"Aktueller Kurs Juni 2026: 1 CHF = 2.14 BAM. BAM ist fest an den Euro gekoppelt (1 EUR = 1.9558 BAM).",
-    footnote:"Alle Beträge sind Richtwerte (Stand: 2026). Steuern Emmen: Steuerfuss 215%. Bosnien-Steuer: ~10-13% geschätzt."
+    footnote:"Alle Beträge sind Richtwerte (Stand: 2026). Steuern Emmen: Steuerfuss 215%. Bosnien-Steuer: ~10–13% geschätzt."
   },
   bs:{
     snav1:"✅ S1 Oboje penzija",
@@ -1470,7 +1474,7 @@ var T={
     pk_mama_title:"👩 Mihreta — FUTURA Vorsorge",
     pk_papa_title:"👨 Zikret — AXA / Kammermann",
     pk_mama_d1:"Pri prijevrem. penziji (63 god.):",
-    pk_mama_d2:"Pri referentnoj dobi (64+9M):",
+    pk_mama_d2:"Pri referentnoj dobi (64 + 9 mj.):",
     pk_mama_d3:"Godišnja penzija pri ref. dobi:",
     pk_mama_d4:"Stopa konverzije:",
     pk_papa_d1:"Pri redovnoj penziji (65 god.):",
@@ -1494,11 +1498,15 @@ var T={
     ahv_papa_d2:"13. AHV penzija (dec. od 2029.):",
     ahv_papa_d3:"Prijevremeno 1 god.:",
     ahv_papa_d4:"Prijevremeno 2 god.:",
-    ahv_couple:"👫 Mihreta &amp; Zikret zajedno (od okt. 2029.)",
-    ahv_total_lbl:"🏛 AHV ukupno (plafoniranje, max. CHF 3'780)",
-    ahv_mama_lbl:"od toga Mihreta (plafoniranje + dodatak CHF 101)",
-    ahv_papa_lbl:"od toga Zikret (nakon plafoniranja)",
-    ahv_13_lbl:"🎄 13. AHV penzija u decembru (oboje)",
+    ahv_couple:"👫 Mihreta & Zikret (od okt. 2029.)",
+    ahv_total_lbl:"🏛 AHV ukupno",
+    ahv_total_sub:"plafoniranje, max. CHF 3'780",
+    ahv_mama_lbl:"od toga Mihreta",
+    ahv_mama_sub_lbl:"plafoniranje + dodatak CHF 101",
+    ahv_papa_lbl:"od toga Zikret",
+    ahv_papa_sub_lbl:"nakon plafoniranja",
+    ahv_13_lbl:"🎄 13. AHV penzija u decembru",
+    ahv_13_sub_lbl:"oboje — svake godine extra",
     sec_calc:"🧮 Kalkulator — Koliko dugo traje novac?",
     calc_ch:"🇨🇭 Švicarska",calc_ba:"🇧🇦 Bosna",
     calc_slider_lbl:"💶 Fiksni troškovi po mjesecu — koliko vam treba za život?",
@@ -1541,14 +1549,14 @@ var T={
     sc1_title:"✅ Scenarij 1 — Oboje penzija iz fonda",
     sc2_title:"💼 Scenarij 2 — Mihreta kapital, Zikret penzija",
     sc3_title:"💼 Scenarij 3 — Mihreta penzija, Zikret kapital",
-    sc4_title:"💰 Scenarij 4 — Mihreta i Zikret podižu penzioni fond",
+    sc4_title:"💰 Scenarij 4 — Oboje podižu penzioni fond",
     sc1_sub:"Mihreta i Zikret ostavljaju penzioni fond — svaki mjesec doživotno.",
     sc2_sub:"Mihreta podiže penzioni fond jednokratno. Zikret ostavlja fond.",
     sc3_sub:"Mihreta ostavlja penzioni fond. Zikret podiže fond jednokratno.",
     sc4_sub:"Mihreta i Zikret podižu penzioni fond jednokratno. Zatim samo AHV.",
     sc_fits:"Scenarij {n} vam odgovara",
     reason_ba:"Živite u Bosni — vlastita kuća, nema troškova stanovanja.",
-    reason_ch:"Ostajete u Švicarskoj — Rüeggisingerstrasse 18, 6020 Emmenbrücke. Od 2027. sin Armin plaća stanarinu.",
+    reason_ch:"Ostajete u Švicarskoj — Rüeggisingerstrasse 18, 6020 Emmenbrücke.",
     reason_sicherheit:"Važno vam je da svaki mjesec sigurno dolazi novac — penzija je doživotno garantirana.",
     reason_angst:"Ne želite da vam novac jednog dana ponestane — s penzijom to nije moguće.",
     reason_kapital:"Želite jednokratno velik iznos na računu — sve ide na zajednički račun.",
@@ -1560,7 +1568,7 @@ var T={
     leg2_title:"AHV penzija — doživotno, i u Bosni",
     leg2_text:"AHV isplaćuje doživotno — i u Bosnu, u punom iznosu. Švicarska ima sporazum o socijalnom osiguranju s Bosnom. Od 2026. postoji i 13. AHV penzija u decembru.",
     leg3_title:"AHV plafoniranje za bračne parove — max. CHF 3'780/mj.",
-    leg3_text:"Bračni parovi zajedno dobivaju max. CHF 3'780/mj. od AHV. Posebni dodatak Mame CHF 101 (god. 1963) je izuzet.",
+    leg3_text:"Bračni parovi zajedno dobivaju max. CHF 3'780/mj. od AHV. Posebni dodatak Mihrete CHF 101 (god. 1963) je izuzet.",
     leg4_title:"Tečaj CHF → BAM",
     leg4_text:"Aktualni tečaj juni 2026.: 1 CHF = 2,14 BAM. BAM je vezan za euro (1 EUR = 1,9558 BAM).",
     footnote:"Svi iznosi su orijentacione vrijednosti (stanje: 2026.). Za obvezujuće iznose: WAS Ausgleichskasse Luzern, FUTURA Vorsorge, AXA Stiftung."
@@ -1625,10 +1633,10 @@ function applyAll(){
   if(ahvp) ahvp.innerHTML=t('ahv_papa_d1')+" <span>CHF 1'754/Mt.</span><br>"+t('ahv_papa_d2')+" <span>~CHF 1'754 einmalig</span><br>"+t('ahv_papa_d3')+" <span>CHF 1'512 (-6.8%)</span><br>"+t('ahv_papa_d4')+" <span>CHF 1'392 (-13.6%)</span>";
 
   // AHV couple
-  var act=document.getElementById('ahv-couple-total'); if(act) act.textContent=t('ahv_total_lbl');
-  var acm=document.getElementById('ahv-couple-mama'); if(acm) acm.textContent=t('ahv_mama_lbl');
-  var acp=document.getElementById('ahv-couple-papa'); if(acp) acp.textContent=t('ahv_papa_lbl');
-  var ac13=document.getElementById('ahv-couple-13'); if(ac13) ac13.textContent=t('ahv_13_lbl');
+  var act=document.getElementById('ahv-couple-total'); if(act) act.innerHTML=t('ahv_total_lbl')+'<br><small style="font-weight:400;font-size:11px;color:#888">'+t('ahv_total_sub')+'</small>';
+  var acm=document.getElementById('ahv-couple-mama'); if(acm) acm.innerHTML=t('ahv_mama_lbl')+'<br><small style="font-weight:400;font-size:11px;color:#888">'+t('ahv_mama_sub_lbl')+'</small>';
+  var acp=document.getElementById('ahv-couple-papa'); if(acp) acp.innerHTML=t('ahv_papa_lbl')+'<br><small style="font-weight:400;font-size:11px;color:#888">'+t('ahv_papa_sub_lbl')+'</small>';
+  var ac13=document.getElementById('ahv-couple-13'); if(ac13) ac13.innerHTML=t('ahv_13_lbl')+'<br><small style="font-weight:400;font-size:11px;color:#888">'+t('ahv_13_sub_lbl')+'</small>';
 
   // Calc option labels
   var ids=[
@@ -1643,7 +1651,7 @@ function applyAll(){
   ids.forEach(function(p){ var el=document.getElementById(p[0]); if(el) el.textContent=t(p[1]); });
 
   // Quiz question labels
-  ['ql-1','q1'],['ql-2','q2'],['ql-3','q3'],['ql-4','q4'],['ql-5','q5']
+  [['ql-1','q1'],['ql-2','q2'],['ql-3','q3'],['ql-4','q4'],['ql-5','q5']]
   .forEach(function(p){ var el=document.getElementById(p[0]); if(el) el.textContent=t(p[1]); });
 
   // Quiz buttons
@@ -1688,4 +1696,20 @@ if('serviceWorker' in navigator){
   });
 }
 </script>
-</html>
+</html>    ahv_total_lbl:"🏛 AHV total",
+    ahv_total_sub:"plafoniert, max. CHF 3'780",
+    ahv_mama_lbl:"davon Mihreta",
+    ahv_mama_sub:"Plafonierung + Zuschlag CHF 101",
+    ahv_papa_lbl:"davon Zikret",
+    ahv_papa_sub:"nach Plafonierung",
+    ahv_13_lbl:"🎄 13. AHV-Rente im Dezember",
+    ahv_13_sub:"beide — jedes Jahr extra",
+    ahv_total_lbl:"🏛 AHV ukupno",
+    ahv_total_sub:"plafoniranje, max. CHF 3'780",
+    ahv_mama_lbl:"od toga Mihreta",
+    ahv_mama_sub:"plafoniranje + dodatak CHF 101",
+    ahv_papa_lbl:"od toga Zikret",
+    ahv_papa_sub:"nakon plafoniranja",
+    ahv_13_lbl:"🎄 13. AHV penzija u decembru",
+    ahv_13_sub:"oboje — svake godine extra",
+

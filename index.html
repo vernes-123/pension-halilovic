@@ -982,7 +982,7 @@
       <span>📅 Einkommen nach Phase — was kommt wann?</span>
       <span id="phasen-arrow" style="font-size:16px;">▲</span>
     </div>
-    <div id="phasen-body">
+    <div id="phasen-body" style="display:block;">
 
     <!-- ===== PHASE 1 ===== -->
     <div onclick="togglePhase(1)" style="cursor:pointer;background:#fce4ec;padding:10px 16px;border-bottom:1px solid #f48fb1;display:flex;justify-content:space-between;align-items:center;user-select:none;">
@@ -993,42 +993,48 @@
       <div id="ph1-arrow" style="font-size:16px;color:#880e4f;transition:transform 0.2s;">▼</div>
     </div>
     <div id="ph1-body" style="display:none;">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#fafafa;padding:6px 16px;border-bottom:1px solid #eee;">
-        <div style="font-size:11px;font-weight:700;color:#888;"></div>
-        <div style="font-size:11px;font-weight:700;color:#e91e63;text-align:center;">👩 Mihreta</div>
-        <div style="font-size:11px;font-weight:700;color:#1565c0;text-align:center;">👨 Zikret</div>
+    <!-- col headers -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;background:#fafafa;padding:6px 14px;border-bottom:1px solid #eee;">
+      <div style="font-size:11px;font-weight:700;color:#888;"></div>
+      <div style="font-size:11px;font-weight:700;color:#e91e63;text-align:center;">👩 Mihreta</div>
+      <div style="font-size:11px;font-weight:700;color:#1565c0;text-align:center;">👨 Zikret</div>
+      <div style="font-size:11px;font-weight:700;color:#555;text-align:center;">∑ Total</div>
+    </div>
+    <!-- AHV -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:10px 14px;border-bottom:1px solid #f5f5f5;align-items:center;">
+      <div style="font-size:12px;color:#555;">🏛 AHV<small style="display:block;color:#aaa;font-size:10px;">noch kein Anspruch</small></div>
+      <div style="text-align:center;font-size:13px;font-weight:700;color:#bbb;">—</div>
+      <div style="text-align:center;font-size:13px;font-weight:700;color:#bbb;">—</div>
+      <div style="text-align:center;font-size:13px;font-weight:700;color:#bbb;">—</div>
+    </div>
+    <!-- PK -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:10px 14px;border-bottom:1px solid #f5f5f5;align-items:center;background:#fafff9;">
+      <div style="font-size:12px;color:#555;">💼 PK-Rente<small style="display:block;color:#888;font-size:10px;">lebenslang</small></div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 699" data-ba="1'494 BAM" style="font-size:15px;font-weight:900;color:#e91e63;">CHF 699</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #f5f5f5;align-items:center;">
-        <div style="font-size:12px;color:#555;">🏛 AHV<small style="display:block;color:#aaa;font-size:10px;">noch kein Anspruch</small></div>
-        <div style="text-align:center;font-size:14px;font-weight:700;color:#bbb;">— noch nicht</div>
-        <div style="text-align:center;font-size:14px;font-weight:700;color:#bbb;">— noch nicht</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #f5f5f5;align-items:center;background:#fafff9;">
-        <div style="font-size:12px;color:#555;">💼 PK-Rente<small style="display:block;color:#888;font-size:10px;">Frühpension 63</small></div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 699" data-ba="1'494 BAM" style="font-size:17px;font-weight:900;color:#e91e63;">CHF 699</div>
-          <div style="font-size:10px;color:#888;">/ Monat</div>
-        </div>
-        <div style="text-align:center;font-size:13px;color:#888;font-style:italic;">arbeitet noch</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;background:#fff9e1;align-items:center;">
-        <div style="font-size:12px;font-weight:800;color:#e65100;">Total / Monat</div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 699" data-ba="1'494 BAM" style="font-size:17px;font-weight:900;color:#e91e63;">CHF 699</div>
-        </div>
-        <div style="text-align:center;font-size:12px;color:#888;font-style:italic;">Lohn läuft</div>
-      </div>
-      <div style="padding:8px 16px;background:#fff3e0;text-align:center;border-top:1px solid #ffe0b2;">
-        <div class="ub-note" 
-          data-ch="Zikret arbeitet noch — Lohn + evtl. Teilpension. Nur Mihretas PK-Rente läuft."
-          data-ba="Zikret arbeitet noch. Nur Mihretas PK-Rente läuft (699 CHF = 1'494 BAM)."
-          style="font-size:11px;color:#e65100;font-weight:600;">
-          Zikret arbeitet noch — Lohn + evtl. Teilpension. Nur Mihretas PK-Rente läuft.
-        </div>
+      <div style="text-align:center;font-size:13px;color:#888;font-style:italic;">arbeitet noch</div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 699" data-ba="1'494 BAM" style="font-size:15px;font-weight:900;color:#555;">CHF 699</div>
       </div>
     </div>
+    <!-- Total -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:10px 14px;background:#fff3e0;align-items:center;">
+      <div style="font-size:11px;font-weight:800;color:#e65100;">Total/Mt.</div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 699" data-ba="1'494 BAM" style="font-size:15px;font-weight:900;color:#e91e63;">CHF 699</div>
+        <div style="font-size:10px;color:#888;">∞ lebenslang</div>
+      </div>
+      <div style="text-align:center;font-size:12px;color:#888;font-style:italic;">Lohn läuft</div>
+      <div style="text-align:center;background:#e65100;border-radius:8px;padding:8px 4px;">
+        <div class="ub-val" data-ch="CHF 699" data-ba="1'494 BAM" style="font-size:15px;font-weight:900;color:white;">CHF 699</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.85);">+ Lohn Zikret</div>
+      </div>
+    </div>
+  </div>
 
-    <!-- ===== PHASE 2 ===== -->
+    <!-- ===== PHASE 2 HEADER ===== -->
     <div onclick="togglePhase(2)" style="cursor:pointer;background:#e3f2fd;padding:10px 16px;border-bottom:1px solid #90caf9;border-top:2px solid #1565c0;display:flex;justify-content:space-between;align-items:center;user-select:none;">
       <div>
         <div style="font-size:12px;font-weight:800;color:#0d47a1;">🔵 Phase 2 — Jan. 2028 bis Sep. 2029</div>
@@ -1037,127 +1043,133 @@
       <div id="ph2-arrow" style="font-size:16px;color:#0d47a1;transition:transform 0.2s;">▼</div>
     </div>
     <div id="ph2-body" style="display:none;">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#fafafa;padding:6px 16px;border-bottom:1px solid #eee;">
-        <div style="font-size:11px;font-weight:700;color:#888;"></div>
-        <div style="font-size:11px;font-weight:700;color:#e91e63;text-align:center;">👩 Mihreta</div>
-        <div style="font-size:11px;font-weight:700;color:#1565c0;text-align:center;">👨 Zikret</div>
+    <!-- col headers -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;background:#fafafa;padding:6px 14px;border-bottom:1px solid #eee;">
+      <div style="font-size:11px;font-weight:700;color:#888;"></div>
+      <div style="font-size:11px;font-weight:700;color:#e91e63;text-align:center;">👩 Mihreta</div>
+      <div style="font-size:11px;font-weight:700;color:#1565c0;text-align:center;">👨 Zikret</div>
+      <div style="font-size:11px;font-weight:700;color:#555;text-align:center;">∑ Total</div>
+    </div>
+    <!-- AHV -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:10px 14px;border-bottom:1px solid #f5f5f5;align-items:center;">
+      <div style="font-size:12px;color:#555;">🏛 AHV<small style="display:block;color:#888;font-size:10px;">Mihreta ab Aug. 2028</small></div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 1'779" data-ba="3'807 BAM" style="font-size:15px;font-weight:900;color:#e91e63;">CHF 1'779</div>
+        <div style="font-size:10px;color:#888;">ab Aug. 2028</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #f5f5f5;align-items:center;">
-        <div style="font-size:12px;color:#555;">🏛 AHV<small style="display:block;color:#888;font-size:10px;">Mihreta ab Aug. 2028</small></div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 1'779" data-ba="3'807 BAM" style="font-size:15px;font-weight:900;color:#e91e63;">CHF 1'779</div>
-          <div style="font-size:10px;color:#888;">ab Aug. 2028</div>
-        </div>
-        <div style="text-align:center;font-size:13px;font-weight:700;color:#bbb;">— ab Okt. 2029</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #f5f5f5;align-items:center;background:#fafff9;">
-        <div style="font-size:12px;color:#555;">💼 PK-Rente<small style="display:block;color:#888;font-size:10px;">lebenslang</small></div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 699" data-ba="1'494 BAM" style="font-size:17px;font-weight:900;color:#e91e63;">CHF 699</div>
-          <div style="font-size:10px;color:#888;">/ Monat</div>
-        </div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 1'601" data-ba="3'426 BAM" style="font-size:17px;font-weight:900;color:#1565c0;">CHF 1'601</div>
-          <div style="font-size:10px;color:#888;">/ Monat</div>
-        </div>
-      </div>
-      <!-- total phase 2 jan-jul 28 -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:8px 16px;border-bottom:1px solid #e3f2fd;background:#e8f0ff;align-items:center;">
-        <div style="font-size:11px;font-weight:800;color:#0d47a1;">Jan–Jul 2028</div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 699" data-ba="1'494 BAM" style="font-size:15px;font-weight:900;color:#e91e63;">CHF 699</div>
-        </div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 1'601" data-ba="3'426 BAM" style="font-size:15px;font-weight:900;color:#1565c0;">CHF 1'601</div>
-        </div>
-      </div>
-      <!-- total phase 2 aug+ -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:8px 16px;background:#d0e8ff;align-items:center;">
-        <div style="font-size:11px;font-weight:800;color:#0d47a1;">Ab Aug. 2028</div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 2'478" data-ba="5'303 BAM" style="font-size:15px;font-weight:900;color:#e91e63;">CHF 2'478</div>
-        </div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 1'601" data-ba="3'426 BAM" style="font-size:15px;font-weight:900;color:#1565c0;">CHF 1'601</div>
-        </div>
-      </div>
-      <div style="padding:8px 16px;background:#d0e8ff;border-top:1px solid #b3d4f5;text-align:center;">
-        <div style="font-size:12px;font-weight:800;color:#0d47a1;">
-          Zusammen ab Aug. 2028: 
-          <span class="ub-val" data-ch="CHF 4'079" data-ba="8'729 BAM">CHF 4'079</span> / Monat
-        </div>
-        <div style="margin-top:4px;" id="ph2-abzug">
-          <div class="ub-note"
-            data-ch="Netto Schweiz ca. CHF 3'100 (nach KK CHF 900 + Steuer ca. ~80)"
-            data-ba="In Bosnien ca. 7'400–7'900 BAM netto"
-            style="font-size:11px;color:#5c6bc0;font-weight:600;">
-            Netto Schweiz ca. CHF 3'100 (nach KK CHF 900 + Steuer ca. ~80)
-          </div>
-        </div>
+      <div style="text-align:center;font-size:12px;font-weight:700;color:#bbb;">— ab Okt. 2029</div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 1'779" data-ba="3'807 BAM" style="font-size:15px;font-weight:900;color:#555;">CHF 1'779</div>
+        <div style="font-size:10px;color:#888;">ab Aug. 2028</div>
       </div>
     </div>
+    <!-- PK -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:10px 14px;border-bottom:1px solid #f5f5f5;align-items:center;background:#fafff9;">
+      <div style="font-size:12px;color:#555;">💼 PK-Rente<small style="display:block;color:#888;font-size:10px;">lebenslang</small></div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 699" data-ba="1'494 BAM" style="font-size:15px;font-weight:900;color:#e91e63;">CHF 699</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 1'601" data-ba="3'426 BAM" style="font-size:15px;font-weight:900;color:#1565c0;">CHF 1'601</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 2'300" data-ba="4'920 BAM" style="font-size:15px;font-weight:900;color:#555;">CHF 2'300</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
+      </div>
+    </div>
+    <!-- Jan-Jul 2028 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:8px 14px;border-bottom:1px solid #e3f2fd;background:#e8f0ff;align-items:center;">
+      <div style="font-size:11px;font-weight:700;color:#0d47a1;">Jan–Jul 2028</div>
+      <div style="text-align:center;font-size:14px;font-weight:900;color:#e91e63;" class="ub-val" data-ch="CHF 699" data-ba="1'494 BAM">CHF 699</div>
+      <div style="text-align:center;font-size:14px;font-weight:900;color:#1565c0;" class="ub-val" data-ch="CHF 1'601" data-ba="3'426 BAM">CHF 1'601</div>
+      <div style="text-align:center;font-size:14px;font-weight:900;color:#0d47a1;" class="ub-val" data-ch="CHF 2'300" data-ba="4'920 BAM">CHF 2'300</div>
+    </div>
+    <!-- Total Ab Aug 2028 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:10px 14px;background:#d0e8ff;align-items:center;">
+      <div style="font-size:11px;font-weight:800;color:#0d47a1;">Ab Aug. 2028</div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 2'478" data-ba="5'303 BAM" style="font-size:15px;font-weight:900;color:#e91e63;">CHF 2'478</div>
+        <div style="font-size:10px;color:#555;">∞ lebenslang</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 1'601" data-ba="3'426 BAM" style="font-size:15px;font-weight:900;color:#1565c0;">CHF 1'601</div>
+        <div style="font-size:10px;color:#555;">∞ lebenslang</div>
+      </div>
+      <div style="text-align:center;background:#0d47a1;border-radius:8px;padding:8px 4px;">
+        <div class="ub-val" data-ch="CHF 4'079" data-ba="8'729 BAM" style="font-size:15px;font-weight:900;color:white;">CHF 4'079</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.85);">∞ lebenslang</div>
+      </div>
+    </div>
+  </div>
 
-    <!-- ===== PHASE 3 ===== -->
+    <!-- ===== PHASE 3 HEADER ===== -->
     <div onclick="togglePhase(3)" style="cursor:pointer;background:#e8f5e9;padding:10px 16px;border-bottom:1px solid #a5d6a7;border-top:2px solid #2e7d32;display:flex;justify-content:space-between;align-items:center;user-select:none;">
       <div>
         <div style="font-size:12px;font-weight:800;color:#1b5e20;">🟢 Phase 3 — Ab Oktober 2029 — für immer</div>
         <div style="font-size:11px;color:#388e3c;margin-top:1px;">AHV + PK beide voll — maximales Einkommen</div>
       </div>
-      <div id="ph3-arrow" style="font-size:16px;color:#1b5e20;transition:transform 0.2s;">▲</div>
+      <div id="ph3-arrow" style="font-size:16px;color:#1b5e20;transition:transform 0.2s;">▼</div>
     </div>
-    <div id="ph3-body" style="display:block;">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#fafafa;padding:6px 16px;border-bottom:1px solid #eee;">
-        <div style="font-size:11px;font-weight:700;color:#888;"></div>
-        <div style="font-size:11px;font-weight:700;color:#e91e63;text-align:center;">👩 Mihreta</div>
-        <div style="font-size:11px;font-weight:700;color:#1565c0;text-align:center;">👨 Zikret</div>
+    <div id="ph3-body" style="display:none;">
+    <!-- col headers -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;background:#fafafa;padding:6px 14px;border-bottom:1px solid #eee;">
+      <div style="font-size:11px;font-weight:700;color:#888;"></div>
+      <div style="font-size:11px;font-weight:700;color:#e91e63;text-align:center;">👩 Mihreta</div>
+      <div style="font-size:11px;font-weight:700;color:#1565c0;text-align:center;">👨 Zikret</div>
+      <div style="font-size:11px;font-weight:700;color:#555;text-align:center;">∑ Total</div>
+    </div>
+    <!-- AHV -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:10px 14px;border-bottom:1px solid #f5f5f5;align-items:center;">
+      <div style="font-size:12px;color:#555;">🏛 AHV<small style="display:block;color:#888;font-size:10px;">nach Plafonierung</small></div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 1'926" data-ba="4'122 BAM" style="font-size:15px;font-weight:900;color:#e91e63;">CHF 1'926</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #f5f5f5;align-items:center;">
-        <div style="font-size:12px;color:#555;">🏛 AHV<small style="display:block;color:#888;font-size:10px;">nach Plafonierung</small></div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 1'926" data-ba="4'122 BAM" style="font-size:17px;font-weight:900;color:#e91e63;">CHF 1'926</div>
-          <div style="font-size:10px;color:#888;">/ Monat</div>
-        </div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 1'754" data-ba="3'753 BAM" style="font-size:17px;font-weight:900;color:#1565c0;">CHF 1'754</div>
-          <div style="font-size:10px;color:#888;">/ Monat</div>
-        </div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 1'754" data-ba="3'753 BAM" style="font-size:15px;font-weight:900;color:#1565c0;">CHF 1'754</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #f5f5f5;align-items:center;background:#fafff9;">
-        <div style="font-size:12px;color:#555;">💼 PK-Rente<small style="display:block;color:#888;font-size:10px;">lebenslang</small></div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 699" data-ba="1'494 BAM" style="font-size:17px;font-weight:900;color:#e91e63;">CHF 699</div>
-          <div style="font-size:10px;color:#888;">/ Monat</div>
-        </div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 1'601" data-ba="3'426 BAM" style="font-size:17px;font-weight:900;color:#1565c0;">CHF 1'601</div>
-          <div style="font-size:10px;color:#888;">/ Monat</div>
-        </div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 3'680" data-ba="7'875 BAM" style="font-size:15px;font-weight:900;color:#2e7d32;">CHF 3'680</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #c8e6c9;background:#e8f5e9;align-items:center;">
-        <div style="font-size:12px;font-weight:800;color:#1b5e20;">Total / Monat</div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 2'625" data-ba="5'618 BAM" style="font-size:19px;font-weight:900;color:#e91e63;">CHF 2'625</div>
-        </div>
-        <div style="text-align:center;">
-          <div class="ub-val" data-ch="CHF 3'355" data-ba="7'180 BAM" style="font-size:19px;font-weight:900;color:#1565c0;">CHF 3'355</div>
-        </div>
+    </div>
+    <!-- PK -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:10px 14px;border-bottom:1px solid #f5f5f5;align-items:center;background:#fafff9;">
+      <div style="font-size:12px;color:#555;">💼 PK-Rente<small style="display:block;color:#888;font-size:10px;">lebenslang</small></div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 699" data-ba="1'494 BAM" style="font-size:15px;font-weight:900;color:#e91e63;">CHF 699</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
       </div>
-      <div style="padding:12px 16px;background:#1b5e20;text-align:center;">
-        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.8);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px;">Zusammen — für immer (Brutto)</div>
-        <div class="ub-val" data-ch="CHF 5'980" data-ba="12'797 BAM" style="font-size:32px;font-weight:900;color:white;letter-spacing:-1px;">CHF 5'980</div>
-        <div style="margin-top:6px;">
-          <div class="ub-note"
-            data-ch="Nach Abzügen Schweiz: CHF 4'663 netto (KK CHF 900 + Steuer CHF 417)"
-            data-ba="In Bosnien ca. 10'914–11'385 BAM netto (nach Steuer ~10–13%)"
-            style="font-size:12px;color:rgba(255,255,255,0.85);font-weight:600;">
-            Nach Abzügen Schweiz: CHF 4'663 netto (KK CHF 900 + Steuer CHF 417)
-          </div>
-        </div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 1'601" data-ba="3'426 BAM" style="font-size:15px;font-weight:900;color:#1565c0;">CHF 1'601</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 2'300" data-ba="4'920 BAM" style="font-size:15px;font-weight:900;color:#2e7d32;">CHF 2'300</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
+      </div>
+    </div>
+    <!-- Total -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:10px 14px;background:#e8f5e9;align-items:center;">
+      <div style="font-size:11px;font-weight:800;color:#1b5e20;">Total/Mt.</div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 2'625" data-ba="5'618 BAM" style="font-size:15px;font-weight:900;color:#e91e63;">CHF 2'625</div>
+        <div style="font-size:10px;color:#2e7d32;">∞ lebenslang</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="ub-val" data-ch="CHF 3'355" data-ba="7'180 BAM" style="font-size:15px;font-weight:900;color:#1565c0;">CHF 3'355</div>
+        <div style="font-size:10px;color:#2e7d32;">∞ lebenslang</div>
+      </div>
+      <div style="text-align:center;background:#1b5e20;border-radius:8px;padding:8px 4px;">
+        <div class="ub-val" data-ch="CHF 5'980" data-ba="12'797 BAM" style="font-size:15px;font-weight:900;color:white;">CHF 5'980</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.85);">∞ lebenslang</div>
       </div>
     </div>
   </div>
-
-    </div><!-- phasen-body -->
+</div><!-- phasen-body -->
   </div>
 
     <!-- MIT / OHNE KAPITALBEZUG -->
@@ -1166,10 +1178,10 @@
     <!-- Collapsible header -->
     <div onclick="toggleVgl()" style="cursor:pointer;background:#546e7a;color:white;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;user-select:none;">
       <div style="font-size:13px;font-weight:800;">⚖️ Vergleich — mit oder ohne Kapitalbezug</div>
-      <div id="vgl-arrow" style="font-size:16px;transition:transform 0.2s;">▲</div>
+      <div id="vgl-arrow" style="font-size:16px;transition:transform 0.2s;">▼</div>
     </div>
 
-    <div id="vgl-body">
+    <div id="vgl-body" style="display:none;">
 
     <!-- Column headers -->
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;background:#eceff1;padding:7px 14px;border-bottom:1px solid #cfd8dc;">
@@ -1185,9 +1197,9 @@
         <div style="font-size:12px;font-weight:800;color:#1b5e20;">✅ Ohne Kapitalbezug — PK als Rente</div>
         <div style="font-size:10px;color:#388e3c;">lebenslang garantiert — empfohlene Option</div>
       </div>
-      <span id="sub-ohne-arrow" style="font-size:14px;color:#1b5e20;">▲</span>
+      <span id="sub-ohne-arrow" style="font-size:14px;color:#1b5e20;">▼</span>
     </div>
-    <div id="sub-ohne-body">
+    <div id="sub-ohne-body" style="display:none;">
     <!-- AHV row -->
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:9px 14px;border-bottom:1px solid #f0f0f0;align-items:center;">
       <div style="font-size:11px;color:#555;">🏛 AHV<small style="display:block;color:#888;font-size:10px;">/ Monat</small></div>

@@ -245,6 +245,122 @@
 
   /* ===== MOBILE OPTIMIERUNG ===== */
   @media (max-width: 600px) {
+    body { font-size: 14px; }
+    .page { padding: 10px 10px 60px; }
+
+    /* Hero */
+    .hero { padding: 20px 14px 18px; border-radius: 14px; }
+    .hero h1 { font-size: 20px; }
+    .hero .flag-row { font-size: 22px; letter-spacing: 6px; }
+    .hero .subtitle { font-size: 12px; margin-bottom: 14px; }
+    .hero .address { font-size: 11px; padding: 6px 10px; }
+
+    /* Navigation */
+    .top-nav { flex-direction: column; gap: 8px; }
+    .top-nav .cta-btn { padding: 14px 12px; font-size: 14px; }
+    .lang-bar { padding: 4px 2px 10px; }
+    .lang-btn { padding: 7px 16px; font-size: 13px; }
+
+    /* Grids */
+    .cd-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .work-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .pk-grid { grid-template-columns: 1fr; gap: 10px; }
+    .cta-grid { grid-template-columns: 1fr; }
+    .scenario-nav { grid-template-columns: 1fr 1fr; gap: 6px; }
+
+    /* Section headers */
+    div[style*="text-transform:uppercase"] { font-size: 11px !important; }
+
+    /* Countdown */
+    .cd-card { padding: 14px 12px; border-radius: 12px; }
+    .cd-num { font-size: 44px; }
+    .cd-person { font-size: 12px; }
+    .cd-target { font-size: 10px; margin-bottom: 6px; }
+    .cd-label { font-size: 12px; color: #666; font-weight: 700; }
+
+    /* PK cards */
+    .pk-card { padding: 14px 12px; }
+    .pk-amount { font-size: 22px; }
+    .pk-sub { font-size: 11px; }
+    .pk-detail { font-size: 12px; line-height: 2; }
+    .pk-card h4 { font-size: 11px; }
+
+    /* Work ticker */
+    .work-card { padding: 12px 10px; }
+    .work-card h4 { font-size: 10px; }
+    .work-since { font-size: 11px; line-height: 1.6; }
+    .work-ticker { font-size: 11px; line-height: 2; }
+    .work-ticker .wn { font-size: 13px; }
+
+    /* AHV couple section */
+    .mrow { padding: 10px 12px; flex-wrap: wrap; }
+    .mrow .lbl { font-size: 13px; line-height: 1.4; }
+    .mrow .lbl small { font-size: 11px; }
+    .mrow .val { font-size: 15px; }
+    .mrow.tot .val { font-size: 18px; }
+    .mrow.tot .lbl { font-size: 13px; }
+
+    /* Rechner */
+    #calc-box { padding: 14px 12px 18px; border-radius: 14px; }
+    #calc-val { font-size: 20px !important; min-width: 70px !important; }
+
+    /* Option A/B cards inside calc */
+    #calc-box > div { border-radius: 10px !important; }
+
+    /* Scenario panels */
+    .snav-btn { font-size: 11px; padding: 9px 4px; line-height: 1.4; border-radius: 8px; }
+    .sc-header { padding: 14px 16px; border-radius: 10px; }
+    .sc-header h2 { font-size: 15px; }
+    .sc-header p { font-size: 12px; }
+    .loc-tabs { gap: 6px; }
+    .loc-btn { padding: 9px 6px; font-size: 12px; border-radius: 8px; }
+    .bignb .bv { font-size: 32px; }
+    .bignb .bb { font-size: 16px; }
+    .bignb { padding: 14px; border-radius: 10px; }
+    .pills { gap: 5px; }
+    .pill { font-size: 11px; padding: 4px 8px; }
+    .mbt { font-size: 11px; padding: 8px 12px; }
+    .mb { border-radius: 10px; }
+    .ib { font-size: 12px; padding: 10px 12px; }
+    .verd { font-size: 13px; padding: 10px 12px; }
+
+    /* Quiz */
+    .quiz-card { padding: 16px 14px; border-radius: 14px; }
+    .quiz-card h2 { font-size: 16px; }
+    .quiz-card p { font-size: 12px; margin-bottom: 16px; }
+    .question-label { font-size: 14px; line-height: 1.4; }
+    .yn-btn { padding: 11px 8px; font-size: 13px; border-radius: 8px; }
+    .budget-btn { font-size: 12px; padding: 10px 12px; border-radius: 8px; line-height: 1.4; }
+    .quiz-submit { padding: 14px; font-size: 15px; border-radius: 10px; }
+    .quiz-reset { padding: 11px; font-size: 13px; }
+
+    /* Result */
+    .result-header { padding: 16px 14px; border-radius: 12px; }
+    .result-header h2 { font-size: 16px; }
+    .why-item { font-size: 13px; padding: 8px 0; }
+    .show-all-btn { padding: 13px; font-size: 13px; border-radius: 10px; }
+    .back-btn { padding: 11px; font-size: 13px; border-radius: 10px; }
+
+    /* Legend */
+    .legend { padding: 14px; border-radius: 12px; }
+    .legend-icon { font-size: 18px; }
+    .legend-content { font-size: 12.5px; }
+
+    /* Back buttons */
+    .back-sm { padding: 8px 0; font-size: 13px; display: block; margin-bottom: 14px; }
+  }
+
+  /* Sehr kleine Handys */
+  @media (max-width: 380px) {
+    .page { padding: 8px 8px 60px; }
+    .cd-num { font-size: 36px; }
+    .pk-amount { font-size: 19px; }
+    .bignb .bv { font-size: 26px; }
+    .hero h1 { font-size: 17px; }
+    .snav-btn { font-size: 10px; padding: 7px 3px; }
+    .mrow .val { font-size: 14px; }
+    .mrow.tot .val { font-size: 16px; }
+  }
     /* Grundlayout */
     body { font-size: 14px; }
     .page { padding: 12px 10px 60px; }
@@ -374,15 +490,15 @@
   </div>
 
   <!-- COUNTDOWN -->
-  <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;padding-left:4px;" data-i18n="sec_countdown">⏳ Countdown bis zur Frühpension</div>
+  <div style="font-size:11px;font-weight:800;color:#6b7c93;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;margin-top:6px;padding-left:2px;display:flex;align-items:center;gap:8px;" data-i18n="sec_countdown">⏳ Countdown bis zur Frühpension</div>
   <div class="cd-grid">
-    <div class="cd-card mama">
+    <div class="cd-card mama" style="background:linear-gradient(160deg,#fff 60%,#fce4ec 100%)">
       <div class="cd-person mama">👩 Mihreta</div>
       <div class="cd-target" data-i18n="cd_mama_target">Frühpension: 31. Dezember 2026</div>
       <div class="cd-num mama" id="cd-mama-days">—</div>
       <div class="cd-label" data-i18n="cd_days">Tage</div>
     </div>
-    <div class="cd-card papa">
+    <div class="cd-card papa" style="background:linear-gradient(160deg,#fff 60%,#e3f2fd 100%)">
       <div class="cd-person papa">👨 Zikret</div>
       <div class="cd-target" data-i18n="cd_papa_target">Frühpension: 31. Dezember 2027</div>
       <div class="cd-num papa" id="cd-papa-days">—</div>
@@ -391,7 +507,8 @@
   </div>
 
   <!-- PK GUTHABEN -->
-  <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;padding-left:4px;" data-i18n="sec_pk">💼 PK-Guthaben (Stand 01.01.2026)</div>
+  <div style="height:1px;background:linear-gradient(90deg,#dde3ec,transparent);margin:18px 0 16px;"></div>
+  <div style="font-size:11px;font-weight:800;color:#6b7c93;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;margin-top:6px;padding-left:2px;display:flex;align-items:center;gap:8px;" data-i18n="sec_pk">💼 PK-Guthaben (Stand 01.01.2026)</div>
   <div class="pk-grid">
     <div class="pk-card">
       <h4 data-i18n="pk_mama_title">👩 Mihreta — FUTURA Vorsorge</h4>
@@ -418,7 +535,8 @@
   </div>
 
   <!-- ARBEITSDAUER -->
-  <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;padding-left:4px;" data-i18n="sec_work">🏗️ Wie lange arbeitet ihr schon?</div>
+  <div style="height:1px;background:linear-gradient(90deg,#dde3ec,transparent);margin:18px 0 16px;"></div>
+  <div style="font-size:11px;font-weight:800;color:#6b7c93;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;margin-top:6px;padding-left:2px;display:flex;align-items:center;gap:8px;" data-i18n="sec_work">🏗️ Wie lange arbeitet ihr schon?</div>
   <div class="work-grid">
     <div class="work-card">
       <h4>👩 Mihreta</h4>
@@ -449,7 +567,8 @@
   </div>
 
   <!-- AHV ÜBERSICHT -->
-  <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;padding-left:4px;" data-i18n="sec_ahv">🏛 AHV-Rente (1. Säule)</div>
+  <div style="height:1px;background:linear-gradient(90deg,#dde3ec,transparent);margin:18px 0 16px;"></div>
+  <div style="font-size:11px;font-weight:800;color:#6b7c93;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;margin-top:6px;padding-left:2px;display:flex;align-items:center;gap:8px;" data-i18n="sec_ahv">🏛 AHV-Rente (1. Säule)</div>
   <div class="pk-grid">
     <div class="pk-card">
       <h4>👩 Mihreta</h4>
@@ -475,7 +594,7 @@
     </div>
   </div>
   <div style="background:white;border-radius:12px;padding:14px 18px;margin-bottom:20px;box-shadow:0 1px 6px rgba(0,0,0,0.07);">
-    <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;" data-i18n="ahv_couple">👫 Mihreta &amp; Zikret zusammen (ab Okt. 2029)</div>
+    <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0;font-size:13px;margin-bottom:0;background:linear-gradient(135deg,#1a3a5c,#2d6a9f);color:white;padding:10px 18px;border-radius:10px 10px 0 0;margin:-14px -18px 12px;" data-i18n="ahv_couple">👫 Mihreta & Zikret (ab Okt. 2029)</div>
     <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f2f2f2;">
       <span style="font-size:13.5px;color:#444" data-i18n="ahv_total_lbl" id="ahv-couple-total">🏛 AHV total (plafoniert, max. CHF 3'780)</span>
       <span style="font-size:16px;font-weight:800;color:#2e7d32">CHF 3'680/Mt.</span>
@@ -495,7 +614,8 @@
   </div>
 
   <!-- RECHNER -->
-  <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;padding-left:4px;" data-i18n="sec_calc">🧮 Rechner — Wie lange reicht das Geld?</div>
+  <div style="height:1px;background:linear-gradient(90deg,#dde3ec,transparent);margin:18px 0 16px;"></div>
+  <div style="font-size:11px;font-weight:800;color:#6b7c93;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;margin-top:6px;padding-left:2px;display:flex;align-items:center;gap:8px;" data-i18n="sec_calc">🧮 Rechner — Wie lange reicht das Geld?</div>
   <div id="calc-box" style="background:white;border-radius:16px;padding:20px 20px 24px;margin-bottom:20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);">
 
     <!-- Location toggle -->
@@ -601,35 +721,35 @@
     <h2 data-i18n="quiz_title">🤔 Was ist euch wichtig?</h2>
     <p data-i18n="quiz_sub">5 kurze Fragen — dann seht ihr welches Szenario am besten zu euch passt.</p>
     <div class="question">
-      <div class="question-label"><span class="qnum">1</span data-i18n="q1">Wollt ihr in Bosnien leben?</div>
+      <div class="question-label"><span class="qnum">1</span> <span data-i18n="q1" id="ql-1">Wollt ihr in Bosnien leben?</span></div>
       <div class="yn-btns">
         <button class="yn-btn" id="f1ja" onclick="setYN(1,'ja')">✅ Ja</button>
         <button class="yn-btn" id="f1nein" onclick="setYN(1,'nein')">❌ Nein, wir bleiben in der Schweiz</button>
       </div>
     </div>
     <div class="question">
-      <div class="question-label"><span class="qnum">2</span data-i18n="q2">Ist euch wichtig, dass jeden Monat sicher Geld kommt — egal wie alt ihr werdet?</div>
+      <div class="question-label"><span class="qnum">2</span> <span data-i18n="q2" id="ql-2">Ist euch wichtig, dass jeden Monat sicher Geld kommt — egal wie alt ihr werdet?</span></div>
       <div class="yn-btns">
         <button class="yn-btn" id="f2ja" onclick="setYN(2,'ja')">✅ Ja</button>
         <button class="yn-btn" id="f2nein" onclick="setYN(2,'nein')">❌ Nein</button>
       </div>
     </div>
     <div class="question">
-      <div class="question-label"><span class="qnum">3</span data-i18n="q3">Macht es euch Sorgen, dass das Geld eines Tages ausgehen könnte?</div>
+      <div class="question-label"><span class="qnum">3</span> <span data-i18n="q3" id="ql-3">Macht es euch Sorgen, dass das Geld eines Tages ausgehen könnte?</span></div>
       <div class="yn-btns">
         <button class="yn-btn" id="f3ja" onclick="setYN(3,'ja')">✅ Ja, das macht uns Sorgen</button>
         <button class="yn-btn" id="f3nein" onclick="setYN(3,'nein')">❌ Nein, wir verwalten das selbst</button>
       </div>
     </div>
     <div class="question">
-      <div class="question-label"><span class="qnum">4</span data-i18n="q4">Wollt ihr einmalig viel Geld auf dem Konto haben?</div>
+      <div class="question-label"><span class="qnum">4</span> <span data-i18n="q4" id="ql-4">Wollt ihr einmalig viel Geld auf dem Konto haben?</span></div>
       <div class="yn-btns">
         <button class="yn-btn" id="f4ja" onclick="setYN(4,'ja')">✅ Ja, das wäre schön</button>
         <button class="yn-btn" id="f4nein" onclick="setYN(4,'nein')">❌ Nein, lieber monatlich</button>
       </div>
     </div>
     <div class="question">
-      <div class="question-label"><span class="qnum">5</span data-i18n="q5">Wie viel braucht ihr pro Monat zum Leben?</div>
+      <div class="question-label"><span class="qnum">5</span> <span data-i18n="q5" id="ql-5">Wie viel braucht ihr pro Monat zum Leben?</span></div>
       <div class="budget-opts">
         <button class="budget-btn" id="f5a" onclick="setBudget('a')">💶 Weniger als CHF 2'500 / 5'350 BAM reicht uns</button>
         <button class="budget-btn" id="f5b" onclick="setBudget('b')">💶 CHF 2'500 – 4'000 / 5'350 – 8'560 BAM</button>
@@ -662,10 +782,10 @@
   <button class="back-sm" onclick="goHome()" data-i18n="back_sm">← Zurück zur Übersicht</button>
   <div style="margin-bottom:10px;font-size:13px;color:#666" id="rec-hint"></div>
   <div class="scenario-nav">
-    <button class="snav-btn s1 active" id="snavbtn1" onclick="showSc(1)">✅ Szenario 1<br>Beide Rente</button>
-    <button class="snav-btn s2" id="snavbtn2" onclick="showSc(2)">💼 Szenario 2<br>Mihreta Kapital</button>
-    <button class="snav-btn s3" id="snavbtn3" onclick="showSc(3)">💼 Szenario 3<br>Zikret Kapital</button>
-    <button class="snav-btn s4" id="snavbtn4" onclick="showSc(4)">💰 Szenario 4<br>Beide Kapital</button>
+    <button class="snav-btn s1 active" id="snavbtn1" onclick="showSc(1)"><span data-i18n="snav1">✅ Szenario 1<br>Beide Rente</span></button>
+    <button class="snav-btn s2" id="snavbtn2" onclick="showSc(2)"><span data-i18n="snav2">💼 Szenario 2<br>Mihreta Kapital</span></button>
+    <button class="snav-btn s3" id="snavbtn3" onclick="showSc(3)"><span data-i18n="snav3">💼 Szenario 3<br>Zikret Kapital</span></button>
+    <button class="snav-btn s4" id="snavbtn4" onclick="showSc(4)"><span data-i18n="snav4">💰 Szenario 4<br>Beide Kapital</span></button>
   </div>
 
   <!-- S1 -->
@@ -1222,6 +1342,10 @@ function updateCalc(){
 var lang='de';
 var T={
   de:{
+    snav1:"✅ S1 Beide Rente",
+    snav2:"💼 S2 Mihreta Kapital",
+    snav3:"💼 S3 Zikret Kapital",
+    snav4:"💰 S4 Beide Kapital",
     nav_quiz:"Welches Szenario passt zu uns?",
     nav_all:"Alle Szenarien anzeigen",
     hero_subtitle:"Pensionierungsplanung 2026 / 2027",
@@ -1330,6 +1454,10 @@ var T={
     footnote:"Alle Beträge sind Richtwerte (Stand: 2026). Steuern Emmen: Steuerfuss 215%. Bosnien-Steuer: ~10-13% geschätzt."
   },
   bs:{
+    snav1:"✅ S1 Oboje penzija",
+    snav2:"💼 S2 Mihreta kapital",
+    snav3:"💼 S3 Zikret kapital",
+    snav4:"💰 S4 Oboje kapital",
     nav_quiz:"Koji scenarij nam odgovara?",
     nav_all:"Prikaži sve scenarije",
     hero_subtitle:"Planiranje penzije 2026 / 2027",
@@ -1453,6 +1581,12 @@ function applyAll(){
   document.querySelectorAll('[data-i18n]').forEach(function(el){
     el.textContent=t(el.getAttribute('data-i18n'));
   });
+  // Elements that need innerHTML (contain & or HTML)
+  ['ahv_couple'].forEach(function(key){
+    document.querySelectorAll('[data-i18n="'+key+'"]').forEach(function(el){
+      el.innerHTML=t(key);
+    });
+  });
 
   // Countdown label
   document.querySelectorAll('.cd-label').forEach(function(el){ el.textContent=t('cd_days'); });
@@ -1507,6 +1641,10 @@ function applyAll(){
     ['calc-ch','calc_ch'],['calc-ba','calc_ba']
   ];
   ids.forEach(function(p){ var el=document.getElementById(p[0]); if(el) el.textContent=t(p[1]); });
+
+  // Quiz question labels
+  ['ql-1','q1'],['ql-2','q2'],['ql-3','q3'],['ql-4','q4'],['ql-5','q5']
+  .forEach(function(p){ var el=document.getElementById(p[0]); if(el) el.textContent=t(p[1]); });
 
   // Quiz buttons
   var qids=[

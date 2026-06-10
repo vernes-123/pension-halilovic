@@ -97,6 +97,8 @@
   .cta-btn.questions:hover { background: #2d5a8a; }
   .cta-btn.scenarios { background: white; color: #1a3a5c; border: 2px solid #1a3a5c; }
   .cta-btn.scenarios:hover { background: #e8edf5; }
+  .cta-btn.uebersicht { background: #e8f5e9; color: #1b5e20; border: 2px solid #66bb6a; }
+  .cta-btn.uebersicht:hover { background: #c8e6c9; }
   .cta-btn .cta-icon { font-size: 24px; display: block; margin-bottom: 4px; }
 
   /* Language switcher */
@@ -388,6 +390,10 @@
     <button class="cta-btn scenarios" onclick="gotoScenarios()">
       <span class="cta-icon">📊</span>
       Alle Szenarien anzeigen
+    </button>
+    <button class="cta-btn uebersicht" onclick="gotoUebersicht()">
+      <span class="cta-icon">💶</span>
+      Was kriegen wir pro Monat?
     </button>
   </div>
 
@@ -956,6 +962,285 @@
   <button class="back-btn" style="margin-top:16px" onclick="goHome()">🏠 Zurück zur Übersicht</button>
 </div>
 
+
+
+<!-- ===== ÜBERBLICK ===== -->
+<div id="uebersicht-section" style="display:none">
+  <button class="back-sm" onclick="goHome()">← Zurück zur Übersicht</button>
+
+  <div style="font-size:18px;font-weight:900;color:#1a3a5c;margin-bottom:16px;text-align:center;">💶 Was kriegen wir pro Monat?</div>
+
+  <!-- PHASEN ÜBERSICHT -->
+  <div style="background:white;border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+    <div style="background:linear-gradient(135deg,#1a3a5c,#2d6a9f);color:white;padding:12px 18px;font-size:13px;font-weight:800;">
+      📅 Einkommen nach Phase — was kommt wann?
+    </div>
+
+    <!-- ===== PHASE 1 ===== -->
+    <div style="background:#fce4ec;padding:8px 16px;border-bottom:1px solid #f48fb1;">
+      <div style="font-size:12px;font-weight:800;color:#880e4f;">🟣 Phase 1 — Januar 2027 bis Dezember 2027</div>
+      <div style="font-size:11px;color:#c2185b;margin-top:1px;">Mihreta pensioniert ✅ — Zikret arbeitet noch</div>
+    </div>
+    <!-- header -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#fafafa;padding:6px 16px;border-bottom:1px solid #eee;">
+      <div style="font-size:11px;font-weight:700;color:#888;"></div>
+      <div style="font-size:11px;font-weight:700;color:#e91e63;text-align:center;">👩 Mihreta</div>
+      <div style="font-size:11px;font-weight:700;color:#1565c0;text-align:center;">👨 Zikret</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #f5f5f5;align-items:center;">
+      <div style="font-size:12px;color:#555;">🏛 AHV<small style="display:block;color:#aaa;font-size:10px;">noch kein Anspruch</small></div>
+      <div style="text-align:center;font-size:15px;font-weight:800;color:#aaa;">— noch nicht</div>
+      <div style="text-align:center;font-size:15px;font-weight:800;color:#aaa;">— noch nicht</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #f5f5f5;align-items:center;background:#fafff9;">
+      <div style="font-size:12px;color:#555;">💼 PK-Rente<small style="display:block;color:#888;font-size:10px;">Frühpension 63</small></div>
+      <div style="text-align:center;">
+        <div style="font-size:17px;font-weight:900;color:#e91e63;">CHF 699</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
+      </div>
+      <div style="text-align:center;font-size:15px;font-weight:800;color:#aaa;">— arbeitet noch</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;background:#fff9e1;align-items:center;">
+      <div style="font-size:12px;font-weight:800;color:#e65100;">Total / Monat</div>
+      <div style="text-align:center;">
+        <div style="font-size:17px;font-weight:900;color:#e91e63;">CHF 699</div>
+      </div>
+      <div style="text-align:center;font-size:13px;color:#888;font-style:italic;">Lohn läuft</div>
+    </div>
+
+    <!-- ===== PHASE 2 ===== -->
+    <div style="background:#e3f2fd;padding:8px 16px;border-bottom:1px solid #90caf9;border-top:2px solid #1565c0;">
+      <div style="font-size:12px;font-weight:800;color:#0d47a1;">🔵 Phase 2 — Januar 2028 bis September 2029</div>
+      <div style="font-size:11px;color:#1565c0;margin-top:1px;">Beide pensioniert ✅ — AHV noch nicht</div>
+    </div>
+    <!-- header -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#fafafa;padding:6px 16px;border-bottom:1px solid #eee;">
+      <div style="font-size:11px;font-weight:700;color:#888;"></div>
+      <div style="font-size:11px;font-weight:700;color:#e91e63;text-align:center;">👩 Mihreta</div>
+      <div style="font-size:11px;font-weight:700;color:#1565c0;text-align:center;">👨 Zikret</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #f5f5f5;align-items:center;">
+      <div style="font-size:12px;color:#555;">🏛 AHV<small style="display:block;color:#888;font-size:10px;">Mihreta ab Aug. 2028</small></div>
+      <div style="text-align:center;">
+        <div style="font-size:15px;font-weight:900;color:#e91e63;">CHF 1'779</div>
+        <div style="font-size:10px;color:#888;">ab Aug. 2028</div>
+      </div>
+      <div style="text-align:center;font-size:15px;font-weight:800;color:#aaa;">— ab Okt. 2029</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #f5f5f5;align-items:center;background:#fafff9;">
+      <div style="font-size:12px;color:#555;">💼 PK-Rente<small style="display:block;color:#888;font-size:10px;">beide lebenslang</small></div>
+      <div style="text-align:center;">
+        <div style="font-size:17px;font-weight:900;color:#e91e63;">CHF 699</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:17px;font-weight:900;color:#1565c0;">CHF 1'601</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;background:#e8f0ff;align-items:center;">
+      <div style="font-size:12px;font-weight:800;color:#0d47a1;">Total / Monat</div>
+      <div style="text-align:center;">
+        <div style="font-size:13px;font-weight:900;color:#e91e63;">CHF 699</div>
+        <div style="font-size:10px;color:#888;">→ CHF 2'478 ab Aug.'28</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:17px;font-weight:900;color:#1565c0;">CHF 1'601</div>
+      </div>
+    </div>
+    <div style="padding:8px 16px;background:#e8f0ff;border-top:1px solid #c5cae9;text-align:center;">
+      <div style="font-size:13px;font-weight:800;color:#0d47a1;">Zusammen ab Aug. 2028: CHF 4'079/Mt.</div>
+      <div style="font-size:11px;color:#5c6bc0;">(Mihreta AHV CHF 1'779 + PK CHF 699 + Zikret PK CHF 1'601)</div>
+    </div>
+
+    <!-- ===== PHASE 3 ===== -->
+    <div style="background:#e8f5e9;padding:8px 16px;border-bottom:1px solid #a5d6a7;border-top:2px solid #2e7d32;">
+      <div style="font-size:12px;font-weight:800;color:#1b5e20;">🟢 Phase 3 — Ab Oktober 2029 — für immer</div>
+      <div style="font-size:11px;color:#388e3c;margin-top:1px;">AHV + PK beide voll — maximales Einkommen</div>
+    </div>
+    <!-- header -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#fafafa;padding:6px 16px;border-bottom:1px solid #eee;">
+      <div style="font-size:11px;font-weight:700;color:#888;"></div>
+      <div style="font-size:11px;font-weight:700;color:#e91e63;text-align:center;">👩 Mihreta</div>
+      <div style="font-size:11px;font-weight:700;color:#1565c0;text-align:center;">👨 Zikret</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #f5f5f5;align-items:center;">
+      <div style="font-size:12px;color:#555;">🏛 AHV<small style="display:block;color:#888;font-size:10px;">nach Plafonierung</small></div>
+      <div style="text-align:center;">
+        <div style="font-size:17px;font-weight:900;color:#e91e63;">CHF 1'926</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:17px;font-weight:900;color:#1565c0;">CHF 1'754</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #f5f5f5;align-items:center;background:#fafff9;">
+      <div style="font-size:12px;color:#555;">💼 PK-Rente<small style="display:block;color:#888;font-size:10px;">lebenslang</small></div>
+      <div style="text-align:center;">
+        <div style="font-size:17px;font-weight:900;color:#e91e63;">CHF 699</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:17px;font-weight:900;color:#1565c0;">CHF 1'601</div>
+        <div style="font-size:10px;color:#888;">/ Monat</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:10px 16px;border-bottom:1px solid #c8e6c9;background:#e8f5e9;align-items:center;">
+      <div style="font-size:12px;font-weight:800;color:#1b5e20;">Total / Monat</div>
+      <div style="text-align:center;">
+        <div style="font-size:19px;font-weight:900;color:#e91e63;">CHF 2'625</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:19px;font-weight:900;color:#1565c0;">CHF 3'355</div>
+      </div>
+    </div>
+    <div style="padding:12px 16px;background:#1b5e20;text-align:center;">
+      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.8);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px;">Zusammen — für immer (Brutto)</div>
+      <div style="font-size:32px;font-weight:900;color:white;letter-spacing:-1px;">CHF 5'980</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.85);margin-top:4px;">nach Abzügen Schweiz: <strong>CHF 4'663 netto</strong></div>
+    </div>
+  </div>
+
+  <!-- ZUSAMMEN TOTAL -->
+  <div style="background:linear-gradient(135deg,#1b5e20,#2e7d32);color:white;border-radius:14px;padding:18px 20px;margin-bottom:16px;text-align:center;">
+    <div style="font-size:12px;font-weight:700;opacity:0.85;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">Beide zusammen — jeden Monat für immer</div>
+    <div style="font-size:44px;font-weight:900;letter-spacing:-1px;line-height:1;">CHF 5'980</div>
+    <div style="font-size:14px;margin-top:6px;opacity:0.9;">AHV CHF 3'680 + PK CHF 2'300</div>
+    <div style="font-size:12px;margin-top:4px;opacity:0.8;">nach Abzügen Schweiz: <strong>CHF 4'663 netto</strong></div>
+  </div>
+
+  <!-- MIT / OHNE KAPITALBEZUG -->
+  <div style="background:white;border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+    <div style="background:#546e7a;color:white;padding:12px 18px;font-size:13px;font-weight:800;">
+      ⚖️ Vergleich — mit oder ohne Kapitalbezug
+    </div>
+
+    <!-- Ohne Bezug -->
+    <div style="padding:14px 16px;border-bottom:2px solid #e8f5e9;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:18px;">✅</span>
+        <div>
+          <div style="font-size:14px;font-weight:800;color:#1b5e20;">Ohne Kapitalbezug — PK als Rente</div>
+          <div style="font-size:11px;color:#888;">Empfohlene Option</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="background:#e8f5e9;border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:11px;color:#555;margin-bottom:3px;">👩 Mihreta</div>
+          <div style="font-size:18px;font-weight:900;color:#e91e63;">CHF 2'625</div>
+          <div style="font-size:10px;color:#2e7d32;font-weight:700;margin-top:2px;">∞ lebenslang</div>
+        </div>
+        <div style="background:#e8f5e9;border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:11px;color:#555;margin-bottom:3px;">👨 Zikret</div>
+          <div style="font-size:18px;font-weight:900;color:#1565c0;">CHF 3'355</div>
+          <div style="font-size:10px;color:#2e7d32;font-weight:700;margin-top:2px;">∞ lebenslang</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mit Kapitalbezug Mihreta -->
+    <div style="padding:14px 16px;border-bottom:1px solid #f2f2f2;background:#fffde7;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:18px;">💼</span>
+        <div>
+          <div style="font-size:14px;font-weight:800;color:#e65100;">Mihreta bezieht PK als Kapital</div>
+          <div style="font-size:11px;color:#888;">Einmalig CHF 147'500 — dann CHF 699/Mt. weg</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="background:#fff3e0;border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:11px;color:#555;margin-bottom:3px;">👩 Einmalig auf Konto</div>
+          <div style="font-size:18px;font-weight:900;color:#e65100;">CHF 147'500</div>
+          <div style="font-size:10px;color:#888;margin-top:2px;">dann CHF 1'926/Mt. AHV</div>
+        </div>
+        <div style="background:#fff3e0;border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:11px;color:#555;margin-bottom:3px;">👨 Zikret unverändert</div>
+          <div style="font-size:18px;font-weight:900;color:#1565c0;">CHF 3'355</div>
+          <div style="font-size:10px;color:#2e7d32;font-weight:700;margin-top:2px;">∞ lebenslang</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mit Kapitalbezug Zikret -->
+    <div style="padding:14px 16px;background:#fffde7;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:18px;">💼</span>
+        <div>
+          <div style="font-size:14px;font-weight:800;color:#e65100;">Zikret bezieht PK als Kapital</div>
+          <div style="font-size:11px;color:#888;">Einmalig CHF 280'000 — dann CHF 1'601/Mt. weg</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="background:#fff3e0;border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:11px;color:#555;margin-bottom:3px;">👩 Mihreta unverändert</div>
+          <div style="font-size:18px;font-weight:900;color:#e91e63;">CHF 2'625</div>
+          <div style="font-size:10px;color:#2e7d32;font-weight:700;margin-top:2px;">∞ lebenslang</div>
+        </div>
+        <div style="background:#fff3e0;border-radius:10px;padding:10px;text-align:center;">
+          <div style="font-size:11px;color:#555;margin-bottom:3px;">👨 Einmalig auf Konto</div>
+          <div style="font-size:18px;font-weight:900;color:#e65100;">CHF 280'000</div>
+          <div style="font-size:10px;color:#888;margin-top:2px;">dann CHF 1'754/Mt. AHV</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ERKLÄRUNG WIE LANGE -->
+  <div style="background:white;border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 6px rgba(0,0,0,0.07);">
+    <div style="background:#37474f;color:white;padding:12px 18px;font-size:13px;font-weight:800;">
+      📖 Wie lange wird bezahlt?
+    </div>
+
+    <div style="padding:14px 16px;border-bottom:1px solid #f2f2f2;display:flex;gap:14px;align-items:flex-start;">
+      <div style="font-size:28px;flex-shrink:0;">🏛</div>
+      <div>
+        <div style="font-size:14px;font-weight:800;color:#1a3a5c;margin-bottom:4px;">AHV-Rente — lebenslang, bis zum Tod</div>
+        <div style="font-size:13px;color:#555;line-height:1.6;">Die AHV zahlt <strong>solange ihr lebt</strong> — egal ob ihr 80, 90 oder 100 Jahre alt werdet. Auch wenn ihr nach Bosnien zieht, kommt das Geld ungekürzt. Ab Dezember 2026 gibt es zusätzlich eine <strong>13. AHV-Rente</strong> jedes Jahr.</div>
+        <div style="margin-top:8px;background:#e3f2fd;border-radius:8px;padding:6px 10px;font-size:12px;color:#1565c0;font-weight:600;">✓ Schweiz hat Sozialversicherungsabkommen mit Bosnien-Herzegowina</div>
+      </div>
+    </div>
+
+    <div style="padding:14px 16px;border-bottom:1px solid #f2f2f2;display:flex;gap:14px;align-items:flex-start;">
+      <div style="font-size:28px;flex-shrink:0;">💼</div>
+      <div>
+        <div style="font-size:14px;font-weight:800;color:#1a3a5c;margin-bottom:4px;">PK-Rente — lebenslang, gesetzlich garantiert</div>
+        <div style="font-size:13px;color:#555;line-height:1.6;">Die Pensionskasse zahlt die monatliche Rente <strong>bis zum Tod</strong> — egal wie alt ihr werdet. Das Risiko, dass ihr zu lange lebt, trägt die PK, nicht ihr. Gesetzlich verankert im BVG Art. 37.</div>
+        <div style="margin-top:8px;background:#e8f5e9;border-radius:8px;padding:6px 10px;font-size:12px;color:#2e7d32;font-weight:600;">✓ Kein Risiko dass das Geld ausgeht — egal wie lange ihr lebt</div>
+      </div>
+    </div>
+
+    <div style="padding:14px 16px;display:flex;gap:14px;align-items:flex-start;background:#fff8e1;">
+      <div style="font-size:28px;flex-shrink:0;">💰</div>
+      <div>
+        <div style="font-size:14px;font-weight:800;color:#e65100;margin-bottom:4px;">PK als Kapital — einmalig, dann weg</div>
+        <div style="font-size:13px;color:#555;line-height:1.6;">Wenn ihr die PK als Kapital bezieht, bekommt ihr <strong>einmalig</strong> den gesamten Betrag. Danach gibt es <strong>keine monatliche PK-Rente mehr</strong> — nur noch die AHV läuft weiter. Das Kapital könnt ihr selbst verwalten, aber wenn es aufgebraucht ist, ist es weg.</div>
+        <div style="margin-top:8px;background:#ffebee;border-radius:8px;padding:6px 10px;font-size:12px;color:#b71c1c;font-weight:600;">⚠️ Mihreta: CHF 699/Mt. weniger — Zikret: CHF 1'601/Mt. weniger — lebenslang</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13. AHV -->
+  <div style="background:#f3e5f5;border-radius:14px;padding:16px 18px;margin-bottom:16px;border-left:4px solid #8e24aa;">
+    <div style="font-size:14px;font-weight:800;color:#6a1b9a;margin-bottom:6px;">🎄 13. AHV-Rente — jedes Jahr im Dezember</div>
+    <div style="font-size:13px;color:#555;line-height:1.6;">Seit 2026 erhalten alle AHV-Bezüger eine 13. Rente im Dezember — entspricht einem vollen Monatsbetrg.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+      <div style="background:white;border-radius:10px;padding:10px;text-align:center;">
+        <div style="font-size:11px;color:#888;margin-bottom:3px;">Mihreta (ab Dez. 2028)</div>
+        <div style="font-size:18px;font-weight:900;color:#e91e63;">~CHF 1'779</div>
+        <div style="font-size:10px;color:#888;">einmalig pro Jahr</div>
+      </div>
+      <div style="background:white;border-radius:10px;padding:10px;text-align:center;">
+        <div style="font-size:11px;color:#888;margin-bottom:3px;">Zikret (ab Dez. 2029)</div>
+        <div style="font-size:18px;font-weight:900;color:#1565c0;">~CHF 1'754</div>
+        <div style="font-size:10px;color:#888;">einmalig pro Jahr</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:10px;font-size:13px;font-weight:800;color:#6a1b9a;">Zusammen: + CHF 3'680 / Jahr extra 🎁</div>
+  </div>
+
+  <button class="back-btn" onclick="goHome()">🏠 Zurück zur Übersicht</button>
+</div>
 </div><!-- page -->
 <script>
 // ==========================================
@@ -1036,6 +1321,15 @@ function goHome(){
   document.getElementById('quiz-section').style.display='none';
   document.getElementById('result-section').style.display='none';
   document.getElementById('scenarios-section').style.display='none';
+  document.getElementById('uebersicht-section').style.display='none';
+}
+function gotoUebersicht(){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('quiz-section').style.display='none';
+  document.getElementById('result-section').style.display='none';
+  document.getElementById('scenarios-section').style.display='none';
+  document.getElementById('uebersicht-section').style.display='block';
+  window.scrollTo(0,0);
 }
 function gotoQuiz(){
   document.getElementById('landing').style.display='none';

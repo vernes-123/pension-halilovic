@@ -54,7 +54,12 @@
   .work-card { background: white; border-radius: 14px; padding: 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
   .work-card h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #888; margin-bottom: 8px; }
   .work-since { font-size: 13px; color: #555; margin-bottom: 8px; }
-  .work-ticker { font-size: 11px; color: #333; line-height: 2; }
+  .work-ticker { font-size: 11px; color: #333; }
+  .work-ticker div { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; border-bottom: 1px solid #f5f5f5; }
+  .work-ticker div:last-child { border-bottom: none; }
+  .work-ticker .wn { text-align: right; }
+  .work-ticker div { display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px solid #f5f5f5; }
+  .work-ticker div:last-child { border-bottom: none; }
   .work-ticker .wn { font-weight: 800; font-size: 13px; }
   .work-ticker .wn.mama { color: #e91e63; }
   .work-ticker .wn.papa { color: #1565c0; }
@@ -67,7 +72,15 @@
   .pk-amount.mama { color: #e91e63; }
   .pk-amount.papa { color: #1565c0; }
   .pk-sub { font-size: 11px; color: #999; }
-  .pk-detail { margin-top: 10px; font-size: 12px; color: #555; line-height: 1.8; }
+  .pk-detail { margin-top: 12px; font-size: 12px; color: #555; }
+  .pk-detail .dr { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 0; border-bottom: 1px solid #f5f5f5; gap: 8px; }
+  .pk-detail .dr:last-child { border-bottom: none; }
+  .pk-detail .dr .dl { color: #666; flex: 1; line-height: 1.4; }
+  .pk-detail .dr .dv { font-weight: 700; color: #333; text-align: right; white-space: nowrap; }
+  .pk-detail .dr { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; border-bottom: 1px solid #f5f5f5; gap: 8px; }
+  .pk-detail .dr:last-child { border-bottom: none; }
+  .pk-detail .dr .dl { color: #666; flex: 1; }
+  .pk-detail .dr .dv { font-weight: 700; color: #333; text-align: right; white-space: nowrap; }
   .pk-detail span { font-weight: 700; color: #333; }
 
   /* CTA buttons */
@@ -515,22 +528,22 @@
       <div class="pk-amount mama">CHF 144'122</div>
       <div class="pk-sub" data-i18n="pk_per" id="pk-m-per" id="pk-p-per">per 01.01.2026</div>
       <div class="pk-detail" id="pk-detail-mama">
-        Bei Frühpension (Alter 63): <span>CHF 150'011</span><br>
-        Bei Referenzalter (Alter 64+9M): <span>CHF 162'571</span><br>
-        Jahresrente bei Ref.alter: <span>CHF 699/Mt.</span><br>
-        Umwandlungssatz: <span>5.1625%</span>
-      </div>
+  <div class="dr"><span class="dl">Bei Frühpension (Alter 63):</span><span class="dv">CHF 150'011</span></div>
+  <div class="dr"><span class="dl">Bei Referenzalter (64+9M):</span><span class="dv">CHF 162'571</span></div>
+  <div class="dr"><span class="dl">Jahresrente bei Referenzalter:</span><span class="dv">CHF 699/Mt.</span></div>
+  <div class="dr"><span class="dl">Umwandlungssatz:</span><span class="dv">5.1625%</span></div>
+</div>
     </div>
     <div class="pk-card">
       <h4 data-i18n="pk_papa_title">👨 Zikret — AXA / Kammermann</h4>
       <div class="pk-amount papa">CHF 252'249</div>
       <div class="pk-sub">per 01.01.2026</div>
       <div class="pk-detail" id="pk-detail-papa">
-        Bei ord. Pensionierung (Alter 65): <span>CHF 306'023</span><br>
-        Jahresrente bei Alter 65: <span>CHF 1'601/Mt.</span><br>
-        Obligat. / Überobligat.: <span>CHF 221'423 / CHF 30'826</span><br>
-        Umwandlungssatz: <span>5.2%</span>
-      </div>
+  <div class="dr"><span class="dl">Bei ord. Pensionierung (Alter 65):</span><span class="dv">CHF 306'023</span></div>
+  <div class="dr"><span class="dl">Jahresrente bei Alter 65:</span><span class="dv">CHF 1'601/Mt.</span></div>
+  <div class="dr"><span class="dl">Obligatorisch / Überoblig.:</span><span class="dv">CHF 221'423 / 30'826</span></div>
+  <div class="dr"><span class="dl">Umwandlungssatz:</span><span class="dv">5.2%</span></div>
+</div>
     </div>
   </div>
 
@@ -575,22 +588,22 @@
       <div class="pk-amount mama">CHF 1'779/Mt.</div>
       <div class="pk-sub" data-i18n="ahv_mama_sub" id="ahv-m-sub">ab 01.08.2028 (Referenzalter)</div>
       <div class="pk-detail" id="ahv-detail-mama">
-        Davon Sonder-Zuschlag (Jg. 1963): <span>CHF 101/Mt.</span><br>
-        Nach Plafonierung (ab Okt. 2029): <span>CHF 1'926/Mt.</span><br>
-        13. AHV-Rente (Dez. ab 2028): <span>~CHF 1'779 einmalig</span><br>
-        Frühestmögl. Vorbezug: <span>ab 01.06.2026</span>
-      </div>
+  <div class="dr"><span class="dl">Sonder-Zuschlag (Jg. 1963):</span><span class="dv">CHF 101/Mt.</span></div>
+  <div class="dr"><span class="dl">Nach Plafonierung (ab Okt. 2029):</span><span class="dv">CHF 1'926/Mt.</span></div>
+  <div class="dr"><span class="dl">13. AHV-Rente (Dez. ab 2028):</span><span class="dv">~CHF 1'779</span></div>
+  <div class="dr"><span class="dl">Frühestmöglicher Vorbezug:</span><span class="dv">01.06.2026</span></div>
+</div>
     </div>
     <div class="pk-card">
       <h4>👨 Zikret</h4>
       <div class="pk-amount papa">CHF 1'754/Mt.</div>
       <div class="pk-sub" data-i18n="ahv_papa_sub" id="ahv-p-sub">ab 01.10.2029 (Referenzalter 65)</div>
       <div class="pk-detail" id="ahv-detail-papa">
-        Nach Plafonierung (ab Okt. 2029): <span>CHF 1'754/Mt.</span><br>
-        13. AHV-Rente (Dez. ab 2029): <span>~CHF 1'754 einmalig</span><br>
-        Vorbezug 1 Jahr: <span>CHF 1'512 (−6.8%)</span><br>
-        Vorbezug 2 Jahre: <span>CHF 1'392 (−13.6%)</span>
-      </div>
+  <div class="dr"><span class="dl">Nach Plafonierung (ab Okt. 2029):</span><span class="dv">CHF 1'754/Mt.</span></div>
+  <div class="dr"><span class="dl">13. AHV-Rente (Dez. ab 2029):</span><span class="dv">~CHF 1'754</span></div>
+  <div class="dr"><span class="dl">Vorbezug 1 Jahr:</span><span class="dv">CHF 1'512 (−6.8%)</span></div>
+  <div class="dr"><span class="dl">Vorbezug 2 Jahre:</span><span class="dv">CHF 1'392 (−13.6%)</span></div>
+</div>
     </div>
   </div>
   <div style="background:white;border-radius:12px;padding:14px 18px;margin-bottom:20px;box-shadow:0 1px 6px rgba(0,0,0,0.07);">
@@ -794,37 +807,37 @@
     <div class="sc-header s1"><h2 data-i18n="sc1_title">✅ Szenario 1 — Beide PK als Rente</h2><p data-i18n="sc1_sub">Mihreta und Zikret lassen ihre PK stehen — jeden Monat lebenslang.</p></div>
     <div class="pills"><span class="pill mr">👩 Mihreta → Monatsrente</span><span class="pill pr">👨 Zikret → Monatsrente</span></div>
     <div class="loc-tabs">
-      <button class="loc-btn ach" id="s1ch" onclick="showLoc(1,'ch')">🇨🇭 Schweiz (Emmenbrücke)</button>
+      <button class="loc-btn ach" id="s1ch" onclick="showLoc(1,'ch')" data-i18n="sc_loc_ch">🇨🇭 Schweiz (Emmenbrücke)</button>
       <button class="loc-btn" id="s1ba" onclick="showLoc(1,'ba')">🇧🇦 Bosnien</button>
     </div>
     <div id="lp1ch" class="loc-panel active">
       <div class="bignb green"><div class="bl">Jeden Monat — für immer (ab Okt. 2029)</div><div class="bv">CHF 5'980.–</div><div class="bs">AHV + PK beide zusammen</div></div>
-      <div class="mb"><div class="mbt green">Monatliches Einkommen</div>
-        <div class="mrow"><div class="lbl">🏛 AHV Mihreta (inkl. Zuschlag CHF 101) ②<small>nach Plafonierung</small></div><div class="val green">CHF 1'926</div></div>
-        <div class="mrow"><div class="lbl">🏛 AHV Zikret ②<small>nach Plafonierung</small></div><div class="val green">CHF 1'754</div></div>
-        <div class="mrow"><div class="lbl">💼 PK-Rente Mihreta (FUTURA) ①<small>lebenslang garantiert</small></div><div class="val green">CHF 699</div></div>
-        <div class="mrow"><div class="lbl">💼 PK-Rente Zikret (AXA) ①<small>lebenslang garantiert</small></div><div class="val green">CHF 1'601</div></div>
-        <div class="mrow sub"><div class="lbl">Brutto total / Monat</div><div class="val green">CHF 5'980</div></div>
+      <div class="mb"><div class="mbt green" data-i18n="sc_monatl_eink">Monatliches Einkommen</div>
+        <div class="mrow"><div class="lbl" data-i18n="sc_ahv_mihreta">🏛 AHV Mihreta (inkl. Zuschlag CHF 101) ②<small>nach Plafonierung</small></div><div class="val green">CHF 1'926</div></div>
+        <div class="mrow"><div class="lbl" data-i18n="sc_ahv_zikret">🏛 AHV Zikret ②<small>nach Plafonierung</small></div><div class="val green">CHF 1'754</div></div>
+        <div class="mrow"><div class="lbl" data-i18n="sc_pk_rente_m">💼 PK-Rente Mihreta (FUTURA) ①<small data-i18n="sc_lbl_lls">lebenslang garantiert</small></div><div class="val green">CHF 699</div></div>
+        <div class="mrow"><div class="lbl" data-i18n="sc_pk_rente_z">💼 PK-Rente Zikret (AXA) ①<small data-i18n="sc_lbl_lls">lebenslang garantiert</small></div><div class="val green">CHF 1'601</div></div>
+        <div class="mrow sub"><div class="lbl" data-i18n="sc_brutto">Brutto total / Monat</div><div class="val green">CHF 5'980</div></div>
       </div>
-      <div class="mb"><div class="mbt grey">Abzüge Schweiz</div>
-        <div class="mrow neg"><div class="lbl">📋 Einkommenssteuer Emmen (ca.)<small>Steuerfuss 215%</small></div><div class="val red">− CHF 417</div></div>
-        <div class="mrow neg"><div class="lbl">🏥 Krankenkasse 2 Personen (ca.)</div><div class="val red">− CHF 900</div></div>
-        <div class="mrow"><div class="lbl">🏠 Wohnkosten<small>Rüeggisingerstrasse 18, Emmenbrücke — gratis</small></div><div class="val green">CHF 0</div></div>
-        <div class="mrow tot"><div class="lbl">✅ Netto verfügbar / Monat</div><div class="val">CHF 4'663</div></div>
+      <div class="mb"><div class="mbt grey" data-i18n="sc_abzuege_ch">Abzüge Schweiz</div>
+        <div class="mrow neg"><div class="lbl" data-i18n="sc_einkommenst">📋 Einkommenssteuer Emmen (ca.)<small>Steuerfuss 215%</small></div><div class="val red">− CHF 417</div></div>
+        <div class="mrow neg"><div class="lbl" data-i18n="sc_kk">🏥 Krankenkasse 2 Personen (ca.)</div><div class="val red">− CHF 900</div></div>
+        <div class="mrow"><div class="lbl" data-i18n="sc_wohnk">🏠 Wohnkosten<small>Rüeggisingerstrasse 18, Emmenbrücke — gratis</small></div><div class="val green">CHF 0</div></div>
+        <div class="mrow tot"><div class="lbl" data-i18n="sc_netto">✅ Netto verfügbar / Monat</div><div class="val">CHF 4'663</div></div>
       </div>
       <div class="ib yellow"><strong>🎄 13. AHV-Rente im Dezember</strong>Jedes Jahr extra: <strong>CHF 3'680</strong> aufs gemeinsame Konto.</div>
-      <div class="ib green"><strong>✅ Alle Zahlungen laufen auf gemeinsames Konto</strong>AHV ② lebenslang + PK-Rente ① lebenslang — kein Risiko dass Geld ausgeht.</div>
+      <div class="ib green"><strong data-i18n="sc_alle_zahl">✅ Alle Zahlungen laufen auf gemeinsames Konto</strong>AHV ② lebenslang + PK-Rente ① lebenslang — kein Risiko dass Geld ausgeht.</div>
       <div class="verd best">✅ Beste Option für die Schweiz — maximales Einkommen, kein Risiko</div>
     </div>
     <div id="lp1ba" class="loc-panel">
       <div class="kursnote">💱 Aktueller Kurs Juni 2026: 1 CHF = 2.14 BAM</div>
       <div class="bignb purple"><div class="bl">Jeden Monat nach Bosnien — für immer</div><div class="bv">CHF 5'980.–</div><div class="bb">= ca. 12'797 BAM / Monat</div><div class="bs">AHV ② wird ungekürzt ins Ausland überwiesen ✓</div></div>
       <div class="mb"><div class="mbt purple">Monatliches Einkommen in Bosnien</div>
-        <div class="mrow"><div class="lbl">🏛 AHV gesamt ②</div><div class="val purple">CHF 3'680 = 7'875 BAM</div></div>
+        <div class="mrow"><div class="lbl" data-i18n="sc_ahv_total">🏛 AHV gesamt ②</div><div class="val purple">CHF 3'680 = 7'875 BAM</div></div>
         <div class="mrow"><div class="lbl">💼 PK-Renten gesamt ①</div><div class="val purple">CHF 2'300 = 4'922 BAM</div></div>
         <div class="mrow sub"><div class="lbl">Total Brutto</div><div class="val purple">CHF 5'980 = 12'797 BAM</div></div>
       </div>
-      <div class="mb"><div class="mbt grey">Abzüge Bosnien</div>
+      <div class="mb"><div class="mbt grey" data-i18n="sc_abzuege_ba">Abzüge Bosnien</div>
         <div class="mrow neg"><div class="lbl">📋 Einkommensteuer Bosnien (~10–13%)</div><div class="val red">− CHF ~600–780</div></div>
         <div class="mrow neg"><div class="lbl">🏥 Krankenversicherung</div><div class="val red">− CHF ~60–100</div></div>
         <div class="mrow"><div class="lbl">🏠 Eigenes Haus in Bosnien</div><div class="val green">CHF 0</div></div>
@@ -842,19 +855,19 @@
     <div class="sc-header s2"><h2 data-i18n="sc2_title">💼 Szenario 2 — Mihreta Kapital, Zikret Rente</h2><p data-i18n="sc2_sub">Mihreta bezieht ihre PK einmalig. Zikret lässt seine PK stehen.</p></div>
     <div class="pills"><span class="pill mk">👩 Mihreta → Einmalzahlung ~CHF 148'000</span><span class="pill pr">👨 Zikret → Monatsrente CHF 1'601</span></div>
     <div class="loc-tabs">
-      <button class="loc-btn ach" id="s2ch" onclick="showLoc(2,'ch')">🇨🇭 Schweiz (Emmenbrücke)</button>
+      <button class="loc-btn ach" id="s2ch" onclick="showLoc(2,'ch')" data-i18n="sc_loc_ch">🇨🇭 Schweiz (Emmenbrücke)</button>
       <button class="loc-btn" id="s2ba" onclick="showLoc(2,'ba')">🇧🇦 Bosnien</button>
     </div>
     <div id="lp2ch" class="loc-panel active">
-      <div class="sdiv">Einmalig 2026 — Kapital Mihreta</div>
+      <div class="sdiv" data-i18n="sc_einmalig_ch">Einmalig 2026 — Kapital Mihreta</div>
       <div class="mb"><div class="mbt orange">Einmalige Auszahlung auf gemeinsames Konto</div>
-        <div class="mrow kap"><div class="lbl">💰 PK-Kapital Mihreta brutto</div><div class="val orange">CHF 157'000</div></div>
+        <div class="mrow kap"><div class="lbl" data-i18n="sc_kapital_mihreta">💰 PK-Kapital Mihreta brutto</div><div class="val orange">CHF 157'000</div></div>
         <div class="mrow neg"><div class="lbl">📋 Kapitalauszahlungssteuer Emmen 2026</div><div class="val red">− CHF ~9'500</div></div>
         <div class="mrow sub"><div class="lbl">Netto auf gemeinsames Konto</div><div class="val orange">~ CHF 147'500</div></div>
       </div>
       <div class="sdiv">Monatlich laufend ab Okt. 2029</div>
       <div class="bignb red"><div class="bl">Jeden Monat — für immer</div><div class="bv">CHF 5'281.–</div><div class="bs">AHV ② + Zikrets PK-Rente ① (Mihretas CHF 699 ist weg)</div></div>
-      <div class="mb"><div class="mbt grey">Abzüge Schweiz</div>
+      <div class="mb"><div class="mbt grey" data-i18n="sc_abzuege_ch">Abzüge Schweiz</div>
         <div class="mrow neg"><div class="lbl">📋 Einkommenssteuer</div><div class="val red">− CHF ~360</div></div>
         <div class="mrow neg"><div class="lbl">🏥 Krankenkasse</div><div class="val red">− CHF 900</div></div>
         <div class="mrow neg"><div class="lbl">📋 Vermögenssteuer ~CHF 147'500</div><div class="val red">− CHF ~40</div></div>
@@ -870,7 +883,7 @@
         <div class="mrow kap"><div class="lbl">💰 Netto nach Steuer</div><div class="val orange">~ CHF 147'500 = 315'650 BAM</div></div>
       </div>
       <div class="bignb red"><div class="bl">Jeden Monat nach Bosnien</div><div class="bv">CHF 5'281.–</div><div class="bb">= ca. 11'301 BAM / Monat</div></div>
-      <div class="mb"><div class="mbt grey">Abzüge Bosnien</div>
+      <div class="mb"><div class="mbt grey" data-i18n="sc_abzuege_ba">Abzüge Bosnien</div>
         <div class="mrow neg"><div class="lbl">📋 Steuer Bosnien (~10–13%)</div><div class="val red">− CHF ~530–690</div></div>
         <div class="mrow neg"><div class="lbl">🏥 Krankenversicherung</div><div class="val red">− CHF ~60–100</div></div>
         <div class="mrow"><div class="lbl">🏠 Eigenes Haus</div><div class="val green">CHF 0</div></div>
@@ -887,11 +900,11 @@
     <div class="sc-header s3"><h2 data-i18n="sc3_title">💼 Szenario 3 — Mihreta Rente, Zikret Kapital</h2><p data-i18n="sc3_sub">Mihreta lässt ihre PK stehen. Zikret bezieht seine PK einmalig.</p></div>
     <div class="pills"><span class="pill mr">👩 Mihreta → Monatsrente CHF 699</span><span class="pill pk">👨 Zikret → Einmalzahlung ~CHF 280'000</span></div>
     <div class="loc-tabs">
-      <button class="loc-btn ach" id="s3ch" onclick="showLoc(3,'ch')">🇨🇭 Schweiz (Emmenbrücke)</button>
+      <button class="loc-btn ach" id="s3ch" onclick="showLoc(3,'ch')" data-i18n="sc_loc_ch">🇨🇭 Schweiz (Emmenbrücke)</button>
       <button class="loc-btn" id="s3ba" onclick="showLoc(3,'ba')">🇧🇦 Bosnien</button>
     </div>
     <div id="lp3ch" class="loc-panel active">
-      <div class="sdiv">Einmalig 2027 — Kapital Zikret</div>
+      <div class="sdiv" data-i18n="sc_einmalig_ch_zikret">Einmalig 2027 — Kapital Zikret</div>
       <div class="mb"><div class="mbt orange">Einmalige Auszahlung auf gemeinsames Konto</div>
         <div class="mrow kap"><div class="lbl">💰 PK-Kapital Zikret brutto (ord. Alter 65)</div><div class="val orange">CHF 306'000</div></div>
         <div class="mrow neg"><div class="lbl">📋 Kapitalauszahlungssteuer Emmen 2027</div><div class="val red">− CHF ~26'000</div></div>
@@ -899,7 +912,7 @@
       </div>
       <div class="sdiv">Monatlich laufend ab Okt. 2029</div>
       <div class="bignb blue"><div class="bl">Jeden Monat — für immer</div><div class="bv">CHF 4'379.–</div><div class="bs">AHV ② + Mihretas PK-Rente ① (Zikrets CHF 1'601 ist weg)</div></div>
-      <div class="mb"><div class="mbt grey">Abzüge Schweiz</div>
+      <div class="mb"><div class="mbt grey" data-i18n="sc_abzuege_ch">Abzüge Schweiz</div>
         <div class="mrow neg"><div class="lbl">📋 Einkommenssteuer</div><div class="val red">− CHF ~250</div></div>
         <div class="mrow neg"><div class="lbl">🏥 Krankenkasse</div><div class="val red">− CHF 900</div></div>
         <div class="mrow neg"><div class="lbl">📋 Vermögenssteuer ~CHF 280'000</div><div class="val red">− CHF ~80</div></div>
@@ -915,7 +928,7 @@
         <div class="mrow kap"><div class="lbl">💰 Netto nach Steuer</div><div class="val orange">~ CHF 280'000 = 599'200 BAM</div></div>
       </div>
       <div class="bignb blue"><div class="bl">Jeden Monat nach Bosnien</div><div class="bv">CHF 4'379.–</div><div class="bb">= ca. 9'371 BAM / Monat</div></div>
-      <div class="mb"><div class="mbt grey">Abzüge Bosnien</div>
+      <div class="mb"><div class="mbt grey" data-i18n="sc_abzuege_ba">Abzüge Bosnien</div>
         <div class="mrow neg"><div class="lbl">📋 Steuer Bosnien (~10–13%)</div><div class="val red">− CHF ~440–570</div></div>
         <div class="mrow neg"><div class="lbl">🏥 Krankenversicherung</div><div class="val red">− CHF ~60–100</div></div>
         <div class="mrow"><div class="lbl">🏠 Eigenes Haus</div><div class="val green">CHF 0</div></div>
@@ -932,11 +945,11 @@
     <div class="sc-header s4"><h2 data-i18n="sc4_title">💰 Szenario 4 — Beide PK als Kapital</h2><p data-i18n="sc4_sub">Beide beziehen ihre PK einmalig. Danach nur noch AHV ②.</p></div>
     <div class="pills"><span class="pill mk">👩 Mihreta → Einmalzahlung ~CHF 148'000</span><span class="pill pk">👨 Zikret → Einmalzahlung ~CHF 280'000</span></div>
     <div class="loc-tabs">
-      <button class="loc-btn ach" id="s4ch" onclick="showLoc(4,'ch')">🇨🇭 Schweiz (Emmenbrücke)</button>
+      <button class="loc-btn ach" id="s4ch" onclick="showLoc(4,'ch')" data-i18n="sc_loc_ch">🇨🇭 Schweiz (Emmenbrücke)</button>
       <button class="loc-btn" id="s4ba" onclick="showLoc(4,'ba')">🇧🇦 Bosnien</button>
     </div>
     <div id="lp4ch" class="loc-panel active">
-      <div class="sdiv">Einmalig — Mihreta 2026, Zikret 2027</div>
+      <div class="sdiv" data-i18n="sc_einmalig_beide">Einmalig — Mihreta 2026, Zikret 2027</div>
       <div class="mb"><div class="mbt orange">Total Kapital auf gemeinsames Konto</div>
         <div class="mrow kap"><div class="lbl">💰 Mihreta netto (nach Steuer ~9'500)</div><div class="val orange">~ CHF 147'500</div></div>
         <div class="mrow kap"><div class="lbl">💰 Zikret netto (nach Steuer ~26'000)</div><div class="val orange">~ CHF 280'000</div></div>
@@ -944,7 +957,7 @@
       </div>
       <div class="sdiv">Monatlich — nur noch AHV ②!</div>
       <div class="bignb orange"><div class="bl">Jeden Monat — für immer</div><div class="bv">CHF 3'680.–</div><div class="bs">Nur AHV ② — beide PK-Renten sind weg</div></div>
-      <div class="mb"><div class="mbt grey">Abzüge Schweiz</div>
+      <div class="mb"><div class="mbt grey" data-i18n="sc_abzuege_ch">Abzüge Schweiz</div>
         <div class="mrow neg"><div class="lbl">📋 Einkommenssteuer</div><div class="val red">− CHF ~150</div></div>
         <div class="mrow neg"><div class="lbl">🏥 Krankenkasse</div><div class="val red">− CHF 900</div></div>
         <div class="mrow neg"><div class="lbl">📋 Vermögenssteuer ~CHF 427'500</div><div class="val red">− CHF ~150</div></div>
@@ -961,7 +974,7 @@
         <div class="mrow kap"><div class="lbl">In BAM</div><div class="val orange">~ 914'850 BAM</div></div>
       </div>
       <div class="bignb orange"><div class="bl">Jeden Monat nach Bosnien (nur AHV ②)</div><div class="bv">CHF 3'680.–</div><div class="bb">= ca. 7'875 BAM / Monat</div></div>
-      <div class="mb"><div class="mbt grey">Abzüge Bosnien</div>
+      <div class="mb"><div class="mbt grey" data-i18n="sc_abzuege_ba">Abzüge Bosnien</div>
         <div class="mrow neg"><div class="lbl">📋 Steuer Bosnien (~10–13%)</div><div class="val red">− CHF ~370–480</div></div>
         <div class="mrow neg"><div class="lbl">🏥 Krankenversicherung</div><div class="val red">− CHF ~60–100</div></div>
         <div class="mrow"><div class="lbl">🏠 Eigenes Haus</div><div class="val green">CHF 0</div></div>
@@ -1455,7 +1468,37 @@ var T={
     leg3_text:"Ehepaare bekommen von der AHV zusammen maximal CHF 3'780/Mt. (150% der Maximalrente). Sonder-Zuschlag Mihreta CHF 101 (Jg. 1963) ist ausgenommen.",
     leg4_title:"Wechselkurs CHF → BAM",
     leg4_text:"Aktueller Kurs Juni 2026: 1 CHF = 2.14 BAM. BAM ist fest an den Euro gekoppelt (1 EUR = 1.9558 BAM).",
-    footnote:"Alle Beträge sind Richtwerte (Stand: 2026). Steuern Emmen: Steuerfuss 215%. Bosnien-Steuer: ~10–13% geschätzt."
+    footnote:"Alle Beträge sind Richtwerte (Stand: 2026). Steuern Emmen: Steuerfuss 215%. Bosnien-Steuer: ~10–13% geschätzt.",
+    sc_monatl_eink:"Monatliches Einkommen",
+    sc_abzuege_ch:"Abzüge Schweiz",
+    sc_abzuege_ba:"Abzüge Bosnien",
+    sc_monatl_ba:"Monatliches Einkommen in Bosnien",
+    sc_ahv_mihreta:"🏛 AHV Mihreta (inkl. Zuschlag CHF 101) ②",
+    sc_ahv_zikret:"🏛 AHV Zikret ②",
+    sc_pk_rente_m:"💼 PK-Rente Mihreta (FUTURA) ①",
+    sc_pk_rente_z:"💼 PK-Rente Zikret (AXA) ①",
+    sc_brutto:"Brutto total / Monat",
+    sc_einkommenst:"📋 Einkommenssteuer Emmen (ca.)",
+    sc_kk:"🏥 Krankenkasse 2 Personen (ca.)",
+    sc_wohnk:"🏠 Wohnkosten",
+    sc_netto:"✅ Netto verfügbar / Monat",
+    sc_ahv_total:"🏛 AHV gesamt ②",
+    sc_lbl_lls:"lebenslang garantiert",
+    sc_einmalig_ch:"Einmalig 2026 — Kapital Mihreta",
+    sc_einmalig_ch_zikret:"Einmalig 2027 — Kapital Zikret",
+    sc_einmalig_beide:"Einmalig — Mihreta 2026, Zikret 2027",
+    sc_kapital_mihreta:"💰 PK-Kapital Mihreta brutto",
+    sc_kapital_zikret:"💰 PK-Kapital Zikret brutto",
+    sc_kapitalsteuer_m:"📋 Kapitalauszahlungssteuer 2026",
+    sc_kapitalsteuer_z:"📋 Kapitalauszahlungssteuer 2027",
+    sc_netto_konto_m:"✅ Netto auf gem. Konto Mihreta",
+    sc_netto_konto_z:"✅ Netto auf gem. Konto Zikret",
+    sc_alle_zahl:"✅ Alle Zahlungen laufen auf gemeinsames Konto",
+    sc_beste_ch:"✅ Beste Option für die Schweiz",
+    sc_13ahv_jedes:"Jedes Jahr extra:",
+    sc_13ahv_aufs:"aufs gemeinsame Konto.",
+    sc_loc_ch:"🇨🇭 Schweiz (Emmenbrücke)",
+    sc_loc_ba:"🇧🇦 Bosnien",
   },
   bs:{
     snav1:"✅ S1 Oboje penzija",
@@ -1571,10 +1614,39 @@ var T={
     leg3_text:"Bračni parovi zajedno dobivaju max. CHF 3'780/mj. od AHV. Posebni dodatak Mihrete CHF 101 (god. 1963) je izuzet.",
     leg4_title:"Tečaj CHF → BAM",
     leg4_text:"Aktualni tečaj juni 2026.: 1 CHF = 2,14 BAM. BAM je vezan za euro (1 EUR = 1,9558 BAM).",
-    footnote:"Svi iznosi su orijentacione vrijednosti (stanje: 2026.). Za obvezujuće iznose: WAS Ausgleichskasse Luzern, FUTURA Vorsorge, AXA Stiftung."
+    footnote:"Svi iznosi su orijentacione vrijednosti (stanje: 2026.). Za obvezujuće iznose: WAS Ausgleichskasse Luzern, FUTURA Vorsorge, AXA Stiftung.",
+    sc_monatl_eink:"Miesečni prihod",
+    sc_abzuege_ch:"Odbici Švicarska",
+    sc_abzuege_ba:"Odbici Bosna",
+    sc_monatl_ba:"Miesečni prihod u Bosni",
+    sc_ahv_mihreta:"🏛 AHV Mihreta (inkl. Zuschlag CHF 101) ②",
+    sc_ahv_zikret:"🏛 AHV Zikret ②",
+    sc_pk_rente_m:"💼 PK penzija Mihreta (FUTURA) ①",
+    sc_pk_rente_z:"💼 PK penzija Zikret (AXA) ①",
+    sc_brutto:"Bruto ukupno / mj.",
+    sc_einkommenst:"📋 Porez na dohodak Emmen (ca.)",
+    sc_kk:"🏥 Zdravstveno osiguranje 2 osobe (ca.)",
+    sc_wohnk:"🏠 Troškovi stanovanja",
+    sc_netto:"✅ Neto raspoloživo / mj.",
+    sc_ahv_total:"🏛 AHV ukupno ②",
+    sc_lbl_lls:"doživotno garantovano",
+    sc_einmalig_ch:"Jednokratno 2026 — Kapital Mihreta",
+    sc_einmalig_ch_zikret:"Jednokratno 2027 — Kapital Zikret",
+    sc_einmalig_beide:"Jednokratno — Mihreta 2026, Zikret 2027",
+    sc_kapital_mihreta:"💰 PF Kapital Mihreta bruto",
+    sc_kapital_zikret:"💰 PF Kapital Zikret bruto",
+    sc_kapitalsteuer_m:"📋 Porez na kapitalni prihod 2026",
+    sc_kapitalsteuer_z:"📋 Porez na kapitalni prihod 2027",
+    sc_netto_konto_m:"✅ Neto na zaj. račun Mihreta",
+    sc_netto_konto_z:"✅ Neto na zaj. račun Zikret",
+    sc_alle_zahl:"✅ Sve isplate idu na zajednički račun",
+    sc_beste_ch:"✅ Najbolja opcija za Švicarsku",
+    sc_13ahv_jedes:"Svake godine extra:",
+    sc_13ahv_aufs:"na zajednički račun.",
+    sc_loc_ch:"🇨🇭 Švicarska (Emmenbrücke)",
+    sc_loc_ba:"🇧🇦 Bosna",
   }
-};
-
+}
 function t(key){ return (T[lang]&&T[lang][key])||T.de[key]||key; }
 
 function setLang(l){
@@ -1617,10 +1689,11 @@ function applyAll(){
   var pkpp=document.getElementById('pk-p-per'); if(pkpp) pkpp.textContent=t('pk_per');
 
   // PK details
+  function dr(lbl,val){ return '<div class="dr"><span class="dl">'+lbl+'</span><span class="dv">'+val+'</span></div>'; }
   var pkm=document.getElementById('pk-detail-mama');
-  if(pkm) pkm.innerHTML=t('pk_mama_d1')+" <span>CHF 150'011</span><br>"+t('pk_mama_d2')+" <span>CHF 162'571</span><br>"+t('pk_mama_d3')+" <span>CHF 699/Mt.</span><br>"+t('pk_mama_d4')+" <span>5.1625%</span>";
+  if(pkm) pkm.innerHTML=dr(t('pk_mama_d1'),"CHF 150'011")+dr(t('pk_mama_d2'),"CHF 162'571")+dr(t('pk_mama_d3'),"CHF 699/Mt.")+dr(t('pk_mama_d4'),"5.1625%");
   var pkp=document.getElementById('pk-detail-papa');
-  if(pkp) pkp.innerHTML=t('pk_papa_d1')+" <span>CHF 306'023</span><br>"+t('pk_papa_d2')+" <span>CHF 1'601/Mt.</span><br>"+t('pk_papa_d3')+" <span>CHF 221'423 / CHF 30'826</span><br>"+t('pk_papa_d4')+" <span>5.2%</span>";
+  if(pkp) pkp.innerHTML=dr(t('pk_papa_d1'),"CHF 306'023")+dr(t('pk_papa_d2'),"CHF 1'601/Mt.")+dr(t('pk_papa_d3'),"CHF 221'423 / 30'826")+dr(t('pk_papa_d4'),"5.2%");
 
   // AHV sub dates
   var ahvms=document.getElementById('ahv-m-sub'); if(ahvms) ahvms.textContent=t('ahv_mama_sub');
@@ -1628,9 +1701,9 @@ function applyAll(){
 
   // AHV details
   var ahvm=document.getElementById('ahv-detail-mama');
-  if(ahvm) ahvm.innerHTML=t('ahv_mama_d1')+" <span>CHF 101/Mt.</span><br>"+t('ahv_mama_d2')+" <span>CHF 1'926/Mt.</span><br>"+t('ahv_mama_d3')+" <span>~CHF 1'779 einmalig</span><br>"+t('ahv_mama_d4')+" <span>ab 01.06.2026</span>";
+  if(ahvm) ahvm.innerHTML=dr(t('ahv_mama_d1'),"CHF 101/Mt.")+dr(t('ahv_mama_d2'),"CHF 1'926/Mt.")+dr(t('ahv_mama_d3'),"~CHF 1'779")+dr(t('ahv_mama_d4'),"01.06.2026");
   var ahvp=document.getElementById('ahv-detail-papa');
-  if(ahvp) ahvp.innerHTML=t('ahv_papa_d1')+" <span>CHF 1'754/Mt.</span><br>"+t('ahv_papa_d2')+" <span>~CHF 1'754 einmalig</span><br>"+t('ahv_papa_d3')+" <span>CHF 1'512 (-6.8%)</span><br>"+t('ahv_papa_d4')+" <span>CHF 1'392 (-13.6%)</span>";
+  if(ahvp) ahvp.innerHTML=dr(t('ahv_papa_d1'),"CHF 1'754/Mt.")+dr(t('ahv_papa_d2'),"~CHF 1'754")+dr(t('ahv_papa_d3'),"CHF 1'512 (−6.8%)")+dr(t('ahv_papa_d4'),"CHF 1'392 (−13.6%)");
 
   // AHV couple
   var act=document.getElementById('ahv-couple-total'); if(act) act.innerHTML=t('ahv_total_lbl')+'<br><small style="font-weight:400;font-size:11px;color:#888">'+t('ahv_total_sub')+'</small>';
@@ -1696,20 +1769,4 @@ if('serviceWorker' in navigator){
   });
 }
 </script>
-</html>    ahv_total_lbl:"🏛 AHV total",
-    ahv_total_sub:"plafoniert, max. CHF 3'780",
-    ahv_mama_lbl:"davon Mihreta",
-    ahv_mama_sub:"Plafonierung + Zuschlag CHF 101",
-    ahv_papa_lbl:"davon Zikret",
-    ahv_papa_sub:"nach Plafonierung",
-    ahv_13_lbl:"🎄 13. AHV-Rente im Dezember",
-    ahv_13_sub:"beide — jedes Jahr extra",
-    ahv_total_lbl:"🏛 AHV ukupno",
-    ahv_total_sub:"plafoniranje, max. CHF 3'780",
-    ahv_mama_lbl:"od toga Mihreta",
-    ahv_mama_sub:"plafoniranje + dodatak CHF 101",
-    ahv_papa_lbl:"od toga Zikret",
-    ahv_papa_sub:"nakon plafoniranja",
-    ahv_13_lbl:"🎄 13. AHV penzija u decembru",
-    ahv_13_sub:"oboje — svake godine extra",
-
+</html>
